@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include <locale.h>
 
+//Módulos previstos:
+//- Menu Principal
+//- Clientes
+//- Funcionários
+//- Horários
+//- Avaliações
+//- Agendamento
+//- Pesquisar
+
 void informacoes(void);
 void infos_dev(void);
 
