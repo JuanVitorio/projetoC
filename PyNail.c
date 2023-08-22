@@ -24,6 +24,9 @@ void menu_principal(void);
 void informacoes(void);
 void infos_dev(void);
 void clientes(void);
+void delete_clientes(void);
+void update_cliente(void);
+void create_cliente(void);
 
 int main(void)
 {
@@ -115,4 +118,24 @@ void clientes(void)
   // getchar();
   printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
   getchar();
+}
+
+void create_cliente(void)
+{
+  printf("|| Nome ||");
+  printf("|| Nascimento ||");
+}
+
+void delete_clientes(void)
+{
+  printf("==============================================\n");
+  printf("|| Digite o ID do cliente que quer DELETAR: ||\n");
+  printf("==============================================\n");
+}
+
+void update_cliente(void)
+{
+  printf("================================================\n");
+  printf("|| Digite o ID do cliente que quer ATUALIZAR: ||\n");
+  printf("================================================\n");
 }
