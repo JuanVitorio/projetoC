@@ -62,6 +62,14 @@ void menu_principal(void)
   {
     clientes();
   }
+  else if (op == 0)
+  {
+    printf("Código encerrado.");
+  }
+  else
+  {
+    printf("opção em desenvolvimento");
+  }
 }
 
 void informacoes(void)
@@ -123,33 +131,39 @@ void clientes(void)
   {
     create_cliente();
   }
+  else if (op == 2)
+  {
+    update_cliente();
+  }
+  else if (op == 3)
+  {
+    delete_clientes();
+  }
+  else if (op == 4)
+  {
+    printf("opção em desenvolvimento");
+  }
+  else if (op == 5)
+  {
+    printf("opção em desenvolvimento");
+  }
+  else
+  {
+    printf("Digite uma opção válida");
+    menu_principal();
+  }
 }
 
 void create_cliente(void)
 {
-
-  char ve[3];
-
-  char nome[100];
-  int tele;
-  char gen;
-
   printf("==============================================\n");
   printf("||              Cadastrar cliente           ||\n");
   printf("==============================================\n");
   printf("||            * Nome do(a) cliente:         ||\n");
-  scanf("%s", nome);
-  ve[0] = nome;
   printf("||           * Telefone pra contato:        ||\n");
-  scanf("%d", &tele);
-  ve[1] = tele;
   printf("||              * Gênero (M | F):           ||\n");
-  scanf("%c", &gen);
-  ve[2] = gen;
   printf("==============================================\n");
   printf("|| ... ||\n");
-
-  printf(ve);
 }
 
 void delete_clientes(void)
@@ -157,11 +171,20 @@ void delete_clientes(void)
   printf("==============================================\n");
   printf("|| Digite o ID do cliente que quer DELETAR: ||\n");
   printf("==============================================\n");
+
+  // listar clientes
+
+  printf("===============================================\n");
+  printf("||             Cliente deletado              ||\n");
+  printf("===============================================\n");
 }
 
 void update_cliente(void)
 {
   printf("================================================\n");
   printf("|| Digite o ID do cliente que quer ATUALIZAR: ||\n");
+  printf("================================================\n");
+  printf("||          O que deseja atualizar?           ||\n");
+  printf("||      Nome(0) - Telefone(1) - Gênero(2)     ||\n");
   printf("================================================\n");
 }
