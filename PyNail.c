@@ -31,14 +31,13 @@ void create_cliente(void);
 int main(void)
 {
   menu_principal();
-  informacoes();
-  infos_dev();
+
   return 0;
 }
 
 void menu_principal(void)
 {
-  // char op;
+  int op;
   system("clear||cls");
   printf("========================================================\n");
   printf("||               Manicure/Pedicure Pretty Nail        ||\n");
@@ -56,10 +55,13 @@ void menu_principal(void)
   printf("||                Digite o número desejado:           ||\n");
   printf("||                                                    ||\n");
   printf("========================================================\n");
-  // scanf("%c", &op);
-  //  getchar();
-  printf("Aperte <ENTER> para continuar...\n");
-  getchar();
+
+  scanf("%d", &op);
+
+  if (op == 1)
+  {
+    clientes();
+  }
 }
 
 void informacoes(void)
@@ -96,7 +98,7 @@ void infos_dev(void)
 
 void clientes(void)
 {
-  // char op;
+  int op;
   system("clear||cls");
   printf("========================================================\n");
   printf("||                      Menu Clientes                 ||\n");
@@ -114,16 +116,40 @@ void clientes(void)
   printf("||                Digite o número desejado:           ||\n");
   printf("||                                                    ||\n");
   printf("========================================================\n");
-  // scanf("%c", &op);
-  // getchar();
-  printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-  getchar();
+
+  scanf("%d", &op);
+
+  if (op == 1)
+  {
+    create_cliente();
+  }
 }
 
 void create_cliente(void)
 {
-  printf("|| Nome ||");
-  printf("|| Nascimento ||");
+
+  char ve[3];
+
+  char nome[100];
+  int tele;
+  char gen;
+
+  printf("==============================================\n");
+  printf("||              Cadastrar cliente           ||\n");
+  printf("==============================================\n");
+  printf("||            * Nome do(a) cliente:         ||\n");
+  scanf("%s", nome);
+  ve[0] = nome;
+  printf("||           * Telefone pra contato:        ||\n");
+  scanf("%d", &tele);
+  ve[1] = tele;
+  printf("||              * Gênero (M | F):           ||\n");
+  scanf("%c", &gen);
+  ve[2] = gen;
+  printf("==============================================\n");
+  printf("|| ... ||\n");
+
+  printf(ve);
 }
 
 void delete_clientes(void)
