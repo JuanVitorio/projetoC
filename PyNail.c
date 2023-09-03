@@ -42,6 +42,9 @@ void listar_funcionarios(void);
 void pesquisar_funcionario(void);
 //----------------------------
 
+// funções horários
+void horarios(void);
+
 int main(void)
 {
   menu_principal();
@@ -79,6 +82,10 @@ void menu_principal(void)
   else if (op == 2)
   {
     funcionarios();
+  }
+  else if (op == 3)
+  {
+    horarios();
   }
   else if (op == 0)
   {
@@ -323,5 +330,39 @@ void funcionarios(void)
   {
     printf("Digite uma opção válida");
     menu_principal();
+  }
+}
+
+void horarios(void)
+{
+  int op;
+  printf("* Abrimos a partir das 10:00 e fechamos às 19:00 *\n");
+  printf("Horários disponíveis: \n");
+  // Vou listar todos os horários disponíveis no momento
+  // horários das 10 até as 19 que não estão ocupados
+
+  printf("========================================================\n");
+  printf("||                  Escolha o horário:                ||\n");
+  printf("========================================================\n");
+
+  // se o horários estiver vago:
+
+  printf("========================================================\n");
+  printf("||          Pesquise o nome do(a) cliente:            ||\n");
+  printf("========================================================\n");
+
+  printf("========================================================\n");
+  printf("||               Algumas observação?                  ||\n");
+  printf("========================================================\n");
+
+  printf("Agendar? (1 - sim | 2 - não)");
+  scanf("%d", &op);
+  if (op == 1)
+  {
+    printf("Agendado");
+  }
+  else
+  {
+    printf("Agendamento cancelado");
   }
 }
