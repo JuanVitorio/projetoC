@@ -26,14 +26,21 @@ void infos_dev(void);
 
 // funções clientes--------
 void clientes(void);
-void delete_clientes(void);
+void delete_cliente(void);
 void update_cliente(void);
 void create_cliente(void);
 void listar_clientes(void);
-void pesquisa_cliente(void);
+void pesquisar_cliente(void);
 //--------------------------
 
+// funções funcionários-------
 void funcionarios(void);
+void create_funcionario(void);
+void delete_funcionario(void);
+void update_funcionario(void);
+void listar_funcionarios(void);
+void pesquisar_funcionario(void);
+//----------------------------
 
 int main(void)
 {
@@ -68,6 +75,10 @@ void menu_principal(void)
   if (op == 1)
   {
     clientes();
+  }
+  else if (op == 2)
+  {
+    funcionarios();
   }
   else if (op == 0)
   {
@@ -146,7 +157,7 @@ void clientes(void)
   }
   else if (op == 3)
   {
-    delete_clientes();
+    delete_cliente();
   }
   else if (op == 4)
   {
@@ -154,7 +165,7 @@ void clientes(void)
   }
   else if (op == 5)
   {
-    pesquisa_cliente();
+    pesquisar_cliente();
   }
   else
   {
@@ -175,7 +186,7 @@ void create_cliente(void)
   printf("|| ... ||\n");
 }
 
-void delete_clientes(void)
+void delete_cliente(void)
 {
   printf("==============================================\n");
   printf("|| Digite o ID do cliente que quer DELETAR: ||\n");
@@ -200,10 +211,13 @@ void update_cliente(void)
 
 void listar_clientes(void)
 {
-  // listará todos os clientes
+  printf("==================================================\n");
+  printf("||                  Clientes:                   ||\n");
+  printf("==================================================\n");
+  // for dos clientes
 }
 
-void pesquisa_cliente(void)
+void pesquisar_cliente(void)
 {
   printf("================================================\n");
   printf("||           Digite o nome do cliente:        ||\n");
@@ -211,6 +225,56 @@ void pesquisa_cliente(void)
 }
 
 // opções FUNCIONARIOS
+
+void create_funcionario(void)
+{
+  printf("==============================================\n");
+  printf("||             Cadastrar Funcionário        ||\n");
+  printf("==============================================\n");
+  printf("||           * Nome do(a) funcionário:      ||\n");
+  printf("||           * Telefone pra contato:        ||\n");
+  printf("||              * Gênero (M | F):           ||\n");
+  printf("==============================================\n");
+  printf("|| ... ||\n");
+}
+
+void delete_funcionario(void)
+{
+  printf("==================================================\n");
+  printf("|| Digite o ID do funcionário que quer DELETAR: ||\n");
+  printf("==================================================\n");
+
+  // listar funcionários
+
+  printf("===============================================\n");
+  printf("||             Funcionário deletado          ||\n");
+  printf("===============================================\n");
+}
+
+void update_funcionario(void)
+{
+  printf("====================================================\n");
+  printf("|| Digite o ID do funcionário que quer ATUALIZAR: ||\n");
+  printf("====================================================\n");
+  printf("||             O que deseja atualizar?            ||\n");
+  printf("||        Nome(0) - Telefone(1) - Gênero(2)       ||\n");
+  printf("====================================================\n");
+}
+
+void listar_funcionarios(void)
+{
+  printf("==================================================\n");
+  printf("||                  Funcionários:               ||\n");
+  printf("==================================================\n");
+  // for dos funcionários
+}
+
+void pesquisar_funcionario(void)
+{
+  printf("==================================================\n");
+  printf("||         Digite o nome do funcionário:        ||\n");
+  printf("==================================================\n");
+}
 
 void funcionarios(void)
 {
@@ -237,52 +301,27 @@ void funcionarios(void)
 
   if (op == 1)
   {
-    create_cliente();
+    create_funcionario();
   }
   else if (op == 2)
   {
-    update_cliente();
+    update_funcionario();
   }
   else if (op == 3)
   {
-    delete_clientes();
+    delete_funcionario();
   }
   else if (op == 4)
   {
-    listar_clientes();
+    listar_funcionarios();
   }
   else if (op == 5)
   {
-    pesquisa_cliente();
+    pesquisar_funcionario();
   }
   else
   {
     printf("Digite uma opção válida");
     menu_principal();
   }
-}
-
-void create_funcionario(void)
-{
-  printf("==============================================\n");
-  printf("||             Cadastrar Funcionário        ||\n");
-  printf("==============================================\n");
-  printf("||           * Nome do(a) funcionário:      ||\n");
-  printf("||           * Telefone pra contato:        ||\n");
-  printf("||              * Gênero (M | F):           ||\n");
-  printf("==============================================\n");
-  printf("|| ... ||\n");
-}
-
-void delete_clientes(void)
-{
-  printf("==================================================\n");
-  printf("|| Digite o ID do funcionário que quer DELETAR: ||\n");
-  printf("==================================================\n");
-
-  // listar funcionários
-
-  printf("===============================================\n");
-  printf("||             Funcionário deletado          ||\n");
-  printf("===============================================\n");
 }
