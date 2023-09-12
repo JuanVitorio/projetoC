@@ -366,3 +366,8 @@ void horarios(void)
     printf("Agendamento cancelado");
   }
 }
+
+void delete_horario(void)
+{
+  printf("Digite o horário que quer deletar: ");
+}
