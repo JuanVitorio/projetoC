@@ -44,6 +44,11 @@ void pesquisar_funcionario(void);
 
 // funções horários
 void horarios(void);
+void create_horario(void);
+void update_horario(void);
+void delete_horario(void);
+void listar_horarios(void);
+void pesquisar_horario(void);
 
 int main(void)
 {
@@ -63,8 +68,6 @@ void menu_principal(void)
   printf("||                      1. Clientes                   ||\n");
   printf("||                      2. Funcionários               ||\n");
   printf("||                      3. Horários                   ||\n");
-  printf("||                      4.Agendamentos                ||\n");
-  printf("||                      5. Pesquisar                  ||\n");
   printf("||                      0. Sair                       ||\n");
   printf("||                                                    ||\n");
   printf("========================================================\n");
@@ -333,7 +336,7 @@ void funcionarios(void)
   }
 }
 
-void horarios(void)
+void create_horario(void)
 {
   int op;
   printf("* Abrimos a partir das 10:00 e fechamos às 19:00 *\n");
@@ -367,7 +370,82 @@ void horarios(void)
   }
 }
 
+void update_horario(void)
+{
+  printf("====================================================\n");
+  printf("||   Digite o ID do horário que quer ATUALIZAR:   ||\n");
+  printf("====================================================\n");
+  printf("||             O que deseja atualizar?            ||\n");
+  printf("====================================================\n");
+}
+
 void delete_horario(void)
 {
-  printf("Digite o horário que quer deletar: ");
+  printf("====================================================\n");
+  printf("||       Digite o horário que quer deletar:       ||\n");
+  printf("====================================================\n");
+}
+
+void listar_horarios(void)
+{
+  printf("====================================================\n");
+  printf("||                    Horários                    ||\n");
+  printf("====================================================\n");
+}
+
+void pesquisar_horario(void)
+{
+  printf("==================================================\n");
+  printf("||           Digite o nome do cliente:          ||\n");
+  printf("==================================================\n");
+}
+
+void horarios()
+{
+  int op;
+  system("clear||cls");
+  printf("========================================================\n");
+  printf("||                      Menu Horários                 ||\n");
+  printf("========================================================\n");
+  printf("||                                                    ||\n");
+  printf("||                      1. Criar                      ||\n");
+  printf("||                      2. Editar                     ||\n");
+  printf("||                      3. Excluir                    ||\n");
+  printf("||                      4. Listar                     ||\n");
+  printf("||                      5. Pesquisar                  ||\n");
+  printf("||                      0. Sair                       ||\n");
+  printf("||                                                    ||\n");
+  printf("========================================================\n");
+  printf("||                                                    ||\n");
+  printf("||                Digite o número desejado:           ||\n");
+  printf("||                                                    ||\n");
+  printf("========================================================\n");
+
+  scanf("%d", &op);
+
+  if (op == 1)
+  {
+    create_horario();
+  }
+  else if (op == 2)
+  {
+    update_horario();
+  }
+  else if (op == 3)
+  {
+    delete_horario();
+  }
+  else if (op == 4)
+  {
+    listar_horarios();
+  }
+  else if (op == 5)
+  {
+    pesquisar_horario();
+  }
+  else
+  {
+    printf("Digite uma opção válida");
+    menu_principal();
+  }
 }
