@@ -11,6 +11,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "clientes.h"
+#include "funcionarios.h"
+#include "horarios.h"
+#include "PyNail.h"
 
 // Módulos previstos:
 //- Clientes
@@ -19,12 +23,6 @@
 //- Avaliações
 //- Agendamento
 //- Pesquisar
-
-void menu_principal(void);
-void informacoes(void);
-void infos_dev(void);
-
-
 
 int main(void)
 {

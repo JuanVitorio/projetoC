@@ -1,6 +1,7 @@
 #include "funcionarios.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "PyNail.h"
 
 void create_funcionario(void)
 {
