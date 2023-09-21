@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include "PyNail.h"
 
+int op;
+
 void create_funcionario(void)
 {
   printf("==============================================\n");
@@ -13,6 +15,14 @@ void create_funcionario(void)
   printf("||              * Gênero (M | F):           ||\n");
   printf("==============================================\n");
   printf("|| ... ||\n");
+
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    funcionarios();
+  }else{
+    funcionarios();
+  }
 }
 
 void delete_funcionario(void)
@@ -26,6 +36,14 @@ void delete_funcionario(void)
   printf("===============================================\n");
   printf("||             Funcionário deletado          ||\n");
   printf("===============================================\n");
+
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    funcionarios();
+  }else{
+    funcionarios();
+  }
 }
 
 void update_funcionario(void)
@@ -36,6 +54,14 @@ void update_funcionario(void)
   printf("||             O que deseja atualizar?            ||\n");
   printf("||        Nome(0) - Telefone(1) - Gênero(2)       ||\n");
   printf("====================================================\n");
+
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    funcionarios();
+  }else{
+    funcionarios();
+  }
 }
 
 void listar_funcionarios(void)
@@ -44,6 +70,14 @@ void listar_funcionarios(void)
   printf("||                  Funcionários:               ||\n");
   printf("==================================================\n");
   // for dos funcionários
+
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    funcionarios();
+  }else{
+    funcionarios();
+  }
 }
 
 void pesquisar_funcionario(void)
@@ -51,11 +85,18 @@ void pesquisar_funcionario(void)
   printf("==================================================\n");
   printf("||         Digite o nome do funcionário:        ||\n");
   printf("==================================================\n");
+
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    funcionarios();
+  }else{
+    funcionarios();
+  }
 }
 
 void funcionarios(void)
 {
-  int op;
   system("clear||cls");
   printf("========================================================\n");
   printf("||                    Menu Funcionários               ||\n");
