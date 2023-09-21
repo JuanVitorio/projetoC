@@ -23,6 +23,7 @@
 //- Avaliações
 //- Agendamento
 //- Pesquisar
+int op;
 
 int main(void)
 {
@@ -33,7 +34,6 @@ int main(void)
 
 void menu_principal(void)
 {
-  int op;
   system("clear||cls");
   printf("========================================================\n");
   printf("||               Manicure/Pedicure Pretty Nail        ||\n");
@@ -89,8 +89,15 @@ void informacoes(void)
   printf("|| /pedicure, sendo possível cadastrar clientes, ho-  ||\n");
   printf("||         rários, dentre outras necessidades.        ||\n");
   printf("========================================================\n");
-  printf("Aperte <ENTER> para continuar...\n");
-  getchar();
+  
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    horarios();
+  }else{
+    horarios();
+  }
+  
 }
 
 void infos_dev(void)
@@ -102,6 +109,12 @@ void infos_dev(void)
   printf("||               juanvitorioclash@gmail.com           ||\n");
   printf("||         Github: https://github.com/JuanVitorio     ||\n");
   printf("========================================================\n");
-  printf("Aperte <ENTER> para continuar...\n");
-  getchar();
+  
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    horarios();
+  }else{
+    horarios();
+  }
 }
