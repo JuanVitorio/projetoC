@@ -2,10 +2,11 @@
 #include "PyNail.h"
 #include <stdio.h>
 #include <stdlib.h>
+  
+int op;
 
 void create_horario(void)
 {
-  int op;
   printf("* Abrimos a partir das 10:00 e fechamos às 19:00 *\n");
   printf("Horários disponíveis: \n");
   // Vou listar todos os horários disponíveis no momento
@@ -30,10 +31,12 @@ void create_horario(void)
   if (op == 1)
   {
     printf("Agendado");
+    horarios();
   }
   else
   {
     printf("Agendamento cancelado");
+    horarios();
   }
 }
 
@@ -44,6 +47,14 @@ void update_horario(void)
   printf("====================================================\n");
   printf("||             O que deseja atualizar?            ||\n");
   printf("====================================================\n");
+
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    horarios();
+  }else{
+    horarios();
+  }
 }
 
 void delete_horario(void)
@@ -51,6 +62,14 @@ void delete_horario(void)
   printf("====================================================\n");
   printf("||       Digite o horário que quer deletar:       ||\n");
   printf("====================================================\n");
+
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    horarios();
+  }else{
+    horarios();
+  }
 }
 
 void listar_horarios(void)
@@ -58,6 +77,14 @@ void listar_horarios(void)
   printf("====================================================\n");
   printf("||                    Horários                    ||\n");
   printf("====================================================\n");
+
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    horarios();
+  }else{
+    horarios();
+  }
 }
 
 void pesquisar_horario(void)
@@ -65,6 +92,14 @@ void pesquisar_horario(void)
   printf("==================================================\n");
   printf("||           Digite o nome do cliente:          ||\n");
   printf("==================================================\n");
+
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    horarios();
+  }else{
+    horarios();
+  }
 }
 
 void horarios()
