@@ -2,9 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "PyNail.h"
+
+int op;
+
 void clientes(void)
 {
-  int op;
   system("clear||cls");
   printf("========================================================\n");
   printf("||                      Menu Clientes                 ||\n");
@@ -62,6 +64,15 @@ void create_cliente(void)
   printf("||              * Gênero (M | F):           ||\n");
   printf("==============================================\n");
   printf("|| ... ||\n");
+
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    clientes();
+  }else{
+    clientes();
+  }
+
 }
 
 void delete_cliente(void)
@@ -75,6 +86,16 @@ void delete_cliente(void)
   printf("===============================================\n");
   printf("||             Cliente deletado              ||\n");
   printf("===============================================\n");
+
+  printf("========= 0 para voltar ========= \n");
+  
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    clientes();
+  }else{
+    clientes();
+  }
 }
 
 void update_cliente(void)
@@ -85,6 +106,14 @@ void update_cliente(void)
   printf("||          O que deseja atualizar?           ||\n");
   printf("||      Nome(0) - Telefone(1) - Gênero(2)     ||\n");
   printf("================================================\n");
+
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    clientes();
+  }else{
+    clientes();
+  }
 }
 
 void listar_clientes(void)
@@ -93,6 +122,16 @@ void listar_clientes(void)
   printf("||                  Clientes:                   ||\n");
   printf("==================================================\n");
   // for dos clientes
+
+  printf("========= 0 para voltar ========= \n");
+  
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    clientes();
+  }else{
+    clientes();
+  }
 }
 
 void pesquisar_cliente(void)
@@ -100,4 +139,14 @@ void pesquisar_cliente(void)
   printf("================================================\n");
   printf("||           Digite o nome do cliente:        ||\n");
   printf("================================================\n");
+
+  printf("========= 0 para voltar ========= \n");
+  
+  printf("0 para voltar \n");
+  scanf("%d", &op);
+  if(op == 0){
+    clientes();
+  }else{
+    clientes();
+  }
 }
