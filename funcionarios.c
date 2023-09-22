@@ -13,14 +13,18 @@ void create_funcionario(void)
   printf("||           * Nome do(a) funcionário:      ||\n");
   printf("||           * Telefone pra contato:        ||\n");
   printf("||              * Gênero (M | F):           ||\n");
+  printf("||                  * Função:               ||\n");
   printf("==============================================\n");
   printf("|| ... ||\n");
 
   printf("0 para voltar \n");
   scanf("%d", &op);
-  if(op == 0){
+  if (op == 0)
+  {
     funcionarios();
-  }else{
+  }
+  else
+  {
     funcionarios();
   }
 }
@@ -39,9 +43,12 @@ void delete_funcionario(void)
 
   printf("0 para voltar \n");
   scanf("%d", &op);
-  if(op == 0){
+  if (op == 0)
+  {
     funcionarios();
-  }else{
+  }
+  else
+  {
     funcionarios();
   }
 }
@@ -57,9 +64,12 @@ void update_funcionario(void)
 
   printf("0 para voltar \n");
   scanf("%d", &op);
-  if(op == 0){
+  if (op == 0)
+  {
     funcionarios();
-  }else{
+  }
+  else
+  {
     funcionarios();
   }
 }
@@ -73,9 +83,12 @@ void listar_funcionarios(void)
 
   printf("0 para voltar \n");
   scanf("%d", &op);
-  if(op == 0){
+  if (op == 0)
+  {
     funcionarios();
-  }else{
+  }
+  else
+  {
     funcionarios();
   }
 }
@@ -88,9 +101,12 @@ void pesquisar_funcionario(void)
 
   printf("0 para voltar \n");
   scanf("%d", &op);
-  if(op == 0){
+  if (op == 0)
+  {
     funcionarios();
-  }else{
+  }
+  else
+  {
     funcionarios();
   }
 }

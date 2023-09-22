@@ -15,6 +15,7 @@
 #include "funcionarios.h"
 #include "horarios.h"
 #include "PyNail.h"
+#include "servicos.h"
 
 // Módulos previstos:
 //- Clientes
@@ -42,6 +43,10 @@ void menu_principal(void)
   printf("||                      1. Clientes                   ||\n");
   printf("||                      2. Funcionários               ||\n");
   printf("||                      3. Horários                   ||\n");
+  printf("||                      4. Agendamento                ||\n");
+  printf("||                      5. Serviços                   ||\n");
+  printf("||                      6. Informações                ||\n");
+  printf("||                      7. Infos. Dev.                ||\n");
   printf("||                      0. Sair                       ||\n");
   printf("||                                                    ||\n");
   printf("========================================================\n");
@@ -63,6 +68,18 @@ void menu_principal(void)
   else if (op == 3)
   {
     horarios();
+  }
+  else if (op == 5)
+  {
+    servicos();
+  }
+  else if (op == 6)
+  {
+    informacoes();
+  }
+  else if (op == 7)
+  {
+    infos_dev();
   }
   else if (op == 0)
   {
@@ -89,15 +106,17 @@ void informacoes(void)
   printf("|| /pedicure, sendo possível cadastrar clientes, ho-  ||\n");
   printf("||         rários, dentre outras necessidades.        ||\n");
   printf("========================================================\n");
-  
+
   printf("0 para voltar \n");
   scanf("%d", &op);
-  if(op == 0){
-    horarios();
-  }else{
+  if (op == 0)
+  {
     horarios();
   }
-  
+  else
+  {
+    horarios();
+  }
 }
 
 void infos_dev(void)
@@ -109,12 +128,15 @@ void infos_dev(void)
   printf("||               juanvitorioclash@gmail.com           ||\n");
   printf("||         Github: https://github.com/JuanVitorio     ||\n");
   printf("========================================================\n");
-  
+
   printf("0 para voltar \n");
   scanf("%d", &op);
-  if(op == 0){
+  if (op == 0)
+  {
     horarios();
-  }else{
+  }
+  else
+  {
     horarios();
   }
 }
