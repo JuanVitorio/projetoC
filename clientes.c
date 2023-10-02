@@ -56,23 +56,32 @@ void clientes(void)
 
 void create_cliente(void)
 {
+  char nome[50];
+  int numero[11];
+  char genero;
+
   printf("==============================================\n");
   printf("||              Cadastrar cliente           ||\n");
   printf("==============================================\n");
   printf("||            * Nome do(a) cliente:         ||\n");
+  scanf("%s", nome);
   printf("||           * Telefone pra contato:        ||\n");
+  scanf("%d", numero);
   printf("||              * Gênero (M | F):           ||\n");
+  scanf("%c", &genero);
   printf("==============================================\n");
   printf("|| ... ||\n");
 
   printf("0 para voltar \n");
   scanf("%d", &op);
-  if(op == 0){
-    clientes();
-  }else{
+  if (op == 0)
+  {
     clientes();
   }
-
+  else
+  {
+    clientes();
+  }
 }
 
 void delete_cliente(void)
@@ -88,12 +97,15 @@ void delete_cliente(void)
   printf("===============================================\n");
 
   printf("========= 0 para voltar ========= \n");
-  
+
   printf("0 para voltar \n");
   scanf("%d", &op);
-  if(op == 0){
+  if (op == 0)
+  {
     clientes();
-  }else{
+  }
+  else
+  {
     clientes();
   }
 }
@@ -109,9 +121,12 @@ void update_cliente(void)
 
   printf("0 para voltar \n");
   scanf("%d", &op);
-  if(op == 0){
+  if (op == 0)
+  {
     clientes();
-  }else{
+  }
+  else
+  {
     clientes();
   }
 }
@@ -124,12 +139,15 @@ void listar_clientes(void)
   // for dos clientes
 
   printf("========= 0 para voltar ========= \n");
-  
+
   printf("0 para voltar \n");
   scanf("%d", &op);
-  if(op == 0){
+  if (op == 0)
+  {
     clientes();
-  }else{
+  }
+  else
+  {
     clientes();
   }
 }
@@ -141,12 +159,15 @@ void pesquisar_cliente(void)
   printf("================================================\n");
 
   printf("========= 0 para voltar ========= \n");
-  
+
   printf("0 para voltar \n");
   scanf("%d", &op);
-  if(op == 0){
+  if (op == 0)
+  {
     clientes();
-  }else{
+  }
+  else
+  {
     clientes();
   }
 }
