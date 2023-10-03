@@ -3,56 +3,6 @@
 #include <stdlib.h>
 
 int op;
-
-void servicos(void)
-{
-  system("clear||cls");
-  printf("========================================================\n");
-  printf("||                      Menu Serviços                 ||\n");
-  printf("========================================================\n");
-  printf("||                                                    ||\n");
-  printf("||                      1. Cadastrar                  ||\n");
-  printf("||                      2. Editar                     ||\n");
-  printf("||                      3. Excluir                    ||\n");
-  printf("||                      4. Listar                     ||\n");
-  printf("||                      5. Pesquisar                  ||\n");
-  printf("||                      0. Sair                       ||\n");
-  printf("||                                                    ||\n");
-  printf("========================================================\n");
-  printf("||                                                    ||\n");
-  printf("||                Digite o número desejado:           ||\n");
-  printf("||                                                    ||\n");
-  printf("========================================================\n");
-
-  scanf("%d", &op);
-
-  if (op == 1)
-  {
-    create_servico();
-  }
-  else if (op == 2)
-  {
-    update_servico();
-  }
-  else if (op == 3)
-  {
-    delete_servico();
-  }
-  else if (op == 4)
-  {
-    listar_servicos();
-  }
-  else if (op == 5)
-  {
-    pesquisar_servico();
-  }
-  else
-  {
-    printf("Digite uma opção válida");
-    servicos();
-  }
-}
-
 void create_servico(void)
 {
   printf("o id do serviço que vai ser automático\n");
@@ -140,6 +90,55 @@ void pesquisar_servico(void)
   }
   else
   {
+    servicos();
+  }
+}
+
+void servicos(void)
+{
+  system("clear||cls");
+  printf("========================================================\n");
+  printf("||                      Menu Serviços                 ||\n");
+  printf("========================================================\n");
+  printf("||                                                    ||\n");
+  printf("||                      1. Cadastrar                  ||\n");
+  printf("||                      2. Editar                     ||\n");
+  printf("||                      3. Excluir                    ||\n");
+  printf("||                      4. Listar                     ||\n");
+  printf("||                      5. Pesquisar                  ||\n");
+  printf("||                      0. Sair                       ||\n");
+  printf("||                                                    ||\n");
+  printf("========================================================\n");
+  printf("||                                                    ||\n");
+  printf("||                Digite o número desejado:           ||\n");
+  printf("||                                                    ||\n");
+  printf("========================================================\n");
+
+  scanf("%d", &op);
+
+  if (op == 1)
+  {
+    create_servico();
+  }
+  else if (op == 2)
+  {
+    update_servico();
+  }
+  else if (op == 3)
+  {
+    delete_servico();
+  }
+  else if (op == 4)
+  {
+    listar_servicos();
+  }
+  else if (op == 5)
+  {
+    pesquisar_servico();
+  }
+  else
+  {
+    printf("Digite uma opção válida");
     servicos();
   }
 }
