@@ -1,11 +1,7 @@
 #include "clientes.h"
-#include "servicos.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "PyNail.h"
-#include <stdbool.h>
-#include <ctype.h>
-#include <string.h>
 
 int op;
 
@@ -58,37 +54,15 @@ void clientes(void)
   }
 }
 
-void validar_nome(nome)
-{
-  if (nome == " ")
-  {
-    return (0);
-  }
-}
-
 void create_cliente(void)
 {
-  char nome[100];
-  int numero[11];
-  char cpf[11];
-  char genero;
-
   printf("==============================================\n");
   printf("||              Cadastrar cliente           ||\n");
   printf("==============================================\n");
   printf("||            * Nome do(a) cliente:         ||\n");
-  fgets(nome, sizeof(nome), stdin);
-  if (validaNomeCompleto(nome) == 0)
-  {
-    printf("Nome inválido");
-  }
-  nome[strcspn(nome, "\n")] = '\0';
   printf("||           * Telefone pra contato:        ||\n");
-  scanf("%d", numero);
   printf("||              * Gênero (M | F):           ||\n");
-  scanf("%c", &genero);
   printf("==============================================\n");
-  scanf("%s");
   printf("|| ... ||\n");
 
   printf("0 para voltar \n");
