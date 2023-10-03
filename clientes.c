@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "PyNail.h"
+#include <stdbool.h>
+#include <ctype.h>
+#include <string.h>
 
 int op;
 
@@ -54,22 +57,55 @@ void clientes(void)
   }
 }
 
+int validaNomeCompleto(const char *nome)
+{
+  int tamanho = strlen(nome);
+  int i;
+
+  if (tamanho == 0)
+    return 0;
+
+  for (i = 0; i < tamanho; i++)
+  {
+    if (!isalpha(nome[i]) && nome[i] != ' ')
+      return 0;
+  }
+
+  if (!isalpha(nome[0]) || !isalpha(nome[tamanho - 1]))
+    return 0;
+
+  for (i = 1; i < tamanho; i++)
+  {
+    if (nome[i] == ' ' && nome[i - 1] == ' ')
+      return 0;
+  }
+
+  return 1;
+}
+
 void create_cliente(void)
 {
-  char nome[50];
+  char nome[100];
   int numero[11];
+  char cpf[11];
   char genero;
 
   printf("==============================================\n");
   printf("||              Cadastrar cliente           ||\n");
   printf("==============================================\n");
   printf("||            * Nome do(a) cliente:         ||\n");
-  scanf("%s", nome);
+  fgets(nome, sizeof(nome), stdin);
+  if (validaNomeCompleto(nome) == 0)
+  {
+    printf("Nome inválido");
+  }
+  nome[strcspn(nome, "\n")] = '\0';
   printf("||           * Telefone pra contato:        ||\n");
   scanf("%d", numero);
   printf("||              * Gênero (M | F):           ||\n");
   scanf("%c", &genero);
   printf("==============================================\n");
+  scanf("%s");
   printf("|| ... ||\n");
 
   printf("0 para voltar \n");
