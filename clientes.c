@@ -1,4 +1,5 @@
 #include "clientes.h"
+#include "servicos.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "PyNail.h"
@@ -57,30 +58,12 @@ void clientes(void)
   }
 }
 
-int validaNomeCompleto(const char *nome)
+void validar_nome(nome)
 {
-  int tamanho = strlen(nome);
-  int i;
-
-  if (tamanho == 0)
-    return 0;
-
-  for (i = 0; i < tamanho; i++)
+  if (nome == " ")
   {
-    if (!isalpha(nome[i]) && nome[i] != ' ')
-      return 0;
+    return (0);
   }
-
-  if (!isalpha(nome[0]) || !isalpha(nome[tamanho - 1]))
-    return 0;
-
-  for (i = 1; i < tamanho; i++)
-  {
-    if (nome[i] == ' ' && nome[i - 1] == ' ')
-      return 0;
-  }
-
-  return 1;
 }
 
 void create_cliente(void)
