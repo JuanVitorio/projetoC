@@ -65,7 +65,7 @@ void create_cliente(void)
   printf("||              Cadastrar cliente           ||\n");
   printf("==============================================\n");
   printf("||            * Nome do(a) cliente:         ||\n");
-  fgets(nome, sizeof(nome), stdin);
+  scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
   printf("||           * Telefone pra contato:        ||\n");
   scanf("%d", &telefone);
   printf("||              * Gênero (M | F):           ||\n");
@@ -167,7 +167,7 @@ void pesquisar_cliente(void)
   printf("||           Digite o nome do cliente:        ||\n");
   printf("================================================\n");
 
-  fgets(nome, sizeof(nome), stdin);
+  scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
 
   printf("========= 0 para voltar ========= \n");
 

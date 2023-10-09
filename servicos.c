@@ -1,6 +1,6 @@
-#include "servicos.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "servicos.h"
 
 int op;
 void create_servico(void)
