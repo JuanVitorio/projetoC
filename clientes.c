@@ -97,9 +97,9 @@ void create_cliente(void)
   }
 
   printf("||           * Telefone pra contato:        ||\n");
-  scanf("%d", &telefone);
+  scanf("%s", telefone);
 
-  if (telefone == 0)
+  if (validar_numero(telefone) == 0)
   {
     printf("Telefone inválido");
     create_cliente();

@@ -2,20 +2,87 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "PyNail.h"
+#include "validacoes.h"
 
 int op;
 
+void funcionarios(void)
+{
+  system("clear||cls");
+  printf("========================================================\n");
+  printf("||                    Menu Funcionários               ||\n");
+  printf("========================================================\n");
+  printf("||                                                    ||\n");
+  printf("||                      1. Cadastrar                  ||\n");
+  printf("||                      2. Editar                     ||\n");
+  printf("||                      3. Excluir                    ||\n");
+  printf("||                      4. Listar                     ||\n");
+  printf("||                      5. Pesquisar                  ||\n");
+  printf("||                      0. Sair                       ||\n");
+  printf("||                                                    ||\n");
+  printf("========================================================\n");
+  printf("||                                                    ||\n");
+  printf("||                Digite o número desejado:           ||\n");
+  printf("||                                                    ||\n");
+  printf("========================================================\n");
+
+  scanf("%d", &op);
+
+  if (op == 1)
+  {
+    create_funcionario();
+  }
+  else if (op == 2)
+  {
+    update_funcionario();
+  }
+  else if (op == 3)
+  {
+    delete_funcionario();
+  }
+  else if (op == 4)
+  {
+    listar_funcionarios();
+  }
+  else if (op == 5)
+  {
+    pesquisar_funcionario();
+  }
+  else
+  {
+    printf("Digite uma opção válida");
+    menu_principal();
+  }
+}
+
 void create_funcionario(void)
 {
+
+  char nome[100];
+  char telefone[13];
+  char funcao[30];
+
   printf("==============================================\n");
   printf("||             Cadastrar Funcionário        ||\n");
   printf("==============================================\n");
   printf("||           * Nome do(a) funcionário:      ||\n");
+  scanf("%s", nome);
+  if (valida_nome(nome) == 0)
+  {
+    printf("Nome inválido");
+    create_funcionario();
+  }
   printf("||           * Telefone pra contato:        ||\n");
+  scanf("%s", telefone);
+  if (validar_numero(telefone) == 0)
+  {
+    printf("Telefone inválido");
+    create_funcionario();
+  }
   printf("||              * Gênero (M | F):           ||\n");
   printf("||                  * Função:               ||\n");
+  scanf("%s", funcao);
   printf("==============================================\n");
-  printf("|| ... ||\n");
 
   printf("0 para voltar \n");
   scanf("%d", &op);
@@ -31,11 +98,16 @@ void create_funcionario(void)
 
 void delete_funcionario(void)
 {
+
+  int id;
+
   printf("==================================================\n");
   printf("|| Digite o ID do funcionário que quer DELETAR: ||\n");
   printf("==================================================\n");
 
   // listar funcionários
+
+  scanf("%d", &id);
 
   printf("===============================================\n");
   printf("||             Funcionário deletado          ||\n");
@@ -108,54 +180,5 @@ void pesquisar_funcionario(void)
   else
   {
     funcionarios();
-  }
-}
-
-void funcionarios(void)
-{
-  system("clear||cls");
-  printf("========================================================\n");
-  printf("||                    Menu Funcionários               ||\n");
-  printf("========================================================\n");
-  printf("||                                                    ||\n");
-  printf("||                      1. Cadastrar                  ||\n");
-  printf("||                      2. Editar                     ||\n");
-  printf("||                      3. Excluir                    ||\n");
-  printf("||                      4. Listar                     ||\n");
-  printf("||                      5. Pesquisar                  ||\n");
-  printf("||                      0. Sair                       ||\n");
-  printf("||                                                    ||\n");
-  printf("========================================================\n");
-  printf("||                                                    ||\n");
-  printf("||                Digite o número desejado:           ||\n");
-  printf("||                                                    ||\n");
-  printf("========================================================\n");
-
-  scanf("%d", &op);
-
-  if (op == 1)
-  {
-    create_funcionario();
-  }
-  else if (op == 2)
-  {
-    update_funcionario();
-  }
-  else if (op == 3)
-  {
-    delete_funcionario();
-  }
-  else if (op == 4)
-  {
-    listar_funcionarios();
-  }
-  else if (op == 5)
-  {
-    pesquisar_funcionario();
-  }
-  else
-  {
-    printf("Digite uma opção válida");
-    menu_principal();
   }
 }
