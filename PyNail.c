@@ -14,8 +14,8 @@
 #include "clientes.h"
 #include "funcionarios.h"
 #include "horarios.h"
-#include "PyNail.h"
 #include "servicos.h"
+#include "PyNail.h"
 
 // Módulos previstos:
 //- Clientes
@@ -24,17 +24,17 @@
 //- Avaliações
 //- Agendamento
 //- Pesquisar
-int op;
 
 int main(void)
 {
   menu_principal();
-
   return 0;
 }
 
+// menu principal pra navegação
 void menu_principal(void)
 {
+  int op;
   system("clear||cls");
   printf("========================================================\n");
   printf("||               Manicure/Pedicure Pretty Nail        ||\n");
@@ -93,6 +93,7 @@ void menu_principal(void)
 
 void informacoes(void)
 {
+  int op;
   printf("========================================================\n");
   printf("||                    Informações gerais              ||\n");
   printf("========================================================\n");
@@ -121,6 +122,7 @@ void informacoes(void)
 
 void infos_dev(void)
 {
+  int op;
   printf("========================================================\n");
   printf("||                     Desenvolvedor                  ||\n");
   printf("========================================================\n");

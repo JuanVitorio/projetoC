@@ -3,10 +3,10 @@
 #include <stdlib.h>
 #include "PyNail.h"
 
-int op;
-
+// Menu principal dos clientes
 void clientes(void)
 {
+  int op;
   system("clear||cls");
   printf("========================================================\n");
   printf("||                      Menu Clientes                 ||\n");
@@ -54,24 +54,30 @@ void clientes(void)
   }
 }
 
+// função pra criar clientes
 void create_cliente(void)
 {
-
-  char nome[50];
+  char nome[100] = "";
   int telefone;
-  char genero;
+  char genero = "";
+  char data_nasci[50];
+  char endereco[100];
+  int op;
 
   printf("==============================================\n");
   printf("||              Cadastrar cliente           ||\n");
   printf("==============================================\n");
   printf("||            * Nome do(a) cliente:         ||\n");
-  scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
+  scanf("%s", nome);
+  printf("||            * Data de nascimento        ||\n");
+  scanf("%s", data_nasci);
+  printf("||              * Gênero (M | F):           ||\n");
+  scanf("%c", &genero);
   printf("||           * Telefone pra contato:        ||\n");
   scanf("%d", &telefone);
-  printf("||              * Gênero (M | F):           ||\n");
-  scanf("%c", genero);
+  printf("||           * Endereço:        ||\n");
+  scanf("%s", endereco);
   printf("==============================================\n");
-  printf("|| ... ||\n");
 
   printf("0 para voltar \n");
   scanf("%d", &op);
@@ -88,6 +94,7 @@ void create_cliente(void)
 void delete_cliente(void)
 {
   int id;
+  int op;
 
   printf("==============================================\n");
   printf("|| Digite o ID do cliente que quer DELETAR: ||\n");
@@ -114,7 +121,7 @@ void delete_cliente(void)
 
 void update_cliente(void)
 {
-
+  int op;
   int id;
 
   printf("================================================\n");
@@ -139,6 +146,8 @@ void update_cliente(void)
 
 void listar_clientes(void)
 {
+  int op;
+
   printf("==================================================\n");
   printf("||                  Clientes:                   ||\n");
   printf("==================================================\n");
@@ -160,14 +169,12 @@ void listar_clientes(void)
 
 void pesquisar_cliente(void)
 {
-
+  int op;
   char nome[50];
 
   printf("================================================\n");
   printf("||           Digite o nome do cliente:        ||\n");
   printf("================================================\n");
-
-  scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
 
   printf("========= 0 para voltar ========= \n");
 
