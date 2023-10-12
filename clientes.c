@@ -1,7 +1,8 @@
-#include "clientes.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "clientes.h"
 #include "PyNail.h"
+#include "validacoes.h"
 
 // Menu principal dos clientes
 void clientes(void)
@@ -57,11 +58,13 @@ void clientes(void)
 // função pra criar clientes
 void create_cliente(void)
 {
-  char nome[100] = "";
-  int telefone;
-  char genero = "";
+  char nome[100];
+  char telefone[13];
+  char genero[15];
+  int gen_op;
   char data_nasci[50];
   char endereco[100];
+  char email[100];
   int op;
 
   printf("==============================================\n");
@@ -69,15 +72,48 @@ void create_cliente(void)
   printf("==============================================\n");
   printf("||            * Nome do(a) cliente:         ||\n");
   scanf("%s", nome);
+  if (valida_nome(nome) == 0)
+  {
+    printf("Nome inválido");
+    create_cliente();
+  }
   printf("||            * Data de nascimento        ||\n");
   scanf("%s", data_nasci);
-  printf("||              * Gênero (M | F):           ||\n");
-  scanf("%c", &genero);
+
+  printf("||              * Gênero (1 - M | 2 - F):           ||\n");
+  scanf("%d", &gen_op);
+  if (gen_op == 1)
+  {
+    genero == "Másculino";
+  }
+  else if (gen_op == 2)
+  {
+    genero == "Feminino";
+  }
+  else
+  {
+    printf("Digite um número válido");
+    create_cliente();
+  }
+
   printf("||           * Telefone pra contato:        ||\n");
   scanf("%d", &telefone);
+
+  if (telefone == 0)
+  {
+    printf("Telefone inválido");
+    create_cliente();
+  }
+
   printf("||           * Endereço:        ||\n");
   scanf("%s", endereco);
+  printf("||           * Email:        ||\n");
+  scanf("%s", email);
   printf("==============================================\n");
+
+  printf("nome: %s\n", nome);
+  printf("telefone: %d\n", telefone);
+  printf("genero: %s", genero);
 
   printf("0 para voltar \n");
   scanf("%d", &op);
@@ -99,7 +135,7 @@ void delete_cliente(void)
   printf("==============================================\n");
   printf("|| Digite o ID do cliente que quer DELETAR: ||\n");
   printf("==============================================\n");
-  scanf("%d", id);
+  scanf("%d", &id);
 
   printf("===============================================\n");
   printf("||             Cliente deletado              ||\n");
@@ -130,7 +166,7 @@ void update_cliente(void)
   printf("||          O que deseja atualizar?           ||\n");
   printf("||      Nome(0) - Telefone(1) - Gênero(2)     ||\n");
   printf("================================================\n");
-  scanf("%d", id);
+  scanf("%d", &id);
 
   printf("0 para voltar \n");
   scanf("%d", &op);
@@ -170,7 +206,6 @@ void listar_clientes(void)
 void pesquisar_cliente(void)
 {
   int op;
-  char nome[50];
 
   printf("================================================\n");
   printf("||           Digite o nome do cliente:        ||\n");
