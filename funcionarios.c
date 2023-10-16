@@ -57,14 +57,19 @@ void funcionarios(void)
 
 void create_funcionario(void)
 {
-
   char nome[100];
+  int dia, mes, ano;
+  char genero;
+  char email[100];
   char telefone[13];
   char funcao[30];
+  double salario;
 
   printf("==============================================\n");
   printf("||             Cadastrar Funcionário        ||\n");
   printf("==============================================\n");
+
+  // Nome completo
   printf("||           * Nome do(a) funcionário:      ||\n");
   scanf("%s", nome);
   if (valida_nome(nome) == 0)
@@ -72,6 +77,20 @@ void create_funcionario(void)
     printf("Nome inválido");
     create_funcionario();
   }
+
+  // dia, mês e ano de nascimento
+  printf("||           * Data de nascimento:      ||\n");
+  scanf("%d%*c%d%*c%d", &dia, &mes, &ano);
+
+  // gênero do funcionário
+  printf("||              * Gênero (M | F):           ||\n");
+  genero = getchar();
+
+  printf("||           * Email:      ||\n");
+  scanf("%s", email);
+  // -- validador de email --
+
+  // telefone do funcionário
   printf("||           * Telefone pra contato:        ||\n");
   scanf("%s", telefone);
   if (validar_numero(telefone) == 0)
@@ -79,9 +98,14 @@ void create_funcionario(void)
     printf("Telefone inválido");
     create_funcionario();
   }
-  printf("||              * Gênero (M | F):           ||\n");
+
+  // cargo/função que exerce
   printf("||                  * Função:               ||\n");
   scanf("%s", funcao);
+
+  // salário do funcionário (double)
+  printf("||                  * Salário:               ||\n");
+  scanf("%lf", &salario);
   printf("==============================================\n");
 
   printf("0 para voltar \n");
