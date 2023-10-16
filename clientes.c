@@ -55,13 +55,22 @@ void clientes(void)
   }
 }
 
+struct clientes
+{
+  char nome[100];
+  char telefone[13];
+  char genero[15];
+  char data_nasci[50];
+  char endereco[100];
+  char email[100];
+};
+
 // função pra criar clientes
 void create_cliente(void)
 {
   char nome[100];
   char telefone[13];
-  char genero[15];
-  int gen_op;
+  char genero;
   char data_nasci[50];
   char endereco[100];
   char email[100];
@@ -81,20 +90,7 @@ void create_cliente(void)
   scanf("%s", data_nasci);
 
   printf("||              * Gênero (1 - M | 2 - F):           ||\n");
-  scanf("%d", &gen_op);
-  if (gen_op == 1)
-  {
-    genero == "Másculino";
-  }
-  else if (gen_op == 2)
-  {
-    genero == "Feminino";
-  }
-  else
-  {
-    printf("Digite um número válido");
-    create_cliente();
-  }
+  genero = getchar();
 
   printf("||           * Telefone pra contato:        ||\n");
   scanf("%s", telefone);

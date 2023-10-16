@@ -53,6 +53,17 @@ void horarios()
   }
 }
 
+struct horarios
+{
+  int dia, mes, ano;
+  int hora, minuto;
+  char cliente[100];
+  char funcionario[100];
+  char servico[50]; // menicure, pedicure, ambos
+  char status;      // marcado, realizado, cancelado
+  char observacoes[200];
+};
+
 void create_horario(void)
 {
   int op;
