@@ -73,6 +73,9 @@ struct funcionarios_struct
 
 void create_funcionario(void)
 {
+
+  system("clear||cls");
+
   char nome[100];
   char data_nasci[50];
   int genero;
@@ -133,6 +136,8 @@ void create_funcionario(void)
 void delete_funcionario(void)
 {
 
+  system("clear||cls");
+
   int id;
   int op;
 
@@ -163,6 +168,8 @@ void delete_funcionario(void)
 void update_funcionario(void)
 {
 
+  system("clear||cls");
+
   int op;
 
   printf("====================================================\n");
@@ -187,6 +194,8 @@ void update_funcionario(void)
 void listar_funcionarios(void)
 {
 
+  system("clear||cls");
+
   int op;
 
   printf("==================================================\n");
@@ -208,6 +217,8 @@ void listar_funcionarios(void)
 
 void pesquisar_funcionario(void)
 {
+
+  system("clear||cls");
 
   int op;
 
