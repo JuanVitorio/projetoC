@@ -4,10 +4,11 @@
 #include "PyNail.h"
 #include "validacoes.h"
 
-int op;
-
 void funcionarios(void)
 {
+
+  int op;
+
   system("clear||cls");
   printf("========================================================\n");
   printf("||                    Menu Funcionários               ||\n");
@@ -48,14 +49,18 @@ void funcionarios(void)
   {
     pesquisar_funcionario();
   }
+  else if (op == 0)
+  {
+    menu_principal();
+  }
   else
   {
-    printf("Digite uma opção válida");
+    printf("Digite uma opção válida\n");
     menu_principal();
   }
 }
 
-struct funcionarios
+struct funcionarios_struct
 {
   char nome[100];
   int dia, mes, ano;
@@ -69,8 +74,8 @@ struct funcionarios
 void create_funcionario(void)
 {
   char nome[100];
-  int dia, mes, ano;
-  char genero;
+  char data_nasci[50];
+  int genero;
   char email[100];
   char telefone[13];
   char funcao[30];
@@ -80,61 +85,56 @@ void create_funcionario(void)
   printf("||             Cadastrar Funcionário        ||\n");
   printf("==============================================\n");
 
-  // Nome completo
+  // Tem que colocar a comparação pra saber se é válido
   printf("||           * Nome do(a) funcionário:      ||\n");
+  printf("Nome completo: ");
   scanf("%s", nome);
-  if (valida_nome(nome) == 0)
-  {
-    printf("Nome inválido");
-    create_funcionario();
-  }
 
-  // dia, mês e ano de nascimento
+  // Tem que melhorar o recebimento das datas
   printf("||           * Data de nascimento:      ||\n");
-  scanf("%d%*c%d%*c%d", &dia, &mes, &ano);
+  printf("Data de nascimento: ");
+  scanf("%s", data_nasci);
 
-  // gênero do funcionário
+  // Tem que colocar a comparação par ir pro BD
   printf("||              * Gênero (M | F):           ||\n");
-  genero = getchar();
+  printf("Gênero: ");
+  scanf("%d", &genero);
 
+  // Melhorar a validação do Email
   printf("||           * Email:      ||\n");
+  printf("Email: ");
   scanf("%s", email);
-  // -- validador de email --
 
-  // telefone do funcionário
   printf("||           * Telefone pra contato:        ||\n");
   scanf("%s", telefone);
+  // Validador
   if (validar_numero(telefone) == 0)
   {
-    printf("Telefone inválido");
+    printf("Telefone inválido\n");
     create_funcionario();
   }
 
   // cargo/função que exerce
   printf("||                  * Função:               ||\n");
+  printf("Cargo exercido: ");
   scanf("%s", funcao);
 
   // salário do funcionário (double)
   printf("||                  * Salário:               ||\n");
+  printf("Salário detalhado: ");
   scanf("%lf", &salario);
   printf("==============================================\n");
 
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    funcionarios();
-  }
-  else
-  {
-    funcionarios();
-  }
+  printf("Funcionário cadastrado!");
+
+  menu_principal();
 }
 
 void delete_funcionario(void)
 {
 
   int id;
+  int op;
 
   printf("==================================================\n");
   printf("|| Digite o ID do funcionário que quer DELETAR: ||\n");
@@ -162,6 +162,9 @@ void delete_funcionario(void)
 
 void update_funcionario(void)
 {
+
+  int op;
+
   printf("====================================================\n");
   printf("|| Digite o ID do funcionário que quer ATUALIZAR: ||\n");
   printf("====================================================\n");
@@ -183,6 +186,9 @@ void update_funcionario(void)
 
 void listar_funcionarios(void)
 {
+
+  int op;
+
   printf("==================================================\n");
   printf("||                  Funcionários:               ||\n");
   printf("==================================================\n");
@@ -202,6 +208,9 @@ void listar_funcionarios(void)
 
 void pesquisar_funcionario(void)
 {
+
+  int op;
+
   printf("==================================================\n");
   printf("||         Digite o nome do funcionário:        ||\n");
   printf("==================================================\n");
