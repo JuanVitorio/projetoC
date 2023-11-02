@@ -50,12 +50,12 @@ void clientes(void)
   }
   else
   {
-    printf("Digite uma opção válida");
+    printf("Digite uma opção válida \n");
     menu_principal();
   }
 }
 
-struct clientes
+struct clientes_struct
 {
   char nome[100];
   char telefone[13];
@@ -68,33 +68,41 @@ struct clientes
 // função pra criar clientes
 void create_cliente(void)
 {
+
+  system("clear||cls");
+
   char nome[100];
   char telefone[13];
-  char genero;
+  int genero;
   char data_nasci[50];
   char endereco[100];
   char email[100];
-  int op;
 
   printf("==============================================\n");
   printf("||              Cadastrar cliente           ||\n");
   printf("==============================================\n");
+
+  // Nome do cliente
   printf("||            * Nome do(a) cliente:         ||\n");
+  printf("Nome: ");
   scanf("%s", nome);
-  if (valida_nome(nome) == 0)
-  {
-    printf("Nome inválido");
-    create_cliente();
-  }
+
+  // Tem que mudar a maneira que recebe a data
   printf("||            * Data de nascimento        ||\n");
+  printf("Data de nascimento: ");
   scanf("%s", data_nasci);
 
+  // Na hora de por no banco tem que comparar se é 1 ou 2 e adicionar Mas ou Fem
   printf("||              * Gênero (1 - M | 2 - F):           ||\n");
-  genero = getchar();
+  printf("Gênero: ");
+  scanf("%d", &genero);
 
   printf("||           * Telefone pra contato:        ||\n");
+  printf("Telefone: ");
   scanf("%s", telefone);
 
+  // Teste de validação do número
+  //  tem que melhorar a validação ainda
   if (validar_numero(telefone) == 0)
   {
     printf("Telefone inválido");
@@ -102,25 +110,16 @@ void create_cliente(void)
   }
 
   printf("||           * Endereço:        ||\n");
+  printf("Endereço: ");
   scanf("%s", endereco);
+
+  // Tem que melhorar a validação do Email
   printf("||           * Email:        ||\n");
+  printf("Email: ");
   scanf("%s", email);
   printf("==============================================\n");
 
-  printf("nome: %s\n", nome);
-  printf("telefone: %d\n", telefone);
-  printf("genero: %s", genero);
-
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    clientes();
-  }
-  else
-  {
-    clientes();
-  }
+  menu_principal();
 }
 
 void delete_cliente(void)
