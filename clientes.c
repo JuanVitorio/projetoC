@@ -103,9 +103,9 @@ void create_cliente(void)
 
   // Teste de validação do número
   //  tem que melhorar a validação ainda
-  if (validar_numero(telefone) == 0)
+  if (validar_numero(telefone) == 1)
   {
-    printf("Telefone inválido");
+    printf("Telefone inválido\n");
     create_cliente();
   }
 
@@ -117,6 +117,11 @@ void create_cliente(void)
   printf("||           * Email:        ||\n");
   printf("Email: ");
   scanf("%s", email);
+
+  if (valida_email(email) == 1)
+  {
+  }
+
   printf("==============================================\n");
 
   menu_principal();
