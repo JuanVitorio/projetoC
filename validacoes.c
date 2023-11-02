@@ -5,7 +5,7 @@
 int valida_nome(char nome[])
 {
 
-  if (strlen(nome) >= 3)
+  if (strlen(nome) <= 3)
   {
     return 1;
   }
@@ -15,11 +15,6 @@ int valida_nome(char nome[])
 
 int validar_numero(char telefone[])
 {
-
-  if (telefone == " ")
-  {
-    return 0;
-  }
 
   if (strlen(telefone) >= 11)
   {
