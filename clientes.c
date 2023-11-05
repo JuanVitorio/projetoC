@@ -56,16 +56,6 @@ void clientes(void)
   }
 }
 
-struct clientes_struct
-{
-  char nome[100];
-  char telefone[13];
-  char genero[10];
-  char data_nasci[50];
-  char endereco[100];
-  char email[100];
-};
-
 // função pra criar clientes
 void create_cliente(void)
 {
@@ -146,7 +136,7 @@ void create_cliente(void)
 }
 
 void adicionar_cliente(){
-  
+
 }
 
 void delete_cliente(void)

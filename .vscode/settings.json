@@ -2,6 +2,7 @@
   "files.associations": {
     "stdio.h": "c",
     "clientes.h": "c",
-    "validacoes.h": "c"
+    "validacoes.h": "c",
+    "stdlib.h": "c"
   }
 }
