@@ -76,29 +76,36 @@ void create_cliente(void)
 
   if (valida_nome(nome) == 0)
   {
+    printf("Nome digitado: %s\n", nome);
     printf("||            * CPF do(a) cliente:         ||\n");
     printf("CPF do cliente: ");
     scanf("%s", cpf);
 
     if (valida_cpf(cpf) == 0)
     {
+      printf("CPF digitado: %s\n", cpf);
       printf("||            * Data de nascimento        ||\n");
-      printf("Dia: ");
-      scanf("%d", &dia);
-      printf("\n");
 
-      printf("Mês:");
-      scanf("%d", &mes);
-      printf("\n");
+      scanf("%d%d%d", &dia, &mes, &ano);
 
-      printf("Ano:");
-      scanf("%d", &ano);
-      printf("\n");
+      printf("Data digitada: %02d/%02d/%04d\n", dia, mes, ano);
+    }
+    else
+    {
+      printf("CPF inválido\n");
     }
 
     printf("||              * Gênero (1 - M | 2 - F):           ||\n");
     printf("Gênero: ");
     scanf("%d", &genero);
+    if (genero == 1)
+    {
+      printf("Gênero Masculino\n");
+    }
+    else
+    {
+      printf("Gênero Feminino\n");
+    }
 
     printf("||           * Telefone pra contato:        ||\n");
     printf("Telefone: ");
@@ -106,9 +113,12 @@ void create_cliente(void)
 
     if (validar_numero(telefone) == 0)
     {
+      printf("Telefone digitado: %s\n", telefone);
       printf("||           * Endereço:        ||\n");
       printf("Endereço: ");
       scanf("%s", endereco);
+
+      printf("Endereço digitado: %s\n", endereco);
 
       printf("||           * Email:        ||\n");
       printf("Email: ");
@@ -116,9 +126,19 @@ void create_cliente(void)
 
       if (valida_email(email) == 0)
       {
+        printf("Email: %s\n", email);
         printf("Cliente cadastrado\n");
+        getchar();
       }
     }
+    else
+    {
+      printf("Número de telefone inválido\n");
+    }
+  }
+  else
+  {
+    printf("Nome inválido");
   }
 
   // Tem que mudar a maneira que recebe a data
@@ -135,8 +155,8 @@ void create_cliente(void)
   menu_principal();
 }
 
-void adicionar_cliente(){
-
+void adicionar_cliente()
+{
 }
 
 void delete_cliente(void)

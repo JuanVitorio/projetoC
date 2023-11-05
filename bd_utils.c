@@ -14,18 +14,18 @@ struct clientes_struct
   int dia, mes, ano;
 };
 
-int salva_cliente(Cliente *cl)
-{
+// int salva_cliente(Cliente *cl)
+//{
 
-  FILE *p_file;
+// FILE *p_file;
 
-  p_file = fopen("db_clientes.dat", "ab");
+// p_file = fopen("db_clientes.dat", "ab");
 
-  if (p_file == NULL)
-  {
-    printf("Erro na abertura do arquivo");
-    return 1;
-  }
+//  if (p_file == NULL)
+// {
+//  printf("Erro na abertura do arquivo");
+// return 1;
+//}
 
-  fclose(p_file);
-}
+// fclose(p_file);
+// }

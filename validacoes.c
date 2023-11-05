@@ -16,19 +16,12 @@ int valida_nome(char nome[])
 int validar_numero(char telefone[])
 {
 
-  // Verifica se o tamanho vai ser 11, porque é o padrão de tamanho para números
-  if (strlen(telefone) == 11)
+  if (strlen(telefone) != 11)
   {
-    return 0;
+    return 1;
   }
 
-  // O terceiro número tem que ser 9
-  if (telefone[2] == 9)
-  {
-    return 0;
-  }
-
-  return 1;
+  return 0;
 }
 
 int valida_email(char email[])
