@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "clientes.h"
 #include "PyNail.h"
 #include "validacoes.h"
@@ -59,7 +60,7 @@ struct clientes_struct
 {
   char nome[100];
   char telefone[13];
-  char genero[15];
+  char genero[10];
   char data_nasci[50];
   char endereco[100];
   char email[100];
@@ -71,13 +72,9 @@ void create_cliente(void)
 
   system("clear||cls");
 
-  char nome[100];
-  char telefone[13];
+  char nome[100] = "", telefone[13] = "", endereco[100] = "", email[100] = "", cpf[12] = "";
   int genero;
-  char data_nasci[50];
-  char endereco[100];
-  char email[100];
-
+  int dia = 0, mes = 0, ano = 0;
   printf("==============================================\n");
   printf("||              Cadastrar cliente           ||\n");
   printf("==============================================\n");
@@ -87,44 +84,69 @@ void create_cliente(void)
   printf("Nome: ");
   scanf("%s", nome);
 
+  if (valida_nome(nome) == 0)
+  {
+    printf("||            * CPF do(a) cliente:         ||\n");
+    printf("CPF do cliente: ");
+    scanf("%s", cpf);
+
+    if (valida_cpf(cpf) == 0)
+    {
+      printf("||            * Data de nascimento        ||\n");
+      printf("Dia: ");
+      scanf("%d", &dia);
+      printf("\n");
+
+      printf("Mês:");
+      scanf("%d", &mes);
+      printf("\n");
+
+      printf("Ano:");
+      scanf("%d", &ano);
+      printf("\n");
+    }
+
+    printf("||              * Gênero (1 - M | 2 - F):           ||\n");
+    printf("Gênero: ");
+    scanf("%d", &genero);
+
+    printf("||           * Telefone pra contato:        ||\n");
+    printf("Telefone: ");
+    scanf("%s", telefone);
+
+    if (validar_numero(telefone) == 0)
+    {
+      printf("||           * Endereço:        ||\n");
+      printf("Endereço: ");
+      scanf("%s", endereco);
+
+      printf("||           * Email:        ||\n");
+      printf("Email: ");
+      scanf("%s", email);
+
+      if (valida_email(email) == 0)
+      {
+        printf("Cliente cadastrado\n");
+      }
+    }
+  }
+
   // Tem que mudar a maneira que recebe a data
-  printf("||            * Data de nascimento        ||\n");
-  printf("Data de nascimento: ");
-  scanf("%s", data_nasci);
 
   // Na hora de por no banco tem que comparar se é 1 ou 2 e adicionar Mas ou Fem
-  printf("||              * Gênero (1 - M | 2 - F):           ||\n");
-  printf("Gênero: ");
-  scanf("%d", &genero);
-
-  printf("||           * Telefone pra contato:        ||\n");
-  printf("Telefone: ");
-  scanf("%s", telefone);
 
   // Teste de validação do número
   //  tem que melhorar a validação ainda
-  if (validar_numero(telefone) == 1)
-  {
-    printf("Telefone inválido\n");
-    create_cliente();
-  }
-
-  printf("||           * Endereço:        ||\n");
-  printf("Endereço: ");
-  scanf("%s", endereco);
 
   // Tem que melhorar a validação do Email
-  printf("||           * Email:        ||\n");
-  printf("Email: ");
-  scanf("%s", email);
-
-  if (valida_email(email) == 1)
-  {
-  }
 
   printf("==============================================\n");
 
   menu_principal();
+}
+
+void adicionar_cliente(){
+  
 }
 
 void delete_cliente(void)

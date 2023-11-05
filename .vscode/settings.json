@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "stdio.h": "c",
-    "clientes.h": "c"
+    "clientes.h": "c",
+    "validacoes.h": "c"
   }
 }

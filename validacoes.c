@@ -52,3 +52,13 @@ int valida_email(char email[])
   return 0;
   //}
 }
+
+int valida_cpf(char cpf[])
+{
+  if (strlen(cpf) == 0)
+  {
+    return 1;
+  }
+
+  return 0;
+}

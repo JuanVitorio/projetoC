@@ -109,6 +109,7 @@ void create_funcionario(void)
   scanf("%s", email);
 
   printf("||           * Telefone pra contato:        ||\n");
+  printf("Telefone: ");
   scanf("%s", telefone);
   // Validador
   if (validar_numero(telefone) == 0)
