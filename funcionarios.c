@@ -77,7 +77,7 @@ void create_funcionario(void)
   system("clear||cls");
 
   char nome[100];
-  char data_nasci[50];
+  int dia, mes, ano;
   int genero;
   char email[100];
   char telefone[13];
@@ -92,46 +92,55 @@ void create_funcionario(void)
   printf("||           * Nome do(a) funcionário:      ||\n");
   printf("Nome completo: ");
   scanf("%s", nome);
-
-  // Tem que melhorar o recebimento das datas
-  printf("||           * Data de nascimento:      ||\n");
-  printf("Data de nascimento: ");
-  scanf("%s", data_nasci);
-
-  // Tem que colocar a comparação par ir pro BD
-  printf("||              * Gênero (M | F):           ||\n");
-  printf("Gênero: ");
-  scanf("%d", &genero);
-
-  // Melhorar a validação do Email
-  printf("||           * Email:      ||\n");
-  printf("Email: ");
-  scanf("%s", email);
-
-  printf("||           * Telefone pra contato:        ||\n");
-  printf("Telefone: ");
-  scanf("%s", telefone);
-  // Validador
-  if (validar_numero(telefone) == 0)
+  if (valida_nome(nome) == 0)
   {
-    printf("Telefone inválido\n");
-    create_funcionario();
+    printf("Nome digitado: %s\n", nome);
+    printf("||           * Data de nascimento:      ||\n");
+    printf("(dd/mm/aa)): ");
+    scanf("%d%d%d", &dia, &mes, &ano);
+
+    printf("Data digitada: %02d/%02d/%04d\n", dia, mes, ano);
+
+    printf("||              * Gênero (M | F):           ||\n");
+    printf("Gênero: ");
+    scanf("%d", &genero);
+
+    if (genero == 1)
+    {
+      printf("Gênero Masculino\n");
+    }
+    else
+    {
+      printf("Gênero Feminino\n");
+    }
+
+    printf("||           * Email:      ||\n");
+    printf("Email: ");
+    scanf("%s", email);
+    printf("Email digitado: %s\n", email);
+
+    printf("||           * Telefone pra contato:        ||\n");
+    printf("Telefone: ");
+    scanf("%s", telefone);
+
+    if (validar_numero(telefone) == 0)
+    {
+      printf("Número digitado: %s\n", telefone);
+
+      printf("||                  * Função:               ||\n");
+      printf("Cargo exercido: ");
+      scanf("%s", funcao);
+      printf("Função: %s", funcao);
+
+      printf("||                  * Salário:               ||\n");
+      printf("Salário detalhado: ");
+      scanf("%lf", &salario);
+    }
   }
 
-  // cargo/função que exerce
-  printf("||                  * Função:               ||\n");
-  printf("Cargo exercido: ");
-  scanf("%s", funcao);
-
-  // salário do funcionário (double)
-  printf("||                  * Salário:               ||\n");
-  printf("Salário detalhado: ");
-  scanf("%lf", &salario);
   printf("==============================================\n");
 
-  printf("Funcionário cadastrado!");
-
-  menu_principal();
+  printf("Funcionário cadastrado!\n");
 }
 
 void delete_funcionario(void)
