@@ -14,7 +14,7 @@ struct clientes_struct
   int dia, mes, ano;
 };
 
-int salva_cliente()
+int salva_cliente(Cliente *cl)
 {
 
   FILE *p_file;
@@ -27,4 +27,5 @@ int salva_cliente()
     return 1;
   }
 
+  fclose(p_file);
 }
