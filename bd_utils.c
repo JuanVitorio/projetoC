@@ -3,7 +3,7 @@
 
 typedef struct cliente Cliente;
 
-struct clientes_struct
+struct cliente
 {
   char nome[100];
   char telefone[13];
@@ -14,18 +14,23 @@ struct clientes_struct
   int dia, mes, ano;
 };
 
-// int salva_cliente(Cliente *cl)
-//{
+int add_cliente(char nome[], char telefone[], char endereco[], char email[], char cpf[], int genero, int dia, int mes, int ano)
+{
+  FILE *fp;
 
-// FILE *p_file;
+  fp = fopen("db_cliente.dat", "ab");
 
-// p_file = fopen("db_clientes.dat", "ab");
+  if (fp == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return (1);
+  }
 
-//  if (p_file == NULL)
-// {
-//  printf("Erro na abertura do arquivo");
-// return 1;
-//}
+  fwrite(nome, sizeof(Cliente), 1, fp);
 
-// fclose(p_file);
-// }
+  fclose(fp);
+
+  printf("Dados gravados\n");
+
+  return (0);
+}
