@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 #include "clientes.h"
 #include "PyNail.h"
 #include "validacoes.h"
@@ -8,6 +9,7 @@
 // Menu principal dos clientes
 void clientes(void)
 {
+  Cliente *cli;
   int op;
   system("clear||cls");
   printf("========================================================\n");
@@ -29,134 +31,92 @@ void clientes(void)
 
   scanf("%d", &op);
 
-  if (op == 1)
+  switch (op)
   {
-    create_cliente();
-  }
-  else if (op == 2)
-  {
+  case 1:
+    cli = create_cliente();
+    gravar_cliente(cli);
+    break;
+  case 2:
     update_cliente();
-  }
-  else if (op == 3)
-  {
+    break;
+  case 3:
     delete_cliente();
-  }
-  else if (op == 4)
-  {
-    listar_clientes();
-  }
-  else if (op == 5)
-  {
+    break;
+  case 4:
+    listador_clientes();
+    break;
+  case 5:
     pesquisar_cliente();
-  }
-  else
-  {
-    printf("Digite uma opção válida \n");
-    menu_principal();
+
+  default:
+    printf("Digite algo válido");
+    break;
   }
 }
 
 // função pra criar clientes
-void create_cliente(void)
+Cliente *create_cliente(void)
 {
-
   system("clear||cls");
-
+  Cliente *cli;
+  cli = (Cliente *)malloc(sizeof(Cliente));
   char nome[100] = "", telefone[13] = "", endereco[100] = "", email[100] = "", cpf[12] = "";
   int genero;
-  int dia = 0, mes = 0, ano = 0;
+  char status;
+
+  // int dia, mes, ano;
   printf("==============================================\n");
   printf("||              Cadastrar cliente           ||\n");
   printf("==============================================\n");
-
-  // Nome do cliente
   printf("||            * Nome do(a) cliente:         ||\n");
   printf("Nome: ");
-  scanf("%s", nome);
+  scanf("%s", cli->nome);
 
-  if (valida_nome(nome) == 0)
-  {
-    printf("Nome digitado: %s\n", nome);
-    printf("||            * CPF do(a) cliente:         ||\n");
-    printf("CPF do cliente: ");
-    scanf("%s", cpf);
+  printf("Nome digitado: %s\n", cli->nome);
+  printf("||            * CPF do(a) cliente:         ||\n");
+  printf("CPF do cliente: ");
+  scanf("%s", cli->cpf);
 
-    if (valida_cpf(cpf) == 0)
-    {
-      printf("CPF digitado: %s\n", cpf);
-      printf("||            * Data de nascimento        ||\n");
+  printf("CPF digitado: %s\n", cli->cpf);
+  printf("||            * Data de nascimento        ||\n");
+  // scanf("%d", cli->dia);
+  // scanf("%d", cli->mes);
+  // scanf("%d", cli->ano);
+  // printf("Data digitada: %02d/%02d/%04d\n", cli->dia, cli->mes, cli->ano);
 
-      scanf("%d%d%d", &dia, &mes, &ano);
+  printf("CPF inválido\n");
 
-      printf("Data digitada: %02d/%02d/%04d\n", dia, mes, ano);
-    }
-    else
-    {
-      printf("CPF inválido\n");
-    }
+  printf("||              * Gênero (1 - M | 2 - F):           ||\n");
+  printf("Gênero: ");
+  // scanf("%d", cli->genero);
 
-    printf("||              * Gênero (1 - M | 2 - F):           ||\n");
-    printf("Gênero: ");
-    scanf("%d", &genero);
-    if (genero == 1)
-    {
-      printf("Gênero Masculino\n");
-    }
-    else
-    {
-      printf("Gênero Feminino\n");
-    }
+  printf("Gênero Masculino\n");
 
-    printf("||           * Telefone pra contato:        ||\n");
-    printf("Telefone: ");
-    scanf("%s", telefone);
+  printf("Gênero Feminino\n");
 
-    if (validar_numero(telefone) == 0)
-    {
-      printf("Telefone digitado: %s\n", telefone);
-      printf("||           * Endereço:        ||\n");
-      printf("Endereço: ");
-      scanf("%s", endereco);
+  printf("||           * Telefone pra contato:        ||\n");
+  printf("Telefone: ");
+  scanf("%s", cli->telefone);
+  printf("Telefone digitado: %s\n", cli->telefone);
+  printf("||           * Endereço:        ||\n");
+  printf("Endereço: ");
+  scanf("%s", cli->endereco);
+  printf("Endereço digitado: %s\n", cli->endereco);
+  printf("||           * Email:        ||\n");
+  printf("Email: ");
+  scanf("%s", cli->email);
 
-      printf("Endereço digitado: %s\n", endereco);
+  printf("Email: %s\n", cli->email);
 
-      printf("||           * Email:        ||\n");
-      printf("Email: ");
-      scanf("%s", email);
+  cli->status = 'A';
 
-      if (valida_email(email) == 0)
-      {
-        printf("Email: %s\n", email);
-        printf("Cliente cadastrado\n");
-        getchar();
-      }
-    }
-    else
-    {
-      printf("Número de telefone inválido\n");
-    }
-  }
-  else
-  {
-    printf("Nome inválido");
-  }
-
-  // Tem que mudar a maneira que recebe a data
-
-  // Na hora de por no banco tem que comparar se é 1 ou 2 e adicionar Mas ou Fem
-
-  // Teste de validação do número
-  //  tem que melhorar a validação ainda
-
-  // Tem que melhorar a validação do Email
+  printf("Cliente cadastrado\n");
+  return cli;
 
   printf("==============================================\n");
 
   menu_principal();
-}
-
-void adicionar_cliente()
-{
 }
 
 void delete_cliente(void)
@@ -212,9 +172,11 @@ void update_cliente(void)
   }
 }
 
-void listar_clientes(void)
+void listador_clientes(void)
 {
   int op;
+
+  exbir_clientes();
 
   printf("==================================================\n");
   printf("||                  Clientes:                   ||\n");
@@ -254,5 +216,69 @@ void pesquisar_cliente(void)
   else
   {
     clientes();
+  }
+}
+
+void gravar_cliente(Cliente *cli)
+{
+  FILE *fc;
+
+  fc = fopen("db_cliente.dat", "ab");
+
+  if (fc == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return;
+  }
+
+  fwrite(cli, sizeof(Cliente), 1, fc);
+
+  fclose(fc);
+  free(cli);
+}
+
+void exbir_clientes(void)
+{
+  FILE *fc;
+  Cliente *cli;
+  cli = (Cliente *)malloc(sizeof(Cliente));
+  fc = fopen("db_cliente.dat", "rb");
+  if (fc == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return;
+  }
+  while (fread(cli, sizeof(Cliente), 1, fc))
+  {
+    if (cli->status != 'I')
+    {
+      listar_cliente(cli);
+    }
+  }
+  fclose(fc);
+  free(cli);
+}
+
+void listar_cliente(Cliente *cli)
+{
+
+  char estatos[20];
+  if ((cli == NULL) || (cli->status == 'I'))
+  {
+    printf("cliente não cadastrado!\n");
+  }
+  else
+  {
+    printf("\n Dados dos clientes\n");
+    printf("Nome: %s\n", cli->nome);
+    printf("CPF: %s\n", cli->cpf);
+    if (cli->status == 'A')
+    {
+      strcpy(estatos, "Ativo");
+    }
+    else if (cli->status == 'I')
+    {
+      strcpy(estatos, "Inativo");
+    }
   }
 }
