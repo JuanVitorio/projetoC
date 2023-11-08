@@ -79,21 +79,21 @@ Cliente *create_cliente(void)
   scanf("%s", cli->cpf);
 
   printf("CPF digitado: %s\n", cli->cpf);
-  printf("||            * Data de nascimento        ||\n");
+  //  printf("||            * Data de nascimento        ||\n");
   // scanf("%d", cli->dia);
   // scanf("%d", cli->mes);
   // scanf("%d", cli->ano);
   // printf("Data digitada: %02d/%02d/%04d\n", cli->dia, cli->mes, cli->ano);
 
-  printf("CPF inválido\n");
+  /// printf("CPF inválido\n");
 
-  printf("||              * Gênero (1 - M | 2 - F):           ||\n");
-  printf("Gênero: ");
-  // scanf("%d", cli->genero);
+  // printf("||              * Gênero (1 - M | 2 - F):           ||\n");
+  // printf("Gênero: ");
+  //  scanf("%d", cli->genero);
 
-  printf("Gênero Masculino\n");
+  // printf("Gênero Masculino\n");
 
-  printf("Gênero Feminino\n");
+  // printf("Gênero Feminino\n");
 
   printf("||           * Telefone pra contato:        ||\n");
   printf("Telefone: ");
@@ -111,7 +111,11 @@ Cliente *create_cliente(void)
 
   cli->status = 'A';
 
+  printf("\n");
   printf("Cliente cadastrado\n");
+
+  printf("O código vai encerrar, mas gravou os dados, eu juro.");
+
   return cli;
 
   printf("==============================================\n");
@@ -269,9 +273,15 @@ void listar_cliente(Cliente *cli)
   }
   else
   {
-    printf("\n Dados dos clientes\n");
+    printf("==========================\n");
+    printf("||  Dados dos clientes  ||\n");
+    printf("==========================\n");
+    printf("\n");
     printf("Nome: %s\n", cli->nome);
     printf("CPF: %s\n", cli->cpf);
+    printf("Email: %s\n", cli->email);
+    printf("Telefone: %s\n", cli->telefone);
+    printf("Endereço: %s\n", cli->endereco);
     if (cli->status == 'A')
     {
       strcpy(estatos, "Ativo");
