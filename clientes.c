@@ -180,14 +180,13 @@ void listador_clientes(void)
 {
   int op;
 
-  exbir_clientes();
-
   printf("==================================================\n");
   printf("||                  Clientes:                   ||\n");
   printf("==================================================\n");
-  // for dos clientes
 
-  printf("========= 0 para voltar ========= \n");
+  exbir_clientes();
+
+  printf("\n========= 0 para voltar ========= \n");
 
   printf("0 para voltar \n");
   scanf("%d", &op);
@@ -273,15 +272,13 @@ void listar_cliente(Cliente *cli)
   }
   else
   {
-    printf("==========================\n");
-    printf("||  Dados dos clientes  ||\n");
-    printf("==========================\n");
-    printf("\n");
+    printf("======================================\n");
     printf("Nome: %s\n", cli->nome);
     printf("CPF: %s\n", cli->cpf);
     printf("Email: %s\n", cli->email);
     printf("Telefone: %s\n", cli->telefone);
     printf("Endereço: %s\n", cli->endereco);
+
     if (cli->status == 'A')
     {
       strcpy(estatos, "Ativo");
