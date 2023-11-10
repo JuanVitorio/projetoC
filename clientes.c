@@ -5,6 +5,7 @@
 #include "clientes.h"
 #include "PyNail.h"
 #include "validacoes.h"
+#include "bd_utils.h"
 
 // Menu principal dos clientes
 void clientes(void)
@@ -13,7 +14,9 @@ void clientes(void)
   int op;
   system("clear||cls");
   printf("========================================================\n");
+  printf("||                                                    ||\n");
   printf("||                      Menu Clientes                 ||\n");
+  printf("||                                                    ||\n");
   printf("========================================================\n");
   printf("||                                                    ||\n");
   printf("||                      1. Cadastrar                  ||\n");
@@ -67,8 +70,11 @@ Cliente *create_cliente(void)
 
   // int dia, mes, ano;
   printf("==============================================\n");
+  printf("||                                          ||\n");
   printf("||              Cadastrar cliente           ||\n");
+  printf("||                                          ||\n");
   printf("==============================================\n");
+  printf("||                                          ||\n");
   printf("||            * Nome do(a) cliente:         ||\n");
   printf("Nome: ");
   scanf("%s", cli->nome);
@@ -113,13 +119,7 @@ Cliente *create_cliente(void)
 
   printf("\n");
   printf("Cliente cadastrado\n");
-
-  printf("O código vai encerrar, mas gravou os dados, eu juro.");
-
   return cli;
-
-  printf("==============================================\n");
-
   menu_principal();
 }
 
@@ -221,25 +221,6 @@ void pesquisar_cliente(void)
     clientes();
   }
 }
-
-void gravar_cliente(Cliente *cli)
-{
-  FILE *fc;
-
-  fc = fopen("db_cliente.dat", "ab");
-
-  if (fc == NULL)
-  {
-    printf("Erro na criação do arquivo\n");
-    return;
-  }
-
-  fwrite(cli, sizeof(Cliente), 1, fc);
-
-  fclose(fc);
-  free(cli);
-}
-
 void exbir_clientes(void)
 {
   FILE *fc;
