@@ -3,6 +3,8 @@
     "stdio.h": "c",
     "clientes.h": "c",
     "validacoes.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "funcionarios.h": "c",
+    "bd_utils.h": "c"
   }
 }

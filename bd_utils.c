@@ -3,6 +3,7 @@
 #include "bd_utils.h"
 #include <string.h>
 
+// FUNÇÕES PARA O MODULO DE CLIENTES
 void gravar_cliente(Cliente *cli)
 {
   FILE *fc;
@@ -69,3 +70,6 @@ void exibir_clientes(void)
   fclose(fc);
   free(cli);
 }
+
+// FUNÇÕES PARA O MÓDULO DE FUNCIONÁRIOS
+

@@ -1,11 +1,16 @@
 #include "funcionarios.h"
 #include <stdio.h>
+#include <ctype.h>
+#include <string.h>
 #include <stdlib.h>
 #include "PyNail.h"
 #include "validacoes.h"
+#include "bd_utils.h"
 
 void funcionarios(void)
 {
+
+  Funcionario *fun;
 
   int op;
 
@@ -29,114 +34,84 @@ void funcionarios(void)
 
   scanf("%d", &op);
 
-  if (op == 1)
+  switch (op)
   {
-    create_funcionario();
-  }
-  else if (op == 2)
-  {
+  case 1:
+    fun = create_funcionario();
+    gravar_funcionario(fun);
+    break;
+  case 2:
     update_funcionario();
-  }
-  else if (op == 3)
-  {
+    break;
+  case 3:
     delete_funcionario();
-  }
-  else if (op == 4)
-  {
+    break;
+  case 4:
     listar_funcionarios();
-  }
-  else if (op == 5)
-  {
+    break;
+  case 5:
     pesquisar_funcionario();
-  }
-  else if (op == 0)
-  {
-    menu_principal();
-  }
-  else
-  {
-    printf("Digite uma opção válida\n");
-    menu_principal();
+
+  default:
+    printf("Digite algo válido");
+    break;
   }
 }
 
-struct funcionarios_struct
+Funcionario *create_funcionario(void)
 {
-  char nome[100];
-  int dia, mes, ano;
-  char genero;
-  char email[100];
-  char telefone[13];
-  char funcao[30];
-  double salario;
-};
-
-void create_funcionario(void)
-{
-
   system("clear||cls");
 
-  char nome[100];
+  Funcionario *fun;
+  fun = (Funcionario *)malloc(sizeof(Funcionario));
+
+  char nome[100] = "", email[100] = "", telefone[13] = "", funcao[30] = "";
   int dia, mes, ano;
   int genero;
-  char email[100];
-  char telefone[13];
-  char funcao[30];
-  double salario;
+  float salario;
+  char status;
 
   printf("==============================================\n");
   printf("||             Cadastrar Funcionário        ||\n");
   printf("==============================================\n");
 
   // Tem que colocar a comparação pra saber se é válido
-  printf("||           * Nome do(a) funcionário:      ||\n");
+  printf("||           * Nome do(a) funcionario:      ||\n");
   printf("Nome completo: ");
-  scanf("%s", nome);
-  if (valida_nome(nome) == 0)
-  {
-    printf("Nome digitado: %s\n", nome);
-    printf("||           * Data de nascimento:      ||\n");
-    printf("(dd/mm/aa)): ");
-    scanf("%d%d%d", &dia, &mes, &ano);
+  scanf("%s", fun->nome);
 
-    printf("Data digitada: %02d/%02d/%04d\n", dia, mes, ano);
+  printf("\nNome digitado: %s\n", fun->nome);
+  // printf("||           * Data de nascimento:      ||\n");
+  // printf("(dd/mm/aa)): ");
+  // scanf("%d%d%d", &dia, &mes, &ano);
 
-    printf("||              * Gênero (M | F):           ||\n");
-    printf("Gênero: ");
-    scanf("%d", &genero);
+  // printf("Data digitada: %02d/%02d/%04d\n", dia, mes, ano);
 
-    if (genero == 1)
-    {
-      printf("Gênero Masculino\n");
-    }
-    else
-    {
-      printf("Gênero Feminino\n");
-    }
+  // printf("||              * Gênero (M | F):           ||\n");
+  // printf("Gênero: ");
+  // scanf("%d", &genero);
 
-    printf("||           * Email:      ||\n");
-    printf("Email: ");
-    scanf("%s", email);
-    printf("Email digitado: %s\n", email);
+  printf("||           * Email:      ||\n");
+  printf("Email: ");
+  scanf("%s", fun->email);
+  printf("\nEmail digitado: %s\n", fun->email);
 
-    printf("||           * Telefone pra contato:        ||\n");
-    printf("Telefone: ");
-    scanf("%s", telefone);
+  printf("||           * Telefone pra contato:        ||\n");
+  printf("Telefone: ");
+  scanf("%s", fun->telefone);
 
-    if (validar_numero(telefone) == 0)
-    {
-      printf("Número digitado: %s\n", telefone);
+  printf("\nNumero digitado: %s\n", fun->telefone);
 
-      printf("||                  * Função:               ||\n");
-      printf("Cargo exercido: ");
-      scanf("%s", funcao);
-      printf("Função: %s", funcao);
+  printf("||                  * Função:               ||\n");
+  printf("Cargo exercido: ");
+  scanf("%s", fun->funcao);
+  printf("\nCargo digitado: %s", fun->funcao);
 
-      printf("||                  * Salário:               ||\n");
-      printf("Salário detalhado: ");
-      scanf("%lf", &salario);
-    }
-  }
+  // printf("||                  * Salário:               ||\n");
+  // printf("Salario detalhado: ");
+  // scanf("%f", &salario);
+
+  fun->status = 'A';
 
   printf("==============================================\n");
 

@@ -62,6 +62,7 @@ Cliente *create_cliente(void)
   system("clear||cls");
   Cliente *cli;
   cli = (Cliente *)malloc(sizeof(Cliente));
+
   char nome[100] = "", telefone[13] = "", endereco[100] = "", email[100] = "", cpf[12] = "";
   int genero;
   char status;
