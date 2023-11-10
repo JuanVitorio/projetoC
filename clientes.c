@@ -27,10 +27,8 @@ void clientes(void)
   printf("||                      0. Sair                       ||\n");
   printf("||                                                    ||\n");
   printf("========================================================\n");
-  printf("||                                                    ||\n");
-  printf("||                Digite o número desejado:           ||\n");
-  printf("||                                                    ||\n");
-  printf("========================================================\n");
+
+  printf("\nOpcao: ");
 
   scanf("%d", &op);
 
@@ -79,12 +77,12 @@ Cliente *create_cliente(void)
   printf("Nome: ");
   scanf("%s", cli->nome);
 
-  printf("Nome digitado: %s\n", cli->nome);
+  printf("\nNome digitado: %s\n", cli->nome);
   printf("||            * CPF do(a) cliente:         ||\n");
   printf("CPF do cliente: ");
   scanf("%s", cli->cpf);
 
-  printf("CPF digitado: %s\n", cli->cpf);
+  printf("\nCPF digitado: %s\n", cli->cpf);
   //  printf("||            * Data de nascimento        ||\n");
   // scanf("%d", cli->dia);
   // scanf("%d", cli->mes);
@@ -104,24 +102,29 @@ Cliente *create_cliente(void)
   printf("||           * Telefone pra contato:        ||\n");
   printf("Telefone: ");
   scanf("%s", cli->telefone);
-  printf("Telefone digitado: %s\n", cli->telefone);
+  printf("\nTelefone digitado: %s\n", cli->telefone);
   printf("||           * Endereço:        ||\n");
-  printf("Endereço: ");
+  printf("Endereco: ");
   scanf("%s", cli->endereco);
-  printf("Endereço digitado: %s\n", cli->endereco);
+  printf("\nEndereco digitado: %s\n", cli->endereco);
   printf("||           * Email:        ||\n");
   printf("Email: ");
   scanf("%s", cli->email);
-
-  printf("Email: %s\n", cli->email);
+  printf("\nEmail: %s\n", cli->email);
 
   cli->status = 'A';
-
   printf("\n");
-
   gravar_cliente(cli);
+  printf("==================================\n");
+  printf("||                              ||\n");
+  printf("||      Cliente cadastrado      ||\n");
+  printf("||                              ||\n");
+  printf("==================================\n");
+  printf("\nAperte ENTER para continuar...");
+  getchar();
+  getchar();
 
-  printf("Cliente cadastrado\n");
+  menu_principal();
 }
 
 void delete_cliente(void)
