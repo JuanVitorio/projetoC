@@ -1,8 +1,8 @@
-#include "funcionarios.h"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
+#include "funcionarios.h"
 #include "PyNail.h"
 #include "validacoes.h"
 #include "bd_utils.h"
@@ -16,7 +16,7 @@ void funcionarios(void)
 
   system("clear||cls");
   printf("========================================================\n");
-  printf("||                    Menu Funcionários               ||\n");
+  printf("||                    Menu Funcionarios               ||\n");
   printf("========================================================\n");
   printf("||                                                    ||\n");
   printf("||                      1. Cadastrar                  ||\n");
@@ -27,10 +27,8 @@ void funcionarios(void)
   printf("||                      0. Sair                       ||\n");
   printf("||                                                    ||\n");
   printf("========================================================\n");
-  printf("||                                                    ||\n");
-  printf("||                Digite o número desejado:           ||\n");
-  printf("||                                                    ||\n");
-  printf("========================================================\n");
+
+  printf("\nOpcao: ");
 
   scanf("%d", &op);
 
@@ -38,7 +36,6 @@ void funcionarios(void)
   {
   case 1:
     fun = create_funcionario();
-    gravar_funcionario(fun);
     break;
   case 2:
     update_funcionario();
@@ -47,7 +44,7 @@ void funcionarios(void)
     delete_funcionario();
     break;
   case 4:
-    listar_funcionarios();
+    listador_funcionarios();
     break;
   case 5:
     pesquisar_funcionario();
@@ -65,7 +62,7 @@ Funcionario *create_funcionario(void)
   Funcionario *fun;
   fun = (Funcionario *)malloc(sizeof(Funcionario));
 
-  char nome[100] = "", email[100] = "", telefone[13] = "", funcao[30] = "";
+  char nome[100] = "", email[100] = "", telefone[13] = "", funcao[30] = "", cpf[12] = "", endereco[100] = "";
   int dia, mes, ano;
   int genero;
   float salario;
@@ -91,7 +88,12 @@ Funcionario *create_funcionario(void)
   // printf("Gênero: ");
   // scanf("%d", &genero);
 
-  printf("||           * Email:      ||\n");
+  printf("||          *CPF           ||\n");
+  printf("CPF:");
+  scanf("%s", fun->cpf);
+  printf("\nCPF digitado:%s", fun->cpf);
+
+  printf("||         * Email:      ||\n");
   printf("Email: ");
   scanf("%s", fun->email);
   printf("\nEmail digitado: %s\n", fun->email);
@@ -113,9 +115,17 @@ Funcionario *create_funcionario(void)
 
   fun->status = 'A';
 
+  gravar_funcionario(fun);
+
   printf("==============================================\n");
 
   printf("Funcionário cadastrado!\n");
+
+  printf("\nAperte ENTER para continuar...");
+  getchar();
+  getchar();
+
+  menu_principal();
 }
 
 void delete_funcionario(void)
@@ -176,7 +186,7 @@ void update_funcionario(void)
   }
 }
 
-void listar_funcionarios(void)
+void listador_funcionarios(void)
 {
 
   system("clear||cls");
@@ -186,7 +196,8 @@ void listar_funcionarios(void)
   printf("==================================================\n");
   printf("||                  Funcionários:               ||\n");
   printf("==================================================\n");
-  // for dos funcionários
+
+  exibir_funcionarios();
 
   printf("0 para voltar \n");
   scanf("%d", &op);

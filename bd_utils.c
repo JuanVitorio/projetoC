@@ -22,7 +22,7 @@ void gravar_cliente(Cliente *cli)
   free(cli);
 }
 
-void listar_cliente(Cliente *cli)
+void listar_clientes(Cliente *cli)
 {
   char estatos[20];
   if ((cli == NULL) || (cli->status == 'I'))
@@ -64,7 +64,7 @@ void exibir_clientes(void)
   {
     if (cli->status != 'I')
     {
-      listar_cliente(cli);
+      listar_clientes(cli);
     }
   }
   fclose(fc);
@@ -73,3 +73,69 @@ void exibir_clientes(void)
 
 // FUNÇÕES PARA O MÓDULO DE FUNCIONÁRIOS
 
+void gravar_funcionario(Funcionario *fun)
+{
+  FILE *fc;
+
+  fc = fopen("db_funcionarios.dat", "ab");
+
+  if (fc == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return;
+  }
+
+  fwrite(fun, sizeof(Funcionario), 1, fc);
+
+  fclose(fc);
+  free(fun);
+}
+
+void listar_funcionarios(Funcionario *fun)
+{
+  char estatos[20];
+  if ((fun == NULL) || (fun->status == 'I'))
+  {
+    printf("Funcionário não cadastrado!\n");
+  }
+  else
+  {
+    printf("======================================\n");
+    printf("Nome: %s\n", fun->nome);
+    printf("CPF: %s\n", fun->cpf);
+    printf("Email: %s\n", fun->email);
+    printf("Telefone: %s\n", fun->telefone);
+    printf("Endereço: %s\n", fun->endereco);
+
+    if (fun->status == 'A')
+    {
+      strcpy(estatos, "Ativo");
+    }
+    else if (fun->status == 'I')
+    {
+      strcpy(estatos, "Inativo");
+    }
+  }
+}
+
+void exibir_funcionarios(void)
+{
+  FILE *fc;
+  Funcionario *fun;
+  fun = (Funcionario *)malloc(sizeof(Funcionario));
+  fc = fopen("db_funcionarios.dat", "rb");
+  if (fc == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return;
+  }
+  while (fread(fun, sizeof(Funcionario), 1, fc))
+  {
+    if (fun->status != 'I')
+    {
+      listar_funcionarios(fun);
+    }
+  }
+  fclose(fc);
+  free(fun);
+}

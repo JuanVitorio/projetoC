@@ -5,6 +5,7 @@
     "validacoes.h": "c",
     "stdlib.h": "c",
     "funcionarios.h": "c",
-    "bd_utils.h": "c"
+    "bd_utils.h": "c",
+    "ctype.h": "c"
   }
 }
