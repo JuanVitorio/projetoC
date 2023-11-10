@@ -34,6 +34,9 @@ void funcionarios(void)
 
   switch (op)
   {
+  case 0:
+    menu_principal();
+    break;
   case 1:
     fun = create_funcionario();
     break;

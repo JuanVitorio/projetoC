@@ -34,6 +34,9 @@ void clientes(void)
 
   switch (op)
   {
+  case 0:
+    menu_principal();
+    break;
   case 1:
     cli = create_cliente();
     gravar_cliente(cli);

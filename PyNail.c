@@ -41,53 +41,44 @@ void menu_principal(void)
   printf("========================================================\n");
   printf("||                                                    ||\n");
   printf("||                      1. Clientes                   ||\n");
-  printf("||                      2. Funcionários               ||\n");
-  printf("||                      3. Horários                   ||\n");
+  printf("||                      2. Funcionarios               ||\n");
+  printf("||                      3. Horarios                   ||\n");
   printf("||                      4. Agendamento                ||\n");
-  printf("||                      5. Serviços                   ||\n");
-  printf("||                      6. Informações                ||\n");
+  printf("||                      5. Servicos                   ||\n");
+  printf("||                      6. Informacoes                ||\n");
   printf("||                      7. Infos. Dev.                ||\n");
   printf("||                      0. Sair                       ||\n");
   printf("||                                                    ||\n");
   printf("========================================================\n");
-  printf("||                                                    ||\n");
-  printf("||                Digite o número desejado:           ||\n");
-  printf("||                                                    ||\n");
-  printf("========================================================\n");
-
+  printf("Opcao:");
   scanf("%d", &op);
 
-  if (op == 1)
+  switch (op)
   {
-    clientes();
-  }
-  else if (op == 2)
-  {
-    funcionarios();
-  }
-  else if (op == 3)
-  {
-    horarios();
-  }
-  else if (op == 5)
-  {
-    servicos();
-  }
-  else if (op == 6)
-  {
-    informacoes();
-  }
-  else if (op == 7)
-  {
-    infos_dev();
-  }
-  else if (op == 0)
-  {
+  case 0:
     printf("Código encerrado.");
-  }
-  else
-  {
-    printf("opção em desenvolvimento");
+    break;
+  case 1:
+    clientes();
+    break;
+  case 2:
+    funcionarios();
+    break;
+  case 3:
+    horarios();
+    break;
+  case 4:
+    servicos();
+    break;
+  case 5:
+    informacoes();
+    break;
+  case 6:
+    infos_dev();
+    break;
+  default:
+    printf("Digite algo válido");
+    break;
   }
 }
 
