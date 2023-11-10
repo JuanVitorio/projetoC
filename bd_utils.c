@@ -100,12 +100,14 @@ void listar_funcionarios(Funcionario *fun)
   }
   else
   {
-    printf("======================================\n");
+    printf("\n======================================\n");
+    printf("\n");
     printf("Nome: %s\n", fun->nome);
     printf("CPF: %s\n", fun->cpf);
     printf("Email: %s\n", fun->email);
     printf("Telefone: %s\n", fun->telefone);
     printf("Endereço: %s\n", fun->endereco);
+    printf("\n");
 
     if (fun->status == 'A')
     {

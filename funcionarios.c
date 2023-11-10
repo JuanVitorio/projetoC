@@ -50,7 +50,7 @@ void funcionarios(void)
     pesquisar_funcionario();
 
   default:
-    printf("Digite algo válido");
+    printf("Digite algo valido");
     break;
   }
 }
@@ -69,7 +69,7 @@ Funcionario *create_funcionario(void)
   char status;
 
   printf("==============================================\n");
-  printf("||             Cadastrar Funcionário        ||\n");
+  printf("||             Cadastrar Funcionario        ||\n");
   printf("==============================================\n");
 
   // Tem que colocar a comparação pra saber se é válido
@@ -91,7 +91,7 @@ Funcionario *create_funcionario(void)
   printf("||          *CPF           ||\n");
   printf("CPF:");
   scanf("%s", fun->cpf);
-  printf("\nCPF digitado:%s", fun->cpf);
+  printf("\nCPF digitado:%s\n", fun->cpf);
 
   printf("||         * Email:      ||\n");
   printf("Email: ");
@@ -119,7 +119,7 @@ Funcionario *create_funcionario(void)
 
   printf("==============================================\n");
 
-  printf("Funcionário cadastrado!\n");
+  printf("Funcionario cadastrado!\n");
 
   printf("\nAperte ENTER para continuar...");
   getchar();
@@ -193,10 +193,6 @@ void listador_funcionarios(void)
 
   int op;
 
-  printf("==================================================\n");
-  printf("||                  Funcionários:               ||\n");
-  printf("==================================================\n");
-
   exibir_funcionarios();
 
   printf("0 para voltar \n");
@@ -219,7 +215,7 @@ void pesquisar_funcionario(void)
   int op;
 
   printf("==================================================\n");
-  printf("||         Digite o nome do funcionário:        ||\n");
+  printf("||         Digite o nome do funcionario:        ||\n");
   printf("==================================================\n");
 
   printf("0 para voltar \n");
