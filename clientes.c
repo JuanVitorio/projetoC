@@ -118,9 +118,10 @@ Cliente *create_cliente(void)
   cli->status = 'A';
 
   printf("\n");
+
+  gravar_cliente(cli);
+
   printf("Cliente cadastrado\n");
-  return cli;
-  menu_principal();
 }
 
 void delete_cliente(void)
@@ -184,7 +185,7 @@ void listador_clientes(void)
   printf("||                  Clientes:                   ||\n");
   printf("==================================================\n");
 
-  exbir_clientes();
+  exibir_clientes();
 
   printf("\n========= 0 para voltar ========= \n");
 
@@ -219,54 +220,5 @@ void pesquisar_cliente(void)
   else
   {
     clientes();
-  }
-}
-void exbir_clientes(void)
-{
-  FILE *fc;
-  Cliente *cli;
-  cli = (Cliente *)malloc(sizeof(Cliente));
-  fc = fopen("db_cliente.dat", "rb");
-  if (fc == NULL)
-  {
-    printf("Erro na criação do arquivo\n");
-    return;
-  }
-  while (fread(cli, sizeof(Cliente), 1, fc))
-  {
-    if (cli->status != 'I')
-    {
-      listar_cliente(cli);
-    }
-  }
-  fclose(fc);
-  free(cli);
-}
-
-void listar_cliente(Cliente *cli)
-{
-
-  char estatos[20];
-  if ((cli == NULL) || (cli->status == 'I'))
-  {
-    printf("cliente não cadastrado!\n");
-  }
-  else
-  {
-    printf("======================================\n");
-    printf("Nome: %s\n", cli->nome);
-    printf("CPF: %s\n", cli->cpf);
-    printf("Email: %s\n", cli->email);
-    printf("Telefone: %s\n", cli->telefone);
-    printf("Endereço: %s\n", cli->endereco);
-
-    if (cli->status == 'A')
-    {
-      strcpy(estatos, "Ativo");
-    }
-    else if (cli->status == 'I')
-    {
-      strcpy(estatos, "Inativo");
-    }
   }
 }
