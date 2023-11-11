@@ -10,7 +10,7 @@ struct cliente
   char endereco[100];
   char email[100];
   char cpf[12];
-  int genero;
+  char genero;
   // int dia, mes, ano;
   char status;
 };

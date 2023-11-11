@@ -34,6 +34,7 @@ void listar_clientes(Cliente *cli)
     printf("======================================\n");
     printf("Nome: %s\n", cli->nome);
     printf("CPF: %s\n", cli->cpf);
+    printf("Genero: %c\n", cli->genero);
     printf("Email: %s\n", cli->email);
     printf("Telefone: %s\n", cli->telefone);
     printf("Endereço: %s\n", cli->endereco);
@@ -104,6 +105,7 @@ void listar_funcionarios(Funcionario *fun)
     printf("\n");
     printf("Nome: %s\n", fun->nome);
     printf("CPF: %s\n", fun->cpf);
+    // printf("Genero: %s", fun->genero);
     printf("Email: %s\n", fun->email);
     printf("Telefone: %s\n", fun->telefone);
     printf("Endereço: %s\n", fun->endereco);

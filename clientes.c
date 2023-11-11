@@ -66,9 +66,10 @@ Cliente *create_cliente(void)
   Cliente *cli;
   cli = (Cliente *)malloc(sizeof(Cliente));
 
+  int gen_int = 0;
+
   char nome[100] = "", telefone[13] = "", endereco[100] = "", email[100] = "", cpf[12] = "";
-  int genero;
-  char status;
+  char status, genero;
 
   // int dia, mes, ano;
   printf("==============================================\n");
@@ -95,19 +96,34 @@ Cliente *create_cliente(void)
 
   /// printf("CPF inválido\n");
 
-  // printf("||              * Gênero (1 - M | 2 - F):           ||\n");
-  // printf("Gênero: ");
-  //  scanf("%d", cli->genero);
-
-  // printf("Gênero Masculino\n");
-
-  // printf("Gênero Feminino\n");
+  printf("||              * Genero (1 - M | 2 - F | 3 - O):           ||\n");
+  printf("Genero: ");
+  scanf("%d", &gen_int);
+  if (gen_int == 1)
+  {
+    cli->genero = 'M';
+  }
+  else if (gen_int == 2)
+  {
+    cli->genero = 'F';
+  }
+  else if (gen_int == 3)
+  {
+    cli->genero = 'O';
+  }
+  else
+  {
+    printf("Digite algo válido.");
+    getchar();
+    getchar();
+    clientes();
+  }
 
   printf("||           * Telefone pra contato:        ||\n");
   printf("Telefone: ");
   scanf("%s", cli->telefone);
   printf("\nTelefone digitado: %s\n", cli->telefone);
-  printf("||           * Endereço:        ||\n");
+  printf("||           * Endereco:        ||\n");
   printf("Endereco: ");
   scanf("%s", cli->endereco);
   printf("\nEndereco digitado: %s\n", cli->endereco);
