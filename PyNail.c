@@ -78,6 +78,9 @@ void menu_principal(void)
     break;
   default:
     printf("Digite algo válido");
+    getchar();
+    getchar();
+    menu_principal();
     break;
   }
 }

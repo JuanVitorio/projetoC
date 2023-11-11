@@ -1,27 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 int valida_nome(char nome[])
 {
+  int i = 0;
 
-  if (strlen(nome) <= 3)
+  if (strlen(nome) < 3)
   {
-    return 1;
+    return 0;
   }
 
-  return 0;
-}
+  // while (nome[i] != '\0')
+  //{
 
-int validar_numero(char telefone[])
-{
+  //}
 
-  if (strlen(telefone) != 11)
-  {
-    return 1;
-  }
-
-  return 0;
+  return 1;
 }
 
 int valida_email(char email[])
