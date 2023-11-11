@@ -70,6 +70,7 @@ Cliente *create_cliente(void)
 
   char nome[100] = "", telefone[13] = "", endereco[100] = "", email[100] = "", cpf[12] = "";
   char status, genero;
+  int dia = 0, mes = 0, ano = 0;
 
   // int dia, mes, ano;
   printf("==============================================\n");
@@ -80,21 +81,17 @@ Cliente *create_cliente(void)
   printf("||                                          ||\n");
   printf("||            * Nome do(a) cliente:         ||\n");
   printf("Nome: ");
-  scanf("%s", cli->nome);
-
-  printf("\nNome digitado: %s\n", cli->nome);
+  scanf(" %99[^\n]", cli->nome);
+  printf("Nome digitado: %s\n\n", cli->nome);
   printf("||            * CPF do(a) cliente:         ||\n");
   printf("CPF do cliente: ");
   scanf("%s", cli->cpf);
 
-  printf("\nCPF digitado: %s\n", cli->cpf);
-  //  printf("||            * Data de nascimento        ||\n");
-  // scanf("%d", cli->dia);
-  // scanf("%d", cli->mes);
-  // scanf("%d", cli->ano);
-  // printf("Data digitada: %02d/%02d/%04d\n", cli->dia, cli->mes, cli->ano);
+  printf("CPF digitado: %s\n\n", cli->cpf);
 
-  /// printf("CPF inválido\n");
+  // printf("||            * Data de nascimento        ||\n");
+  // scanf(" %d%d%d", cli->dia, cli->mes, cli->ano);
+  // printf("Data digitada: %02s/%02s/%04s\n\n", cli->dia, cli->mes, cli->ano);
 
   printf("||              * Genero (1 - M | 2 - F | 3 - O):           ||\n");
   printf("Genero: ");
@@ -102,18 +99,22 @@ Cliente *create_cliente(void)
   if (gen_int == 1)
   {
     cli->genero = 'M';
+    printf("Genero: Masculino\n\n");
   }
   else if (gen_int == 2)
   {
     cli->genero = 'F';
+    printf("Genero: Feminino\n\n");
   }
   else if (gen_int == 3)
   {
     cli->genero = 'O';
+    printf("Genero: Outro\n\n");
   }
   else
   {
-    printf("Digite algo válido.");
+    printf("Digite algo valido.");
+    printf("Aperte ENTER para sair...");
     getchar();
     getchar();
     clientes();
@@ -122,15 +123,15 @@ Cliente *create_cliente(void)
   printf("||           * Telefone pra contato:        ||\n");
   printf("Telefone: ");
   scanf("%s", cli->telefone);
-  printf("\nTelefone digitado: %s\n", cli->telefone);
+  printf("Telefone digitado: %s\n\n", cli->telefone);
   printf("||           * Endereco:        ||\n");
   printf("Endereco: ");
-  scanf("%s", cli->endereco);
-  printf("\nEndereco digitado: %s\n", cli->endereco);
+  scanf(" %99[^\n]", cli->endereco);
+  printf("Endereco digitado: %s\n\n", cli->endereco);
   printf("||           * Email:        ||\n");
   printf("Email: ");
-  scanf("%s", cli->email);
-  printf("\nEmail: %s\n", cli->email);
+  scanf(" %99[^\n]", cli->email);
+  printf("Email: %s\n\n", cli->email);
 
   cli->status = 'A';
   printf("\n");
@@ -149,99 +150,24 @@ Cliente *create_cliente(void)
 
 void delete_cliente(void)
 {
-  int id;
-  int op;
-
-  printf("==============================================\n");
-  printf("|| Digite o ID do cliente que quer DELETAR: ||\n");
-  printf("==============================================\n");
-  scanf("%d", &id);
-
-  printf("===============================================\n");
-  printf("||             Cliente deletado              ||\n");
-  printf("===============================================\n");
-
-  printf("========= 0 para voltar ========= \n");
-
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    clientes();
-  }
-  else
-  {
-    clientes();
-  }
 }
 
 void update_cliente(void)
 {
-  int op;
-  int id;
-
-  printf("================================================\n");
-  printf("|| Digite o ID do cliente que quer ATUALIZAR: ||\n");
-  printf("================================================\n");
-  printf("||          O que deseja atualizar?           ||\n");
-  printf("||      Nome(0) - Telefone(1) - Gênero(2)     ||\n");
-  printf("================================================\n");
-  scanf("%d", &id);
-
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    clientes();
-  }
-  else
-  {
-    clientes();
-  }
 }
 
 void listador_clientes(void)
 {
-  int op;
-
   printf("==================================================\n");
   printf("||                  Clientes:                   ||\n");
   printf("==================================================\n");
-
   exibir_clientes();
-
-  printf("\n========= 0 para voltar ========= \n");
-
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    clientes();
-  }
-  else
-  {
-    clientes();
-  }
+  printf("\nAperte ENTER para voltar...\n");
+  getchar();
+  getchar();
+  clientes();
 }
 
 void pesquisar_cliente(void)
 {
-  int op;
-
-  printf("================================================\n");
-  printf("||           Digite o nome do cliente:        ||\n");
-  printf("================================================\n");
-
-  printf("========= 0 para voltar ========= \n");
-
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    clientes();
-  }
-  else
-  {
-    clientes();
-  }
 }

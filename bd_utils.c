@@ -31,13 +31,14 @@ void listar_clientes(Cliente *cli)
   }
   else
   {
-    printf("======================================\n");
+    printf("\n");
     printf("Nome: %s\n", cli->nome);
     printf("CPF: %s\n", cli->cpf);
     printf("Genero: %c\n", cli->genero);
     printf("Email: %s\n", cli->email);
     printf("Telefone: %s\n", cli->telefone);
-    printf("Endereço: %s\n", cli->endereco);
+    printf("Endereco: %s\n", cli->endereco);
+    printf("\n");
 
     if (cli->status == 'A')
     {
