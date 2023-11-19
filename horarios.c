@@ -55,7 +55,7 @@ void horarios()
 
 struct horarios
 {
-  int dia, mes, ano;
+  int dia, mes;
   int hora, minuto;
   char cliente[100];
   char funcionario[100];
@@ -64,40 +64,61 @@ struct horarios
   char observacoes[200];
 };
 
+// pra fazer o create de horário eu preciso ter o excluir e buscar de cliente e funcionário
+
 void create_horario(void)
 {
+
+  system("clear||cls");
+
   int op;
-  printf("* Abrimos a partir das 10:00 e fechamos às 19:00 *\n");
-  printf("Horários disponíveis: \n");
+  char cpf[12];
+  printf("*\nAbrimos a partir das 10:00 e fechamos às 19:00 *\n");
   // Vou listar todos os horários disponíveis no momento
   // horários das 10 até as 19 que não estão ocupados
+
+  printf("========================================================\n");
+  printf("||                    Escolha a data:                 ||\n");
+  printf("========================================================\n");
+
+  printf("\nDia: ");
+  printf("\nMes: ");
 
   printf("========================================================\n");
   printf("||                  Escolha o horário:                ||\n");
   printf("========================================================\n");
 
-  // se o horários estiver vago:
+  // aqui vai ter a função que vai listar os horários disponíveis
+
+  printf("\nHorário: ");
+  scanf("%d", &op);
 
   printf("========================================================\n");
-  printf("||          Pesquise o nome do(a) cliente:            ||\n");
+  printf("||             Digite o CPF do(a) cliente:            ||\n");
   printf("========================================================\n");
+
+  printf("\nCPF: ");
+  scanf("%s", cpf);
+  // aqui vai ter a função que pesquisa nos cpfs cadastrados
+
+  printf("========================================================\n");
+  printf("||            Digite o CPF do funcionário:            ||\n");
+  printf("========================================================\n");
+
+  printf("\nCPF: ");
+  scanf("%s", cpf);
+  // aqui vai ter a função que pesquisa nos cpfs cadastrados
 
   printf("========================================================\n");
   printf("||               Algumas observação?                  ||\n");
   printf("========================================================\n");
 
-  printf("Agendar? (1 - sim | 2 - não)");
-  scanf("%d", &op);
-  if (op == 1)
-  {
-    printf("Agendado");
-    horarios();
-  }
-  else
-  {
-    printf("Agendamento cancelado");
-    horarios();
-  }
+  printf("\nHorario agendado!n\n");
+  printf("\nPressione ENTER para continuar...\n");
+  getchar();
+  getchar();
+
+  horarios();
 }
 
 void update_horario(void)
