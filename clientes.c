@@ -42,17 +42,17 @@ void clientes(void)
     gravar_cliente(cli);
     break;
   case 2:
-    update_cliente();
+    atualizar_cliente();
     break;
   case 3:
-    delete_cliente();
+    excluir_cliente();
     break;
   case 4:
     listador_clientes();
     break;
   case 5:
-    pesquisar_cliente();
-
+    buscar_clientes();
+    break;
   default:
     printf("Digite algo válido");
     break;
@@ -62,6 +62,9 @@ void clientes(void)
 // função pra criar clientes
 Cliente *create_cliente(void)
 {
+
+  // Aqui eu preciso corrigir a parte de receber datas, porque nao ta recendo ainda na struct
+
   system("clear||cls");
   Cliente *cli;
   cli = (Cliente *)malloc(sizeof(Cliente));
@@ -144,16 +147,7 @@ Cliente *create_cliente(void)
   printf("\nAperte ENTER para continuar...");
   getchar();
   getchar();
-
-  menu_principal();
-}
-
-void delete_cliente(void)
-{
-}
-
-void update_cliente(void)
-{
+  clientes();
 }
 
 void listador_clientes(void)
@@ -168,6 +162,158 @@ void listador_clientes(void)
   clientes();
 }
 
-void pesquisar_cliente(void)
+void buscar_clientes(void)
 {
+  char cpf[12];
+  printf("Digite o CPF do cliente: ");
+  scanf("%s", cpf);
+  pesquisar_cliente(cpf);
+  printf("\nAperte ENTER para voltar...\n");
+  getchar();
+  getchar();
+  clientes();
+}
+
+void pesquisar_cliente(char cpf[])
+{
+  FILE *fc;
+  Cliente *cls;
+  cls = (Cliente *)malloc(sizeof(Cliente));
+  fc = fopen("db_cliente.dat", "rb");
+  int cont = 0;
+  if (fc == NULL)
+  {
+    printf("Nenhum cliente foi cadastrado no sistema!\n");
+    return;
+  }
+  while (fread(cls, sizeof(Cliente), 1, fc))
+  {
+    if ((strcmp(cls->cpf, cpf) == 0) && (cls->status != 'I'))
+    {
+      listar_clientes(cls);
+      cont++;
+    }
+  }
+  if (!cont)
+  {
+    printf("Esse cpf nao esta relacionado a nenhum cliente cadastrado!\n");
+  }
+  fclose(fc);
+  free(cls);
+}
+
+void excluir_cliente()
+{
+  char cpf[15];
+  printf("Digite o cpf do cliente: ");
+  scanf("%s", cpf);
+  delete_cliente(cpf);
+  printf("Aperte ENTER para voltar...");
+  getchar();
+  getchar();
+  clientes();
+}
+
+void delete_cliente(char cpf[])
+{
+  FILE *fc;
+  Cliente *cls;
+  cls = (Cliente *)malloc(sizeof(Cliente));
+  fc = fopen("db_cliente.dat", "r+b");
+  int cont = 0;
+  if (fc == NULL)
+  {
+    printf("Nenhum cliente foi cadastrado no sistema!\n");
+    return;
+  }
+  while (fread(cls, sizeof(Cliente), 1, fc))
+  {
+    if ((strcmp(cls->cpf, cpf) == 0) && (cls->status == 'A'))
+    {
+      cont++;
+      cls->status = 'I';
+      fseek(fc, -1 * (long)sizeof(Cliente), SEEK_CUR);
+      fwrite(cls, sizeof(Cliente), 1, fc);
+      printf("\nCliente excluido!\n");
+      break;
+    }
+  }
+  if (!cont)
+  {
+    printf("Esse cpf nao esta relacionado a nenhum cliente cadastrado!\n");
+  }
+  fclose(fc);
+  free(cls);
+}
+
+void atualizar_cliente(void)
+{
+  char cpf[12];
+  printf("Digite o CPF do cliente: ");
+  scanf("%s", cpf);
+  update_cliente(cpf);
+}
+
+void update_cliente(char cpf[])
+{
+
+  // Tem que botar essa pra funcionar que não presta ainda
+
+  FILE *fc;
+  Cliente *cls;
+  int esc = -1;
+  cls = (Cliente *)malloc(sizeof(Cliente));
+  fc = fopen("db_cliente.dat", "r+b");
+  int cont = 0;
+  if (fc == NULL)
+  {
+    printf("Nenhum cliente foi cadastrado no sistema!\n");
+    return;
+  }
+  while (fread(cls, sizeof(Cliente), 1, fc))
+  {
+    if ((strcmp(cls->cpf, cpf) == 0) && (cls->status == 'A'))
+    {
+      cont++;
+      do
+      {
+        printf("Informações cadastradas\n");
+        printf("Nome: \n", cls->nome);
+        printf("CPF: \n", cls->cpf);
+        printf("Genero: \n", cls->genero);
+        printf("Email: \n", cls->email);
+        printf("Telefone: \n", cls->telefone);
+        printf("Endereco: \n", cls->endereco);
+
+        printf("O que deseja atualizar?\n");
+        printf("Nome - 1\n");
+        printf("CPF - 2\n");
+        printf("Genero - 3\n");
+        printf("Email - 4\n");
+        printf("Telefone - 5\n");
+        printf("Endereco - 6\n");
+        printf("Voltar - 0\n");
+
+        printf("Opcao: ");
+        scanf("%d", &esc);
+
+        switch (esc)
+        {
+        case 1:
+          //
+          break;
+
+        default:
+          break;
+        }
+
+      } while (esc != 0);
+    }
+  }
+  if (!cont)
+  {
+    printf("Esse cpf nao esta relacionado a nenhum cliente cadastrado!\n");
+  }
+  fclose(fc);
+  free(cls);
 }
