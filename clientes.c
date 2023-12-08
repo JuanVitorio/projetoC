@@ -7,7 +7,7 @@
 #include "validacoes.h"
 #include "bd_utils.h"
 
-// Menu principal dos clientes
+// MENU PRINCIPAL DE NAVEGAÇÃO DE CLIENTES
 void clientes(void)
 {
   int op;
@@ -55,29 +55,24 @@ void clientes(void)
       buscar_clientes();
       break;
     default:
-      printf("Digite algo válido");
+      printf("Digite algo valido");
       break;
     }
   } while (op != 0);
 }
 
-// função pra criar clientes
+// FUNÇÃO PARA CRIAR CLIENTES
 Cliente *create_cliente(void)
 {
-
-  // Aqui eu preciso corrigir a parte de receber datas, porque nao ta recendo ainda na struct
-
   system("clear||cls");
   Cliente *cli;
   cli = (Cliente *)malloc(sizeof(Cliente));
 
   int gen_int = 0;
 
-  char nome[100] = "", telefone[13] = "", endereco[100] = "", email[100] = "", cpf[12] = "";
+  char nome[100] = "", telefone[15] = "", endereco[100] = "", email[100] = "", cpf[12] = "", data_nasci[10] = "";
   char status, genero;
-  int dia = 0, mes = 0, ano = 0;
 
-  // int dia, mes, ano;
   printf("==============================================\n");
   printf("||                                          ||\n");
   printf("||              Cadastrar cliente           ||\n");
@@ -85,56 +80,66 @@ Cliente *create_cliente(void)
   printf("==============================================\n");
   printf("||                                          ||\n");
   printf("||            * Nome do(a) cliente:         ||\n");
-  scanf("%[^\n]", cli->nome);
-  printf("Nome digitado: %s\n\n", cli->nome);
+
+  // NOME OK
+  ler_nome(nome);
+  strncpy(cli->nome, nome, sizeof(cli->nome));
+
+  // CPF OK
   printf("||            * CPF do(a) cliente:         ||\n");
-  printf("CPF do cliente (so numeros): ");
-  scanf("%s", cli->cpf);
+  ler_cpf(cpf);
+  strncpy(cli->cpf, cpf, sizeof(cli->cpf));
 
-  printf("CPF digitado: %s\n\n", cli->cpf);
+  printf("||            * Data de nascimento        ||\n");
+  printf("Data (dd/mm/aa): ");
+  scanf("%s", cli->data_nasci);
+  printf("Data digitada: %s\n\n", cli->data_nasci);
 
-  // printf("||            * Data de nascimento        ||\n");
-  // scanf(" %d%d%d", cli->dia, cli->mes, cli->ano);
-  // printf("Data digitada: %02s/%02s/%04s\n\n", cli->dia, cli->mes, cli->ano);
-
+  // GÊNERO OK
   printf("||              * Genero (1 - M | 2 - F | 3 - O):           ||\n");
-  printf("Genero: ");
-  scanf("%d", &gen_int);
-  if (gen_int == 1)
+  int y;
+  do
   {
-    cli->genero = 'M';
-    printf("Genero: Masculino\n\n");
-  }
-  else if (gen_int == 2)
-  {
-    cli->genero = 'F';
-    printf("Genero: Feminino\n\n");
-  }
-  else if (gen_int == 3)
-  {
-    cli->genero = 'O';
-    printf("Genero: Outro\n\n");
-  }
-  else
-  {
-    printf("Digite algo valido.");
-    printf("Aperte ENTER para sair...");
-    getchar();
-    getchar();
-  }
+    printf("Genero: ");
+    scanf("%d", &gen_int);
+    if (gen_int == 1)
+    {
+      cli->genero = 'M';
+      printf("Genero: Masculino\n\n");
+      y = 1;
+    }
+    else if (gen_int == 2)
+    {
+      cli->genero = 'F';
+      printf("Genero: Feminino\n\n");
+      y = 1;
+    }
+    else if (gen_int == 3)
+    {
+      cli->genero = 'O';
+      printf("Genero: Outro\n\n");
+      y = 1;
+    }
+    else
+    {
+      printf("Digie um numero valido!\n");
+    }
+  } while (y != 1);
 
+  // TELEFONE OK
   printf("||           * Telefone pra contato:        ||\n");
-  printf("Telefone: ");
-  scanf("%s", cli->telefone);
-  printf("Telefone digitado: %s\n\n", cli->telefone);
+  ler_telefone(telefone);
+  strncpy(cli->telefone, telefone, sizeof(cli->telefone));
+
+  // ENDEREÇO OK
   printf("||           * Endereco:        ||\n");
-  printf("Endereco: ");
-  scanf(" %99[^\n]", cli->endereco);
-  printf("Endereco digitado: %s\n\n", cli->endereco);
+  ler_endereco(endereco);
+  strncpy(cli->endereco, endereco, sizeof(cli->endereco));
+
+  // EMAIL OK
   printf("||           * Email:        ||\n");
-  printf("Email: ");
-  scanf(" %99[^\n]", cli->email);
-  printf("Email: %s\n\n", cli->email);
+  ler_email(email);
+  strncpy(cli->email, email, sizeof(cli->email));
 
   cli->status = 'A';
   printf("\n");
@@ -152,6 +157,7 @@ Cliente *create_cliente(void)
 
 void listador_clientes(void)
 {
+  system("clear||cls");
   printf("==================================================\n");
   printf("||                  Clientes:                   ||\n");
   printf("==================================================\n");

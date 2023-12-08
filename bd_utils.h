@@ -6,12 +6,12 @@ typedef struct cliente Cliente;
 struct cliente
 {
   char nome[100];
-  char telefone[13];
+  char telefone[15];
   char endereco[100];
   char email[100];
   char cpf[12];
   char genero;
-  // int dia, mes, ano;
+  char data_nasci[10];
   char status;
 };
 
