@@ -34,55 +34,58 @@ int main(void)
 // menu principal pra navegação
 void menu_principal(void)
 {
-  int op;
-  system("clear||cls");
-  printf("========================================================\n");
-  printf("||               Manicure/Pedicure Pretty Nail        ||\n");
-  printf("========================================================\n");
-  printf("||                                                    ||\n");
-  printf("||                      1. Clientes                   ||\n");
-  printf("||                      2. Funcionarios               ||\n");
-  printf("||                      3. Horarios                   ||\n");
-  printf("||                      4. Agendamento                ||\n");
-  printf("||                      5. Servicos                   ||\n");
-  printf("||                      6. Informacoes                ||\n");
-  printf("||                      7. Infos. Dev.                ||\n");
-  printf("||                      0. Sair                       ||\n");
-  printf("||                                                    ||\n");
-  printf("========================================================\n");
-  printf("Opcao:");
-  scanf("%d", &op);
-
-  switch (op)
+  int op = -1;
+  do
   {
-  case 0:
-    printf("Código encerrado.");
-    break;
-  case 1:
-    clientes();
-    break;
-  case 2:
-    funcionarios();
-    break;
-  case 3:
-    horarios();
-    break;
-  case 4:
-    servicos();
-    break;
-  case 5:
-    informacoes();
-    break;
-  case 6:
-    infos_dev();
-    break;
-  default:
-    printf("Digite algo válido");
-    getchar();
-    getchar();
-    menu_principal();
-    break;
-  }
+    system("clear||cls");
+    printf("========================================================\n");
+    printf("||               Manicure/Pedicure Pretty Nail        ||\n");
+    printf("========================================================\n");
+    printf("||                                                    ||\n");
+    printf("||                      1. Clientes                   ||\n");
+    printf("||                      2. Funcionarios               ||\n");
+    printf("||                      3. Horarios                   ||\n");
+    printf("||                      4. Agendamento                ||\n");
+    printf("||                      5. Servicos                   ||\n");
+    printf("||                      6. Informacoes                ||\n");
+    printf("||                      7. Infos. Dev.                ||\n");
+    printf("||                      0. Sair                       ||\n");
+    printf("||                                                    ||\n");
+    printf("========================================================\n");
+    printf("Opcao:");
+    scanf("%d", &op);
+
+    switch (op)
+    {
+    case 0:
+      printf("Código encerrado.");
+      break;
+    case 1:
+      clientes();
+      break;
+    case 2:
+      funcionarios();
+      break;
+    case 3:
+      horarios();
+      break;
+    case 4:
+      servicos();
+      break;
+    case 5:
+      informacoes();
+      break;
+    case 6:
+      infos_dev();
+      break;
+    default:
+      printf("Digite algo válido");
+      getchar();
+      getchar();
+      menu_principal();
+      break;
+    }
+  } while (op != 0);
 }
 
 void informacoes(void)
