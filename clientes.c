@@ -136,7 +136,7 @@ Cliente *create_cliente(void)
     }
     else
     {
-      printf("Digie um numero valido!\n");
+      printf("Digite um numero valido!\n");
     }
   } while (y != 1);
 

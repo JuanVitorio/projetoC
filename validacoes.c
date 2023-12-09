@@ -343,27 +343,32 @@ int valida_endereco(char *endereco)
   return 1;
 }
 
-int valida_s_ou_n(char escolha) {
-    if (escolha!='S' && escolha!='N'){
-        return 0;
-    }
-    return 1;
+int valida_s_ou_n(char escolha)
+{
+  if (escolha != 'S' && escolha != 'N')
+  {
+    return 0;
+  }
+  return 1;
 }
 
-char obter_resposta() {
-    char escolha;
-    do {
-        printf("Deseja tentar novamente (S/N)? ");
-        scanf(" %c", &escolha);
-        letra_maiuscula(&escolha);
-        getchar();
-        // validar a resposta
-        if (!valida_s_ou_n(escolha)) {
-            printf("Digite algo válido (S/N)!\n");
-        }
-        
-    } while (escolha != 'S' && escolha != 'N');
-    return escolha;
+char obter_resposta()
+{
+  char escolha;
+  do
+  {
+    printf("Deseja tentar novamente (S/N)? ");
+    scanf(" %c", &escolha);
+    letra_maiuscula(&escolha);
+    getchar();
+    // validar a resposta
+    if (!valida_s_ou_n(escolha))
+    {
+      printf("Digite algo válido (S/N)!\n");
+    }
+
+  } while (escolha != 'S' && escolha != 'N');
+  return escolha;
 }
 
 int verifica_existe_cliente(char cpf[])
@@ -377,6 +382,28 @@ int verifica_existe_cliente(char cpf[])
     return 1;
   }
   while (fread(std, sizeof(Cliente), 1, fa))
+  {
+    if ((std->status != 'I') && (strcmp(std->cpf, cpf) == 0))
+    {
+      return 0;
+    }
+  }
+  fclose(fa);
+  free(std);
+  return 1;
+}
+
+int verifica_existe_funcionario(char cpf[])
+{
+  FILE *fa;
+  Funcionario *std;
+  std = (Funcionario *)malloc(sizeof(Funcionario));
+  fa = fopen("db_funcionarios.dat", "rb");
+  if (fa == NULL)
+  {
+    return 1;
+  }
+  while (fread(std, sizeof(Funcionario), 1, fa))
   {
     if ((std->status != 'I') && (strcmp(std->cpf, cpf) == 0))
     {
@@ -402,6 +429,36 @@ void ler_nome(char *nome)
     if (x == 0)
     {
       printf("Nome invalido");
+    }
+  } while (x != 1);
+}
+
+void ler_salario(char *funcao)
+{
+  int x;
+  do
+  {
+    printf("Digite o salario: ");
+    fgets(funcao, 20, stdin);
+    removerCaracteresNaoNumericos(funcao);
+    x = 1;
+  } while (x != 1);
+}
+
+void ler_cargo(char *cargo)
+{
+  int x;
+  do
+  {
+    printf("Digite o cargo: ");
+    limpar_buffer();
+    fgets(cargo, 30, stdin);
+    cargo[strlen(cargo) - 1] = 0;
+    printf("\n");
+    x = valida_nome(cargo);
+    if (x == 0)
+    {
+      printf("Verifique se digitou corretamente\n");
     }
   } while (x != 1);
 }

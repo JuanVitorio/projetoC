@@ -65,56 +65,86 @@ Funcionario *create_funcionario(void)
   Funcionario *fun;
   fun = (Funcionario *)malloc(sizeof(Funcionario));
 
-  char nome[100] = "", email[100] = "", telefone[13] = "", funcao[30] = "", cpf[12] = "", endereco[100] = "";
-  int dia, mes, ano;
-  int genero;
-  float salario;
-  char status;
+  char nome[100] = "", email[100] = "", telefone[13] = "", funcao[30] = "", cpf[12] = "", endereco[100] = "", data_nasci[10] = "", salario[20] = "";
+  char genero, status;
+  int gen_int = 0;
 
   printf("==============================================\n");
   printf("||             Cadastrar Funcionario        ||\n");
   printf("==============================================\n");
 
-  // Tem que colocar a comparação pra saber se é válido
-  printf("||           * Nome do(a) funcionario:      ||\n");
-  printf("Nome completo: ");
-  scanf("%s", fun->nome);
+  do
+  {
+    ler_cpf(fun->cpf);
+    if (!verifica_existe_funcionario(fun->cpf))
+    {
+      printf("CPF ja cadastrado!\n\n");
+      printf("Aperte ENTER para voltar ao menu...\n");
+      getchar();
+      getchar();
+      funcionarios();
+    }
+    else
+    {
+      break;
+    }
+    // retornar um tela,no caso ao menu
+  } while (1);
 
-  printf("\nNome digitado: %s\n", fun->nome);
-  // printf("||           * Data de nascimento:      ||\n");
-  // printf("(dd/mm/aa)): ");
-  // scanf("%d%d%d", &dia, &mes, &ano);
+  printf("\n");
+  // NOME OK
+  ler_nome(nome);
+  strncpy(fun->nome, nome, sizeof(fun->nome));
 
-  // printf("Data digitada: %02d/%02d/%04d\n", dia, mes, ano);
+  printf("Data (dd/mm/aa): ");
+  scanf("%s", fun->data_nasci);
+  printf("\n");
 
-  // printf("||              * Gênero (M | F):           ||\n");
-  // printf("Gênero: ");
-  // scanf("%d", &genero);
+  printf("Genero (1 - M | 2 - F | 3 - O): ");
+  int y;
+  do
+  {
+    scanf("%d", &gen_int);
+    if (gen_int == 1)
+    {
+      fun->genero = 'M';
+      printf("Genero: Masculino\n\n");
+      y = 1;
+    }
+    else if (gen_int == 2)
+    {
+      fun->genero = 'F';
+      printf("Genero: Feminino\n\n");
+      y = 1;
+    }
+    else if (gen_int == 3)
+    {
+      fun->genero = 'O';
+      printf("Genero: Outro\n\n");
+      y = 1;
+    }
+    else
+    {
+      printf("Digite um numero valido!\n");
+    }
+  } while (y != 1);
 
-  printf("||          *CPF           ||\n");
-  printf("CPF:");
-  scanf("%s", fun->cpf);
-  printf("\nCPF digitado:%s\n", fun->cpf);
+  ler_cpf(cpf);
+  strncpy(fun->cpf, cpf, sizeof(fun->cpf));
 
-  printf("||         * Email:      ||\n");
-  printf("Email: ");
-  scanf("%s", fun->email);
-  printf("\nEmail digitado: %s\n", fun->email);
+  ler_endereco(endereco);
+  strncpy(fun->endereco, endereco, sizeof(fun->endereco));
 
-  printf("||           * Telefone pra contato:        ||\n");
-  printf("Telefone: ");
-  scanf("%s", fun->telefone);
-
-  printf("\nNumero digitado: %s\n", fun->telefone);
+  ler_telefone(telefone);
+  strncpy(fun->telefone, telefone, sizeof(fun->telefone));
 
   printf("||                  * Função:               ||\n");
-  printf("Cargo exercido: ");
-  scanf("%s", fun->funcao);
-  printf("\nCargo digitado: %s", fun->funcao);
+  ler_cargo(funcao);
+  strncpy(fun->funcao, funcao, sizeof(fun->funcao));
 
-  // printf("||                  * Salário:               ||\n");
-  // printf("Salario detalhado: ");
-  // scanf("%f", &salario);
+  printf("||                  * Salário:               ||\n");
+  ler_salario(salario);
+  strncpy(fun->salario, salario, sizeof(fun->salario));
 
   fun->status = 'A';
 
