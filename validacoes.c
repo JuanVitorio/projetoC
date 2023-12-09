@@ -349,6 +349,7 @@ void ler_nome(char *nome)
   do
   {
     printf("Digite o nome: ");
+    limpar_buffer();
     fgets(nome, 100, stdin);
     nome[strlen(nome) - 1] = 0;
     printf("\n");
@@ -386,6 +387,7 @@ void ler_email(char email[])
   do
   {
     printf("Digite seu Email:");
+    limpar_buffer();
     scanf("%[-._@A-Za-z0-9]", email);
     printf("\n");
     // função utilizada para limpar o buffer
@@ -405,6 +407,7 @@ void ler_telefone(char *telefone)
   do
   {
     printf("Telefone com DDD:");
+    limpar_buffer();
     fgets(telefone, 15, stdin);
     printf("\n");
     // remover o //n, função pega de @Lleusxam
@@ -422,7 +425,7 @@ void ler_endereco(char *endereco)
   int x;
   do
   {
-    printf("Digite o nome: ");
+    printf("Digite o endereco: ");
     fgets(endereco, 100, stdin);
     printf("\n");
     endereco[strlen(endereco) - 1] = 0;

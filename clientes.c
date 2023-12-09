@@ -255,6 +255,7 @@ void atualizar_cliente(void)
   printf("Digite o CPF do cliente: ");
   scanf("%s", cpf);
   update_cliente(cpf);
+  printf("Aperte ENTER para voltar...");
   getchar();
   getchar();
 }
