@@ -78,29 +78,24 @@ Cliente *create_cliente(void)
   printf("||              Cadastrar cliente           ||\n");
   printf("||                                          ||\n");
   printf("==============================================\n");
-  printf("||                                          ||\n");
-  printf("||            * Nome do(a) cliente:         ||\n");
-
+  printf("\n");
   // NOME OK
   ler_nome(nome);
   strncpy(cli->nome, nome, sizeof(cli->nome));
 
   // CPF OK
-  printf("||            * CPF do(a) cliente:         ||\n");
   ler_cpf(cpf);
   strncpy(cli->cpf, cpf, sizeof(cli->cpf));
 
-  printf("||            * Data de nascimento        ||\n");
   printf("Data (dd/mm/aa): ");
   scanf("%s", cli->data_nasci);
-  printf("Data digitada: %s\n\n", cli->data_nasci);
+  printf("\n");
 
   // GÊNERO OK
-  printf("||              * Genero (1 - M | 2 - F | 3 - O):           ||\n");
+  printf("Genero (1 - M | 2 - F | 3 - O): ");
   int y;
   do
   {
-    printf("Genero: ");
     scanf("%d", &gen_int);
     if (gen_int == 1)
     {
@@ -127,28 +122,24 @@ Cliente *create_cliente(void)
   } while (y != 1);
 
   // TELEFONE OK
-  printf("||           * Telefone pra contato:        ||\n");
   ler_telefone(telefone);
   strncpy(cli->telefone, telefone, sizeof(cli->telefone));
 
   // ENDEREÇO OK
-  printf("||           * Endereco:        ||\n");
   ler_endereco(endereco);
   strncpy(cli->endereco, endereco, sizeof(cli->endereco));
 
   // EMAIL OK
-  printf("||           * Email:        ||\n");
   ler_email(email);
   strncpy(cli->email, email, sizeof(cli->email));
 
   cli->status = 'A';
   printf("\n");
   gravar_cliente(cli);
-  printf("==================================\n");
-  printf("||                              ||\n");
-  printf("||      Cliente cadastrado      ||\n");
-  printf("||                              ||\n");
-  printf("==================================\n");
+
+  printf("\n");
+  printf(">>> Cliente cadastrado! <<<\n");
+
   printf("\nAperte ENTER para continuar...");
   getchar();
   getchar();

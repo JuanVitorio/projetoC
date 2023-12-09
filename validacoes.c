@@ -387,7 +387,6 @@ void ler_email(char email[])
   do
   {
     printf("Digite seu Email:");
-    limpar_buffer();
     scanf("%[-._@A-Za-z0-9]", email);
     printf("\n");
     // função utilizada para limpar o buffer
