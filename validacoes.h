@@ -16,3 +16,6 @@ void limpar_buffer();
 int has_space(char *str);
 char *str_to_lower(char *str);
 void letra_maiuscula(char *algo);
+int verifica_existe_cliente(char cpf[]);
+char obter_resposta();
+int valida_s_ou_n(char escolha);

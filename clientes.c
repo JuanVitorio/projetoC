@@ -78,6 +78,25 @@ Cliente *create_cliente(void)
   printf("||              Cadastrar cliente           ||\n");
   printf("||                                          ||\n");
   printf("==============================================\n");
+
+  do
+  {
+    ler_cpf(cli->cpf);
+    if (!verifica_existe_cliente(cli->cpf))
+    {
+      printf("CPF ja cadastrado!\n\n");
+      printf("Aperte ENTER para voltar ao menu...\n");
+      getchar();
+      getchar();
+      clientes();
+    }
+    else
+    {
+      break;
+    }
+    // retornar um tela,no caso ao menu
+  } while (1);
+
   printf("\n");
   // NOME OK
   ler_nome(nome);
@@ -171,6 +190,9 @@ void buscar_clientes(void)
 
 void pesquisar_cliente(char cpf[])
 {
+
+  system("clear||cls");
+
   FILE *fc;
   Cliente *cls;
   cls = (Cliente *)malloc(sizeof(Cliente));
@@ -253,6 +275,8 @@ void atualizar_cliente(void)
 
 void update_cliente(char cpf[])
 {
+
+  system("clear||cls");
 
   // Tem que botar essa pra funcionar que não presta ainda
 

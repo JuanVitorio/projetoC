@@ -6,6 +6,13 @@
     "stdlib.h": "c",
     "funcionarios.h": "c",
     "bd_utils.h": "c",
-    "ctype.h": "c"
+    "ctype.h": "c",
+    "cctype": "c",
+    "cstdarg": "c",
+    "cstdio": "c",
+    "cstdlib": "c",
+    "cwchar": "c",
+    "cwctype": "c",
+    "cstdint": "c"
   }
 }

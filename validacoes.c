@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include "validacoes.h"
+#include "bd_utils.h"
 
 int valida_nome(char *nome)
 {
@@ -342,6 +343,50 @@ int valida_endereco(char *endereco)
   return 1;
 }
 
+int valida_s_ou_n(char escolha) {
+    if (escolha!='S' && escolha!='N'){
+        return 0;
+    }
+    return 1;
+}
+
+char obter_resposta() {
+    char escolha;
+    do {
+        printf("Deseja tentar novamente (S/N)? ");
+        scanf(" %c", &escolha);
+        letra_maiuscula(&escolha);
+        getchar();
+        // validar a resposta
+        if (!valida_s_ou_n(escolha)) {
+            printf("Digite algo válido (S/N)!\n");
+        }
+        
+    } while (escolha != 'S' && escolha != 'N');
+    return escolha;
+}
+
+int verifica_existe_cliente(char cpf[])
+{
+  FILE *fa;
+  Cliente *std;
+  std = (Cliente *)malloc(sizeof(Cliente));
+  fa = fopen("db_cliente.dat", "rb");
+  if (fa == NULL)
+  {
+    return 1;
+  }
+  while (fread(std, sizeof(Cliente), 1, fa))
+  {
+    if ((std->status != 'I') && (strcmp(std->cpf, cpf) == 0))
+    {
+      return 0;
+    }
+  }
+  fclose(fa);
+  free(std);
+  return 1;
+}
 // FUNÇÕES PARA LER CAMPOS DE ENTRADA
 void ler_nome(char *nome)
 {
