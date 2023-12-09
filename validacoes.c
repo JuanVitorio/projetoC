@@ -524,7 +524,6 @@ void ler_endereco(char *endereco)
   do
   {
     printf("Digite o endereco: ");
-    limpar_buffer();
     fgets(endereco, 100, stdin);
     printf("\n");
     endereco[strlen(endereco) - 1] = 0;

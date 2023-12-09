@@ -9,59 +9,58 @@
 
 void funcionarios(void)
 {
-
-  Funcionario *fun;
-
   int op;
-
-  system("clear||cls");
-  printf("========================================================\n");
-  printf("||                    Menu Funcionarios               ||\n");
-  printf("========================================================\n");
-  printf("||                                                    ||\n");
-  printf("||                      1. Cadastrar                  ||\n");
-  printf("||                      2. Editar                     ||\n");
-  printf("||                      3. Excluir                    ||\n");
-  printf("||                      4. Listar                     ||\n");
-  printf("||                      5. Pesquisar                  ||\n");
-  printf("||                      0. Sair                       ||\n");
-  printf("||                                                    ||\n");
-  printf("========================================================\n");
-
-  printf("\nOpcao: ");
-
-  scanf("%d", &op);
-
-  switch (op)
+  do
   {
-  case 0:
-    menu_principal();
-    break;
-  case 1:
-    fun = create_funcionario();
-    break;
-  case 2:
-    update_funcionario();
-    break;
-  case 3:
-    delete_funcionario();
-    break;
-  case 4:
-    listador_funcionarios();
-    break;
-  case 5:
-    pesquisar_funcionario();
+    Funcionario *fun;
+    system("clear||cls");
+    printf("========================================================\n");
+    printf("||                    Menu Funcionarios               ||\n");
+    printf("========================================================\n");
+    printf("||                                                    ||\n");
+    printf("||                      1. Cadastrar                  ||\n");
+    printf("||                      2. Editar                     ||\n");
+    printf("||                      3. Excluir                    ||\n");
+    printf("||                      4. Listar                     ||\n");
+    printf("||                      5. Pesquisar                  ||\n");
+    printf("||                      0. Sair                       ||\n");
+    printf("||                                                    ||\n");
+    printf("========================================================\n");
 
-  default:
-    printf("Digite algo valido");
-    break;
-  }
+    printf("\nOpcao: ");
+
+    scanf("%d", &op);
+
+    switch (op)
+    {
+    case 0:
+      break;
+    case 1:
+      fun = create_funcionario();
+      gravar_funcionario(fun);
+      break;
+    case 2:
+      update_funcionario();
+      break;
+    case 3:
+      excluir_funcionario();
+      break;
+    case 4:
+      listador_funcionarios();
+      break;
+    case 5:
+      pesquisar_funcionario();
+      break;
+    default:
+      printf("Digite algo valido");
+      break;
+    }
+  } while (op != 0);
 }
 
 Funcionario *create_funcionario(void)
 {
   system("clear||cls");
-
   Funcionario *fun;
   fun = (Funcionario *)malloc(sizeof(Funcionario));
 
@@ -82,10 +81,12 @@ Funcionario *create_funcionario(void)
     printf("Aperte ENTER para voltar ao menu...\n");
     getchar();
     getchar();
-    funcionarios();
   }
-  strncpy(fun->cpf, cpf, sizeof(fun->cpf));
-  // NOME OK
+  else
+  {
+    strncpy(fun->cpf, cpf, sizeof(fun->cpf));
+  }
+
   ler_nome(nome);
   strncpy(fun->nome, nome, sizeof(fun->nome));
 
@@ -138,7 +139,6 @@ Funcionario *create_funcionario(void)
   strncpy(fun->salario, salario, sizeof(fun->salario));
 
   fun->status = 'A';
-
   gravar_funcionario(fun);
 
   printf("\n\n");
@@ -149,36 +149,47 @@ Funcionario *create_funcionario(void)
   getchar();
 }
 
-void delete_funcionario(void)
+void excluir_funcionario()
 {
+  char cpf[15];
+  printf("Digite o CPF do funcionario: ");
+  scanf("%s", cpf);
+  delete_funcionario(cpf);
+  printf("Aperte ENTER para voltar...");
+  getchar();
+  getchar();
+}
 
-  system("clear||cls");
-
-  int id;
-  int op;
-
-  printf("==================================================\n");
-  printf("|| Digite o ID do funcionário que quer DELETAR: ||\n");
-  printf("==================================================\n");
-
-  // listar funcionários
-
-  scanf("%d", &id);
-
-  printf("===============================================\n");
-  printf("||             Funcionário deletado          ||\n");
-  printf("===============================================\n");
-
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
+void delete_funcionario(char cpf[])
+{
+  FILE *fc;
+  Funcionario *cls;
+  cls = (Funcionario *)malloc(sizeof(Funcionario));
+  fc = fopen("db_funcionarios.dat", "r+b");
+  int cont = 0;
+  if (fc == NULL)
   {
-    funcionarios();
+    printf("Nenhum funcionario foi cadastrado no sistema!\n");
+    return;
   }
-  else
+  while (fread(cls, sizeof(Funcionario), 1, fc))
   {
-    funcionarios();
+    if ((strcmp(cls->cpf, cpf) == 0) && (cls->status == 'A'))
+    {
+      cont++;
+      cls->status = 'I';
+      fseek(fc, -1 * (long)sizeof(Funcionario), SEEK_CUR);
+      fwrite(cls, sizeof(Funcionario), 1, fc);
+      printf("\nFuncionario excluido!\n");
+      break;
+    }
   }
+  if (!cont)
+  {
+    printf("Esse cpf nao esta relacionado a nenhum funcionario cadastrado!\n");
+  }
+  fclose(fc);
+  free(cls);
 }
 
 void update_funcionario(void)
