@@ -69,29 +69,22 @@ Funcionario *create_funcionario(void)
   char genero, status;
   int gen_int = 0;
 
-  printf("==============================================\n");
-  printf("||             Cadastrar Funcionario        ||\n");
-  printf("==============================================\n");
+  printf("==================================================\n");
+  printf("||                                              ||\n");
+  printf("||              Cadastrar funcionario           ||\n");
+  printf("||                                              ||\n");
+  printf("==================================================\n");
 
-  do
+  ler_cpf(fun->cpf);
+  if (!verifica_existe_funcionario(fun->cpf))
   {
-    ler_cpf(fun->cpf);
-    if (!verifica_existe_funcionario(fun->cpf))
-    {
-      printf("CPF ja cadastrado!\n\n");
-      printf("Aperte ENTER para voltar ao menu...\n");
-      getchar();
-      getchar();
-      funcionarios();
-    }
-    else
-    {
-      break;
-    }
-    // retornar um tela,no caso ao menu
-  } while (1);
-
-  printf("\n");
+    printf("CPF ja cadastrado!\n\n");
+    printf("Aperte ENTER para voltar ao menu...\n");
+    getchar();
+    getchar();
+    funcionarios();
+  }
+  strncpy(fun->cpf, cpf, sizeof(fun->cpf));
   // NOME OK
   ler_nome(nome);
   strncpy(fun->nome, nome, sizeof(fun->nome));
@@ -129,20 +122,18 @@ Funcionario *create_funcionario(void)
     }
   } while (y != 1);
 
-  ler_cpf(cpf);
-  strncpy(fun->cpf, cpf, sizeof(fun->cpf));
-
   ler_endereco(endereco);
   strncpy(fun->endereco, endereco, sizeof(fun->endereco));
 
   ler_telefone(telefone);
   strncpy(fun->telefone, telefone, sizeof(fun->telefone));
 
-  printf("||                  * Função:               ||\n");
+  ler_email(email);
+  strncpy(fun->email, email, sizeof(fun->email));
+
   ler_cargo(funcao);
   strncpy(fun->funcao, funcao, sizeof(fun->funcao));
 
-  printf("||                  * Salário:               ||\n");
   ler_salario(salario);
   strncpy(fun->salario, salario, sizeof(fun->salario));
 
@@ -150,15 +141,12 @@ Funcionario *create_funcionario(void)
 
   gravar_funcionario(fun);
 
-  printf("==============================================\n");
-
-  printf("Funcionario cadastrado!\n");
+  printf("\n\n");
+  printf(">>> Funcionario cadastrado! <<<\n");
 
   printf("\nAperte ENTER para continuar...");
   getchar();
   getchar();
-
-  menu_principal();
 }
 
 void delete_funcionario(void)
@@ -221,23 +209,14 @@ void update_funcionario(void)
 
 void listador_funcionarios(void)
 {
-
   system("clear||cls");
-
-  int op;
-
+  printf("==================================================\n");
+  printf("||                Funcionarios:                 ||\n");
+  printf("==================================================\n");
   exibir_funcionarios();
-
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    funcionarios();
-  }
-  else
-  {
-    funcionarios();
-  }
+  printf("\nAperte ENTER para voltar...\n");
+  getchar();
+  getchar();
 }
 
 void pesquisar_funcionario(void)

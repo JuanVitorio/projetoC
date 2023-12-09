@@ -421,7 +421,6 @@ void ler_nome(char *nome)
   do
   {
     printf("Digite o nome: ");
-    limpar_buffer();
     fgets(nome, 100, stdin);
     nome[strlen(nome) - 1] = 0;
     printf("\n");
@@ -451,7 +450,6 @@ void ler_cargo(char *cargo)
   do
   {
     printf("Digite o cargo: ");
-    limpar_buffer();
     fgets(cargo, 30, stdin);
     cargo[strlen(cargo) - 1] = 0;
     printf("\n");
@@ -508,7 +506,6 @@ void ler_telefone(char *telefone)
   do
   {
     printf("Telefone com DDD:");
-    limpar_buffer();
     fgets(telefone, 15, stdin);
     printf("\n");
     // remover o //n, função pega de @Lleusxam
@@ -527,6 +524,7 @@ void ler_endereco(char *endereco)
   do
   {
     printf("Digite o endereco: ");
+    limpar_buffer();
     fgets(endereco, 100, stdin);
     printf("\n");
     endereco[strlen(endereco) - 1] = 0;

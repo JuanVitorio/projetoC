@@ -98,18 +98,20 @@ void listar_funcionarios(Funcionario *fun)
   char estatos[20];
   if ((fun == NULL) || (fun->status == 'I'))
   {
-    printf("Funcionário não cadastrado!\n");
+    printf("Funcionario não cadastrado!\n");
   }
   else
   {
-    printf("\n======================================\n");
     printf("\n");
     printf("Nome: %s\n", fun->nome);
     printf("CPF: %s\n", fun->cpf);
-    // printf("Genero: %s", fun->genero);
+    printf("Nascimento: %s\n", fun->data_nasci);
+    printf("Genero: %c\n", fun->genero);
+    printf("Cargo: %s\n", fun->funcao);
+    printf("Salario: %s\n", fun->salario);
     printf("Email: %s\n", fun->email);
     printf("Telefone: %s\n", fun->telefone);
-    printf("Endereço: %s\n", fun->endereco);
+    printf("Endereco: %s\n", fun->endereco);
     printf("\n");
 
     if (fun->status == 'A')

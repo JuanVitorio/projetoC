@@ -79,32 +79,22 @@ Cliente *create_cliente(void)
   printf("||                                          ||\n");
   printf("==============================================\n");
 
-  do
+  ler_cpf(cpf);
+  if (!verifica_existe_cliente(cli->cpf))
   {
-    ler_cpf(cli->cpf);
-    if (!verifica_existe_cliente(cli->cpf))
-    {
-      printf("CPF ja cadastrado!\n\n");
-      printf("Aperte ENTER para voltar ao menu...\n");
-      getchar();
-      getchar();
-      clientes();
-    }
-    else
-    {
-      break;
-    }
-    // retornar um tela,no caso ao menu
-  } while (1);
+    printf("CPF ja cadastrado!\n\n");
+    printf("Aperte ENTER para voltar ao menu...\n");
+    getchar();
+    getchar();
+    clientes();
+  }
+  strncpy(cli->cpf, cpf, sizeof(cli->cpf));
 
-  printf("\n");
   // NOME OK
   ler_nome(nome);
   strncpy(cli->nome, nome, sizeof(cli->nome));
 
   // CPF OK
-  ler_cpf(cpf);
-  strncpy(cli->cpf, cpf, sizeof(cli->cpf));
 
   printf("Data (dd/mm/aa): ");
   scanf("%s", cli->data_nasci);
