@@ -305,12 +305,12 @@ void update_cliente(char cpf[])
         printf("#           Informacoees cadastradas        #\n");
         printf("#                                           #\n");
         printf("#############################################\n\n");
-        printf("Nome: \n", cls->nome);
-        printf("CPF: \n", cls->cpf);
-        printf("Genero: \n", cls->genero);
-        printf("Email: \n", cls->email);
-        printf("Telefone: \n", cls->telefone);
-        printf("Endereco: \n", cls->endereco);
+        printf("Nome: %s\n", cls->nome);
+        printf("CPF: %s\n", cls->cpf);
+        printf("Genero: %c\n", cls->genero);
+        printf("Email: %s\n", cls->email);
+        printf("Telefone: %s\n", cls->telefone);
+        printf("Endereco: %s\n", cls->endereco);
 
         printf("====================================\n");
         printf("||                                ||\n");
