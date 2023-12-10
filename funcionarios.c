@@ -342,6 +342,18 @@ void update_funcionario(char cpf[])
             printf("Genero atualizado");
             break;
           }
+          else if (gen == 3)
+          {
+            cls->genero = 'O';
+            printf("Genero atualizado");
+            break;
+          }
+          else
+          {
+            printf("Digite um numero valido\n");
+            printf("Aperte ENTER para voltar...\n");
+            getchar();
+          }
         case 5:
           printf("Cargo: ");
           scanf("%s", cls->funcao);
