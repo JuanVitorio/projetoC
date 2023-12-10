@@ -37,4 +37,14 @@ void gravar_funcionario(Funcionario *fun);
 void listar_funcionarios(Funcionario *fun);
 void exibir_funcionarios(void);
 
+typedef struct servicos
+{
+  int id;
+  char cliente[100];
+  char funcionario[100];
+  char servico[50];
+  char horario[20];
+  char status;
+} Servicos;
+
 #endif

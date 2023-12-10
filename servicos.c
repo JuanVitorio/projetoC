@@ -3,6 +3,58 @@
 #include "servicos.h"
 
 int op;
+
+void servicos()
+{
+  int op;
+  do
+  {
+    system("clear||cls");
+    printf("========================================================\n");
+    printf("||                                                    ||\n");
+    printf("||                      Menu Servicos                 ||\n");
+    printf("||                                                    ||\n");
+    printf("========================================================\n");
+    printf("||                                                    ||\n");
+    printf("||                      1. Cadastrar                  ||\n");
+    printf("||                      2. Editar                     ||\n");
+    printf("||                      3. Excluir                    ||\n");
+    printf("||                      4. Listar                     ||\n");
+    printf("||                      5. Pesquisar                  ||\n");
+    printf("||                      0. Sair                       ||\n");
+    printf("||                                                    ||\n");
+    printf("========================================================\n");
+
+    printf("\nOpcao: ");
+
+    scanf("%d", &op);
+
+    switch (op)
+    {
+    case 0:
+      break;
+    case 1:
+      create_cliente();
+      break;
+    case 2:
+      atualizar_cliente();
+      break;
+    case 3:
+      excluir_cliente();
+      break;
+    case 4:
+      listador_clientes();
+      break;
+    case 5:
+      buscar_clientes();
+      break;
+    default:
+      printf("Digite algo valido");
+      break;
+    }
+  } while (op != 0);
+}
+
 void create_servico(void)
 {
   printf("o id do serviço que vai ser automático\n");
