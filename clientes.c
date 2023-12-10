@@ -315,8 +315,9 @@ void update_cliente(char cpf[])
         printf("Voltar   - 0\n");
 
         printf("Opcao: ");
+        fflush(stdin);
         scanf("%d", &esc);
-
+        limpar_buffer();
         switch (esc)
         {
         case 1:
@@ -330,7 +331,7 @@ void update_cliente(char cpf[])
           printf("CPF atualizado\n");
           break;
         case 3:
-          printf("Genero (1 - M | 2 - F): ");
+          printf("Genero (1 - M | 2 - F | 3 - O): ");
           scanf("%d", gen);
           if (gen == 1)
           {
@@ -343,6 +344,18 @@ void update_cliente(char cpf[])
             cls->genero = 'F';
             printf("Genero atualizado");
             break;
+          }
+          else if (gen == 3)
+          {
+            cls->genero = 'O';
+            printf("Genero atualizado");
+            break;
+          }
+          else
+          {
+            printf("Digite um numero valido\n");
+            printf("Aperte ENTER para voltar...\n");
+            getchar();
           }
         case 4:
           printf("Email: ");

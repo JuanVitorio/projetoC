@@ -39,7 +39,7 @@ void funcionarios(void)
       fun = create_funcionario();
       break;
     case 2:
-      update_funcionario();
+      atualizar_funcionario();
       break;
     case 3:
       excluir_funcionario();
@@ -187,32 +187,6 @@ void delete_funcionario(char cpf[])
   free(cls);
 }
 
-void update_funcionario(void)
-{
-
-  system("clear||cls");
-
-  int op;
-
-  printf("====================================================\n");
-  printf("|| Digite o ID do funcionário que quer ATUALIZAR: ||\n");
-  printf("====================================================\n");
-  printf("||             O que deseja atualizar?            ||\n");
-  printf("||        Nome(0) - Telefone(1) - Gênero(2)       ||\n");
-  printf("====================================================\n");
-
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    funcionarios();
-  }
-  else
-  {
-    funcionarios();
-  }
-}
-
 void listador_funcionarios(void)
 {
   system("clear||cls");
@@ -262,6 +236,144 @@ void pesquisar_funcionario(char cpf[])
   if (!cont)
   {
     printf("Esse cpf nao esta relacionado a nenhum funcionario cadastrado!\n");
+  }
+  fclose(fc);
+  free(cls);
+}
+
+void atualizar_funcionario(void)
+{
+  char cpf[12];
+  printf("Digite o CPF do funcionario: ");
+  scanf("%s", cpf);
+  update_funcionario(cpf);
+  printf("Aperte ENTER para voltar...");
+  getchar();
+  getchar();
+}
+
+void update_funcionario(char cpf[])
+{
+
+  system("clear||cls");
+
+  int gen;
+
+  FILE *fc;
+  Funcionario *cls;
+  int esc = 0;
+  cls = (Funcionario *)malloc(sizeof(Funcionario));
+  fc = fopen("db_funcionarios.dat", "r+b");
+  int cont = 0;
+  if (fc == NULL)
+  {
+    printf("Nenhum funcionario foi cadastrado no sistema!\n");
+    return;
+  }
+  while (fread(cls, sizeof(Funcionario), 1, fc))
+  {
+    if ((strcmp(cls->cpf, cpf) == 0) && (cls->status == 'A'))
+    {
+      cont++;
+      do
+      {
+        printf("#############################################\n");
+        printf("#                                           #\n");
+        printf("#           Informacoees cadastradas        #\n");
+        printf("#                                           #\n");
+        printf("#############################################\n\n");
+        printf("Nome: %s\n", cls->nome);
+        printf("CPF: %s\n", cls->cpf);
+        printf("Nascimento: %s\n", cls->data_nasci);
+        printf("Genero: %c\n", cls->genero);
+        printf("Cargo: %s\n", cls->funcao);
+        printf("Email: %s\n", cls->email);
+        printf("Telefone: %s\n", cls->telefone);
+        printf("Endereco: %s\n", cls->endereco);
+
+        printf("====================================\n");
+        printf("||                                ||\n");
+        printf("||    O que deseja atualizar?     ||\n");
+        printf("||                                ||\n");
+        printf("====================================\n\n");
+        printf("Nome       - 1\n");
+        printf("CPF        - 2\n");
+        printf("Nascimento - 3\n");
+        printf("Genero     - 4\n");
+        printf("Cargo      - 5\n");
+        printf("Email      - 6\n");
+        printf("Telefone   - 7\n");
+        printf("Endereco   - 8\n");
+        printf("Voltar     - 0\n");
+
+        printf("Opcao: ");
+        fflush(stdin);
+        scanf("%d", &esc);
+        limpar_buffer();
+        switch (esc)
+        {
+        case 1:
+          printf("Nome: ");
+          scanf("%[^\n]", cls->nome);
+          printf("Nome atualizado\n");
+          break;
+        case 2:
+          printf("CPF: ");
+          scanf("%s", cls->cpf);
+          printf("CPF atualizado\n");
+          break;
+        case 3:
+          printf("Nascimento: ");
+          scanf("%s", cls->data_nasci);
+          printf("Data atualizada\n");
+          break;
+        case 4:
+          printf("Genero (1 - M | 2 - F): ");
+          scanf("%d", gen);
+          if (gen == 1)
+          {
+            cls->genero = 'M';
+            printf("Genero atualizado\n");
+            break;
+          }
+          else if (gen == 2)
+          {
+            cls->genero = 'F';
+            printf("Genero atualizado");
+            break;
+          }
+        case 5:
+          printf("Cargo: ");
+          scanf("%s", cls->funcao);
+          printf("Cargo atualizado\n");
+          break;
+        case 6:
+          printf("Email: ");
+          scanf("%s", cls->email);
+          printf("Email atualizado");
+          break;
+        case 7:
+          printf("Telefone: ");
+          scanf("%s", cls->telefone);
+          printf("Telefone atualizado");
+          break;
+        case 8:
+          printf("Endereco: ");
+          scanf("%s", cls->endereco);
+          printf("Endereco atualizado");
+          break;
+        default:
+          break;
+        }
+        fseek(fc, -1 * (long)sizeof(Funcionario), SEEK_CUR);
+        fwrite(cls, sizeof(Funcionario), 1, fc);
+        fclose(fc);
+      } while (esc != 0);
+    }
+  }
+  if (!cont)
+  {
+    printf("Funcionario não encontrado\n");
   }
   fclose(fc);
   free(cls);
