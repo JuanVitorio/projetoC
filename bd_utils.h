@@ -47,4 +47,8 @@ typedef struct servicos
   char status;
 } Servicos;
 
+void gravar_servicos(Servicos *serv);
+void listar_servicos(Servicos *serv);
+void exibir_servicos(void);
+
 #endif

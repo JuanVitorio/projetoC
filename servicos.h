@@ -2,4 +2,4 @@
 
 void servicos(void);
 Servicos *create_servico(void);
-void ler_cpf_cliente(char *cpf);
+void ler_cpf_cliente(char *funcionario);

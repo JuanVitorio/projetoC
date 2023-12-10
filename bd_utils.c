@@ -22,6 +22,71 @@ void gravar_cliente(Cliente *cli)
   free(cli);
 }
 
+void gravar_servicos(Servicos *serv)
+{
+  FILE *fc;
+
+  fc = fopen("db_servicos.dat", "ab");
+
+  if (fc == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return;
+  }
+
+  fwrite(serv, sizeof(Servicos), 1, fc);
+
+  fclose(fc);
+  free(serv);
+}
+
+void listar_servicos(Servicos *serv)
+{
+  char estatos[20];
+  if ((serv == NULL) || (serv->status == 'I'))
+  {
+    printf("servente não cadastrado!\n");
+  }
+  else
+  {
+    printf("\n");
+    printf("Nome: %s\n", serv->funcionario);
+
+    printf("\n");
+
+    if (serv->status == 'A')
+    {
+      strcpy(estatos, "Ativo");
+    }
+    else if (serv->status == 'I')
+    {
+      strcpy(estatos, "Inativo");
+    }
+  }
+}
+
+void exibir_servicos(void)
+{
+  FILE *fc;
+  Servicos *serv;
+  serv = (Servicos *)malloc(sizeof(Servicos));
+  fc = fopen("db_servicos.dat", "rb");
+  if (fc == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return;
+  }
+  while (fread(serv, sizeof(Servicos), 1, fc))
+  {
+    if (serv->status != 'I')
+    {
+      listar_servicos(serv);
+    }
+  }
+  fclose(fc);
+  free(serv);
+}
+
 void listar_clientes(Cliente *cli)
 {
   char estatos[20];

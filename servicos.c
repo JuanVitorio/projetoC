@@ -71,7 +71,7 @@ Servicos *create_servico(void)
   Funcionario *fun;
   serv = (Servicos *)malloc(sizeof(Servicos));
 
-  char funcionario[100], cliente[100], servico[50], horario[20], status, cpf[12];
+  char funcionario[100], cliente[100], servico[50], horario[20], status;
   int id;
 
   printf("==============================================\n");
@@ -80,19 +80,27 @@ Servicos *create_servico(void)
   printf("||                                          ||\n");
   printf("==============================================\n");
 
-  ler_cpf_cliente(cpf);
+  ler_cpf_cliente(funcionario);
+  strncpy(serv->funcionario, funcionario, sizeof(serv->funcionario));
+
+  // bugado
+
+  serv->status = 'A';
+
+  gravar_servicos(serv);
 }
 
-void ler_cpf_cliente(char *cpf)
+void ler_cpf_cliente(char *funcionario)
 {
-
+  char cpf[12];
   printf("Digite o CPF do cliente: ");
   scanf("%s", cpf);
-
+  limpar_buffer();
   FILE *fc;
   Cliente *cls;
   cls = (Cliente *)malloc(sizeof(Cliente));
   fc = fopen("db_cliente.dat", "rb");
+
   int cont = 0;
   if (fc == NULL)
   {
@@ -104,8 +112,10 @@ void ler_cpf_cliente(char *cpf)
     if ((strcmp(cls->cpf, cpf) == 0) && (cls->status != 'I'))
     {
       printf("Cliente: %s", cls->nome);
+      funcionario = cls->nome;
       getchar();
       getchar();
+
       cont++;
     }
   }
@@ -150,25 +160,6 @@ void update_servico(void)
   printf("||             O que deseja atualizar?            ||\n");
   printf("||        Nome(0) - Telefone(1) - Gênero(2)       ||\n");
   printf("====================================================\n");
-
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    servicos();
-  }
-  else
-  {
-    servicos();
-  }
-}
-
-void listar_servicos(void)
-{
-  printf("==================================================\n");
-  printf("||                  Funcionários:               ||\n");
-  printf("==================================================\n");
-  // for dos funcionários
 
   printf("0 para voltar \n");
   scanf("%d", &op);
