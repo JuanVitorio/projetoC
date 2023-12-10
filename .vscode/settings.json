@@ -13,6 +13,7 @@
     "cstdlib": "c",
     "cwchar": "c",
     "cwctype": "c",
-    "cstdint": "c"
+    "cstdint": "c",
+    "pynail.h": "c"
   }
 }

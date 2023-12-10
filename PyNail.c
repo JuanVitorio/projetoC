@@ -58,7 +58,7 @@ void menu_principal(void)
     switch (op)
     {
     case 0:
-      printf("Código encerrado.");
+      printf("Codigo encerrado.");
       break;
     case 1:
       clientes();
@@ -105,16 +105,8 @@ void informacoes(void)
   printf("||         rários, dentre outras necessidades.        ||\n");
   printf("========================================================\n");
 
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    horarios();
-  }
-  else
-  {
-    horarios();
-  }
+  printf("Aperte ENTER para voltar...");
+  getchar();
 }
 
 void infos_dev(void)
@@ -128,14 +120,6 @@ void infos_dev(void)
   printf("||         Github: https://github.com/JuanVitorio     ||\n");
   printf("========================================================\n");
 
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    horarios();
-  }
-  else
-  {
-    horarios();
-  }
+  printf("Aperte ENTER para voltar...");
+  getchar();
 }

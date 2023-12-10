@@ -151,7 +151,6 @@ Cliente *create_cliente(void)
 
   printf("\nAperte ENTER para continuar...");
   getchar();
-  getchar();
   clientes();
 }
 

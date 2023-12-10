@@ -27,7 +27,7 @@ void funcionarios(void)
     printf("||                                                    ||\n");
     printf("========================================================\n");
 
-    printf("\nOpcao: ");
+    printf("Opcao: ");
 
     scanf("%d", &op);
 
@@ -37,7 +37,6 @@ void funcionarios(void)
       break;
     case 1:
       fun = create_funcionario();
-      gravar_funcionario(fun);
       break;
     case 2:
       update_funcionario();
@@ -80,12 +79,8 @@ Funcionario *create_funcionario(void)
     printf("CPF ja cadastrado!\n\n");
     printf("Aperte ENTER para voltar ao menu...\n");
     getchar();
-    getchar();
   }
-  else
-  {
-    strncpy(fun->cpf, cpf, sizeof(fun->cpf));
-  }
+  fun->cpf;
 
   ler_nome(nome);
   strncpy(fun->nome, nome, sizeof(fun->nome));
@@ -146,7 +141,7 @@ Funcionario *create_funcionario(void)
 
   printf("\nAperte ENTER para continuar...");
   getchar();
-  getchar();
+  funcionarios();
 }
 
 void excluir_funcionario()
