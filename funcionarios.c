@@ -63,7 +63,7 @@ Funcionario *create_funcionario(void)
   Funcionario *fun;
   fun = (Funcionario *)malloc(sizeof(Funcionario));
 
-  char nome[100] = "", email[100] = "", telefone[13] = "", funcao[30] = "", cpf[12] = "", endereco[100] = "", data_nasci[10] = "", salario[20] = "";
+  char nome[100] = "", email[100] = "", telefone[13] = "", funcao[30] = "", cpf[12] = "", endereco[100] = "", data_nasci[15] = "", salario[20] = "";
   char genero, status;
   int gen_int = 0;
 
@@ -264,7 +264,7 @@ void update_funcionario(char cpf[])
 
   FILE *fc;
   Funcionario *cls;
-  int esc = 0;
+  int esc = -1;
   cls = (Funcionario *)malloc(sizeof(Funcionario));
   fc = fopen("db_funcionarios.dat", "r+b");
   int cont = 0;

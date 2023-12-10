@@ -22,7 +22,7 @@ void exibir_clientes(void);
 typedef struct funcionario
 {
   char nome[100];
-  char data_nasci[10];
+  char data_nasci[15];
   char genero;
   char email[100];
   char telefone[13];
