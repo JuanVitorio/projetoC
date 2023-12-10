@@ -1,14 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
 #include "servicos.h"
+#include "PyNail.h"
+#include "validacoes.h"
+#include "bd_utils.h"
+#include "funcionarios.h"
+#include "clientes.h"
 
 int op;
 
-void servicos()
+void servicos(void)
 {
   int op;
   do
   {
+    Servicos *serv;
     system("clear||cls");
     printf("========================================================\n");
     printf("||                                                    ||\n");
@@ -34,7 +42,7 @@ void servicos()
     case 0:
       break;
     case 1:
-      create_cliente();
+      create_servico();
       break;
     case 2:
       atualizar_cliente();
@@ -55,13 +63,59 @@ void servicos()
   } while (op != 0);
 }
 
-void create_servico(void)
+Servicos *create_servico(void)
 {
-  printf("o id do serviço que vai ser automático\n");
-  printf("o que é o serviço (manicure, pedicure, cabelo)\n");
-  printf("preço do serviço\n");
-  printf("observações\n");
-  printf("tempo médio de demora do serviço\n");
+
+  system("clear||cls");
+  Servicos *serv;
+  Funcionario *fun;
+  serv = (Servicos *)malloc(sizeof(Servicos));
+
+  char funcionario[100], cliente[100], servico[50], horario[20], status, cpf[12];
+  int id;
+
+  printf("==============================================\n");
+  printf("||                                          ||\n");
+  printf("||              Cadastrar servico           ||\n");
+  printf("||                                          ||\n");
+  printf("==============================================\n");
+
+  ler_cpf_cliente(cpf);
+}
+
+void ler_cpf_cliente(char *cpf)
+{
+
+  printf("Digite o CPF do cliente: ");
+  scanf("%s", cpf);
+
+  FILE *fc;
+  Cliente *cls;
+  cls = (Cliente *)malloc(sizeof(Cliente));
+  fc = fopen("db_cliente.dat", "rb");
+  int cont = 0;
+  if (fc == NULL)
+  {
+    printf("Nenhum cliente foi cadastrado no sistema!\n");
+    return;
+  }
+  while (fread(cls, sizeof(Cliente), 1, fc))
+  {
+    if ((strcmp(cls->cpf, cpf) == 0) && (cls->status != 'I'))
+    {
+      printf("Cliente: %s", cls->nome);
+      getchar();
+      getchar();
+      cont++;
+    }
+  }
+  if (!cont)
+  {
+    printf("Esse cpf nao esta relacionado a nenhum cliente cadastrado!\n");
+    getchar();
+  }
+  fclose(fc);
+  free(cls);
 }
 
 void delete_servico(void)
@@ -142,55 +196,6 @@ void pesquisar_servico(void)
   }
   else
   {
-    servicos();
-  }
-}
-
-void servicos(void)
-{
-  system("clear||cls");
-  printf("========================================================\n");
-  printf("||                      Menu Serviços                 ||\n");
-  printf("========================================================\n");
-  printf("||                                                    ||\n");
-  printf("||                      1. Cadastrar                  ||\n");
-  printf("||                      2. Editar                     ||\n");
-  printf("||                      3. Excluir                    ||\n");
-  printf("||                      4. Listar                     ||\n");
-  printf("||                      5. Pesquisar                  ||\n");
-  printf("||                      0. Sair                       ||\n");
-  printf("||                                                    ||\n");
-  printf("========================================================\n");
-  printf("||                                                    ||\n");
-  printf("||                Digite o número desejado:           ||\n");
-  printf("||                                                    ||\n");
-  printf("========================================================\n");
-
-  scanf("%d", &op);
-
-  if (op == 1)
-  {
-    create_servico();
-  }
-  else if (op == 2)
-  {
-    update_servico();
-  }
-  else if (op == 3)
-  {
-    delete_servico();
-  }
-  else if (op == 4)
-  {
-    listar_servicos();
-  }
-  else if (op == 5)
-  {
-    pesquisar_servico();
-  }
-  else
-  {
-    printf("Digite uma opção válida");
     servicos();
   }
 }

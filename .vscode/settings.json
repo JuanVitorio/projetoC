@@ -14,6 +14,7 @@
     "cwchar": "c",
     "cwctype": "c",
     "cstdint": "c",
-    "pynail.h": "c"
+    "pynail.h": "c",
+    "servicos.h": "c"
   }
 }
