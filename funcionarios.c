@@ -85,9 +85,12 @@ Funcionario *create_funcionario(void)
   ler_nome(nome);
   strncpy(fun->nome, nome, sizeof(fun->nome));
 
-  printf("Data (dd/mm/aa): ");
-  scanf("%s", fun->data_nasci);
-  printf("\n");
+  ler_data(data_nasci);
+  // scanf("%d/%d/%d", &dia, &mes, &ano);
+  // sprintf(data_nasci, "%d/%d/%d", dia, mes, ano);
+  // printf(data_nasci);
+
+  strncpy(fun->data_nasci, data_nasci, sizeof(fun->data_nasci));
 
   printf("Genero (1 - M | 2 - F | 3 - O): ");
   int y;

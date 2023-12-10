@@ -22,3 +22,4 @@ int verifica_existe_cliente(char cpf[]);
 int verifica_existe_funcionario(char cpf[]);
 char obter_resposta();
 int valida_s_ou_n(char escolha);
+void ler_data(char *data);

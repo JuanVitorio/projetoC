@@ -461,6 +461,47 @@ void ler_cargo(char *cargo)
   } while (x != 1);
 }
 
+void ler_data(char *data)
+{
+  int x;
+  do
+  {
+    printf("Digite a data: ");
+    fgets(data, 15, stdin);
+    data[strlen(data) - 1] = 0;
+    printf("\n");
+    x = 1;
+  } while (x != 1);
+}
+
+// int valida_data(int dia, int mes, int ano)
+// {
+//   if (dia < 01 || dia > 31)
+//   {
+//     printf("Digite um dia valido\n");
+//     printf("Aperte ENTER para voltar...");
+//     getchar();
+//     return 0;
+//   }
+
+//   if (mes < 01 || mes > 12)
+//   {
+//     printf("Digite um mes valido\n");
+//     printf("Aperte ENTER para voltar...");
+//     getchar();
+//     return 0;
+//   }
+
+//   if (ano < 1)
+//   {
+//     printf("Digite um ano valido\n");
+//     printf("Aperte ENTER para voltar...");
+//     getchar();
+//     return 0;
+//   }
+//   return 1;
+// }
+
 void ler_cpf(char cpf[])
 {
   // função reutilizável para realizar a leitura do cpf

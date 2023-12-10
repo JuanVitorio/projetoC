@@ -11,7 +11,7 @@ struct cliente
   char email[100];
   char cpf[12];
   char genero;
-  char data_nasci[10];
+  char data_nasci[15];
   char status;
 };
 

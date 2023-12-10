@@ -70,8 +70,9 @@ Cliente *create_cliente(void)
 
   int gen_int = 0;
 
-  char nome[100] = "", telefone[15] = "", endereco[100] = "", email[100] = "", cpf[12] = "", data_nasci[10] = "";
+  char nome[100] = "", telefone[15] = "", endereco[100] = "", email[100] = "", cpf[12] = "", data_nasci[15] = "";
   char status, genero;
+  int dia, mes, ano;
 
   printf("==============================================\n");
   printf("||                                          ||\n");
@@ -96,9 +97,12 @@ Cliente *create_cliente(void)
 
   // CPF OK
 
-  printf("Data (dd/mm/aa): ");
-  scanf("%s", cli->data_nasci);
-  printf("\n");
+  ler_data(data_nasci);
+  // scanf("%d/%d/%d", &dia, &mes, &ano);
+  // sprintf(data_nasci, "%d/%d/%d", dia, mes, ano);
+  // printf(data_nasci);
+
+  strncpy(cli->data_nasci, data_nasci, sizeof(cli->data_nasci));
 
   // GÊNERO OK
   printf("Genero (1 - M | 2 - F | 3 - O): ");

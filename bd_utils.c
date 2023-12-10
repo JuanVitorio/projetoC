@@ -34,6 +34,7 @@ void listar_clientes(Cliente *cli)
     printf("\n");
     printf("Nome: %s\n", cli->nome);
     printf("CPF: %s\n", cli->cpf);
+    printf("Nascimento: %s\n", cli->data_nasci);
     printf("Genero: %c\n", cli->genero);
     printf("Email: %s\n", cli->email);
     printf("Telefone: %s\n", cli->telefone);
