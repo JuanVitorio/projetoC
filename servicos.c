@@ -83,8 +83,6 @@ Servicos *create_servico(void)
   ler_cpf_cliente(funcionario);
   strncpy(serv->funcionario, funcionario, sizeof(serv->funcionario));
 
-  // bugado
-
   serv->status = 'A';
 
   gravar_servicos(serv);
@@ -94,6 +92,7 @@ void ler_cpf_cliente(char *funcionario)
 {
   char cpf[12];
   printf("Digite o CPF do cliente: ");
+  fflush(stdin);
   scanf("%s", cpf);
   limpar_buffer();
   FILE *fc;

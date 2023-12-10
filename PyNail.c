@@ -14,6 +14,7 @@
 #include "clientes.h"
 #include "funcionarios.h"
 #include "horarios.h"
+#include "relatorios.h"
 #include "servicos.h"
 #include "PyNail.h"
 
@@ -44,9 +45,9 @@ void menu_principal(void)
     printf("||                                                    ||\n");
     printf("||                      1. Clientes                   ||\n");
     printf("||                      2. Funcionarios               ||\n");
-    printf("||                      3. Horarios                   ||\n");
-    printf("||                      4. Agendamento                ||\n");
-    printf("||                      5. Servicos                   ||\n");
+    printf("||                      3. Agendamento                ||\n");
+    printf("||                      4. Servicos                   ||\n"); // meramente pra mostrar os serviços
+    printf("||                      5. Relatorios                 ||\n");
     printf("||                      6. Informacoes                ||\n");
     printf("||                      7. Infos. Dev.                ||\n");
     printf("||                      0. Sair                       ||\n");
@@ -67,15 +68,15 @@ void menu_principal(void)
       funcionarios();
       break;
     case 3:
-      horarios();
-      break;
-    case 4:
       servicos();
       break;
     case 5:
-      informacoes();
+      relatorios();
       break;
     case 6:
+      informacoes();
+      break;
+    case 7:
       infos_dev();
       break;
     default:
