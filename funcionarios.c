@@ -48,7 +48,7 @@ void funcionarios(void)
       listador_funcionarios();
       break;
     case 5:
-      pesquisar_funcionario();
+      buscar_funcionario();
       break;
     default:
       printf("Digite algo valido");
@@ -225,25 +225,44 @@ void listador_funcionarios(void)
   getchar();
 }
 
-void pesquisar_funcionario(void)
+void buscar_funcionario(void)
+{
+  char cpf[12];
+  printf("Digite o CPF do funcionario: ");
+  scanf("%s", cpf);
+  pesquisar_funcionario(cpf);
+  printf("\nAperte ENTER para voltar...\n");
+  getchar();
+  getchar();
+}
+
+void pesquisar_funcionario(char cpf[])
 {
 
   system("clear||cls");
 
-  int op;
-
-  printf("==================================================\n");
-  printf("||         Digite o nome do funcionario:        ||\n");
-  printf("==================================================\n");
-
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
+  FILE *fc;
+  Funcionario *cls;
+  cls = (Funcionario *)malloc(sizeof(Funcionario));
+  fc = fopen("db_funcionarios.dat", "rb");
+  int cont = 0;
+  if (fc == NULL)
   {
-    funcionarios();
+    printf("Nenhum funcionario foi cadastrado no sistema!\n");
+    return;
   }
-  else
+  while (fread(cls, sizeof(Funcionario), 1, fc))
   {
-    funcionarios();
+    if ((strcmp(cls->cpf, cpf) == 0) && (cls->status != 'I'))
+    {
+      listar_funcionarios(cls);
+      cont++;
+    }
   }
+  if (!cont)
+  {
+    printf("Esse cpf nao esta relacionado a nenhum funcionario cadastrado!\n");
+  }
+  fclose(fc);
+  free(cls);
 }
