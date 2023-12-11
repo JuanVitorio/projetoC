@@ -45,14 +45,16 @@ void listar_servicos(Servicos *serv)
   char estatos[20];
   if ((serv == NULL) || (serv->status == 'I'))
   {
-    printf("servente não cadastrado!\n");
+    printf("Servico não cadastrado!\n");
   }
   else
   {
     printf("\n");
-    printf("Nome: %s\n", serv->funcionario);
-
+    printf("Nome do cliente: %s\n", serv->cpf_cliente);
+    printf("nome do funcionário:%s",serv->cpf_funcionario);
     printf("\n");
+    getchar();
+    getchar();
 
     if (serv->status == 'A')
     {
@@ -133,6 +135,8 @@ void exibir_clientes(void)
     if (cli->status != 'I')
     {
       listar_clientes(cli);
+      getchar();
+      getchar();
     }
   }
   fclose(fc);

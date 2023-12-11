@@ -51,7 +51,7 @@ void servicos(void)
       excluir_cliente();
       break;
     case 4:
-      listador_clientes();
+      exibir_servicos();
       break;
     case 5:
       buscar_clientes();
@@ -79,16 +79,23 @@ Servicos *create_servico(void)
   printf("||                                          ||\n");
   printf("==============================================\n");
 
-  printf("CPF do cliente: ");
-  ler_cpf(cpf_cliente);
-  serv->cpf_cliente;
+  printf("CPF do cliente\n ");
+  ler_cpf(serv->cpf_cliente);
 
-  printf("CPF do funcionario: ");
-  ler_cpf(cpf_funcionario);
-  strc
+  printf("CPF do funcionario\n ");
+  ler_cpf(serv->cpf_funcionario);
+
+  // printf("Digite o servico: ");
+  // scanf("%^[\n]", serv->servico);
+
+  // printf("Digite o horario: ");
+  // scanf("%^[\n]", serv->horario);
+
   serv->status = 'A';
 
+  printf("Serviço agendado!");
   gravar_servicos(serv);
+  free(serv);
 }
 
 void ler_cpf_cliente(char *funcionario)
