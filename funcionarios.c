@@ -79,19 +79,14 @@ Funcionario *create_funcionario(void)
     printf("CPF ja cadastrado!\n\n");
     printf("Aperte ENTER para voltar ao menu...\n");
     getchar();
+    getchar();
   }
-  fun->cpf;
 
-  ler_nome(nome);
-  strncpy(fun->nome, nome, sizeof(fun->nome));
-
-  ler_data(data_nasci);
+  ler_nome(fun->nome);
+  ler_data(fun->data_nasci);
   // scanf("%d/%d/%d", &dia, &mes, &ano);
   // sprintf(data_nasci, "%d/%d/%d", dia, mes, ano);
   // printf(data_nasci);
-
-  strncpy(fun->data_nasci, data_nasci, sizeof(fun->data_nasci));
-
   printf("Genero (1 - M | 2 - F | 3 - O): ");
   int y;
   do
@@ -121,26 +116,14 @@ Funcionario *create_funcionario(void)
     }
   } while (y != 1);
 
-  ler_endereco(endereco);
-  strncpy(fun->endereco, endereco, sizeof(fun->endereco));
-
-  ler_telefone(telefone);
-  strncpy(fun->telefone, telefone, sizeof(fun->telefone));
-
-  ler_email(email);
-  strncpy(fun->email, email, sizeof(fun->email));
-
-  ler_cargo(funcao);
-  strncpy(fun->funcao, funcao, sizeof(fun->funcao));
-
-  ler_salario(salario);
-  strncpy(fun->salario, salario, sizeof(fun->salario));
-
+  ler_endereco(fun->endereco);
+  ler_telefone(fun->telefone);
+  ler_email(fun->email);
+  ler_cargo(fun->funcao);
+  ler_salario(fun->salario);
   fun->status = 'A';
   gravar_funcionario(fun);
-
-  printf("\n\n");
-  printf(">>> Funcionario cadastrado! <<<\n");
+  printf("\n>>> Funcionario cadastrado! <<<\n");
 
   printf("\nAperte ENTER para continuar...");
   getchar();
@@ -193,17 +176,16 @@ void delete_funcionario(char cpf[])
 void listador_funcionarios(void)
 {
   system("clear||cls");
-  printf("==================================================\n");
-  printf("||                Funcionarios:                 ||\n");
-  printf("==================================================\n");
+  printf("      Funcionarios:     \n");
   exibir_funcionarios();
-  printf("\nAperte ENTER para voltar...\n");
+  printf("\nAperte ENTER para voltar...");
   getchar();
   getchar();
 }
 
 void buscar_funcionario(void)
 {
+  system("clear||cls");
   char cpf[12];
   printf("Digite o CPF do funcionario: ");
   scanf("%s", cpf);
@@ -215,9 +197,7 @@ void buscar_funcionario(void)
 
 void pesquisar_funcionario(char cpf[])
 {
-
   system("clear||cls");
-
   FILE *fc;
   Funcionario *cls;
   cls = (Funcionario *)malloc(sizeof(Funcionario));
@@ -246,6 +226,7 @@ void pesquisar_funcionario(char cpf[])
 
 void atualizar_funcionario(void)
 {
+  system("clear||cls");
   char cpf[12];
   printf("Digite o CPF do funcionario: ");
   scanf("%s", cpf);
@@ -257,11 +238,8 @@ void atualizar_funcionario(void)
 
 void update_funcionario(char cpf[])
 {
-
   system("clear||cls");
-
   int gen;
-
   FILE *fc;
   Funcionario *cls;
   int esc = -1;
@@ -280,11 +258,9 @@ void update_funcionario(char cpf[])
       cont++;
       do
       {
-        printf("#############################################\n");
-        printf("#                                           #\n");
-        printf("#           Informacoees cadastradas        #\n");
-        printf("#                                           #\n");
-        printf("#############################################\n\n");
+
+        printf("Informacoees cadastradas: \n");
+
         printf("Nome: %s\n", cls->nome);
         printf("CPF: %s\n", cls->cpf);
         printf("Nascimento: %s\n", cls->data_nasci);
@@ -292,13 +268,8 @@ void update_funcionario(char cpf[])
         printf("Cargo: %s\n", cls->funcao);
         printf("Email: %s\n", cls->email);
         printf("Telefone: %s\n", cls->telefone);
-        printf("Endereco: %s\n", cls->endereco);
-
-        printf("====================================\n");
-        printf("||                                ||\n");
-        printf("||    O que deseja atualizar?     ||\n");
-        printf("||                                ||\n");
-        printf("====================================\n\n");
+        printf("Endereco: %s\n\n", cls->endereco);
+        printf("O que deseja atualizar?\n");
         printf("Nome       - 1\n");
         printf("CPF        - 2\n");
         printf("Nascimento - 3\n");
@@ -308,7 +279,6 @@ void update_funcionario(char cpf[])
         printf("Telefone   - 7\n");
         printf("Endereco   - 8\n");
         printf("Voltar     - 0\n");
-
         printf("Opcao: ");
         fflush(stdin);
         scanf("%d", &esc);
@@ -316,18 +286,15 @@ void update_funcionario(char cpf[])
         switch (esc)
         {
         case 1:
-          printf("Nome: ");
-          scanf("%[^\n]", cls->nome);
+          ler_nome(cls->nome);
           printf("Nome atualizado\n");
           break;
         case 2:
-          printf("CPF: ");
-          scanf("%s", cls->cpf);
+          ler_cpf(cls->cpf);
           printf("CPF atualizado\n");
           break;
         case 3:
-          printf("Nascimento: ");
-          scanf("%s", cls->data_nasci);
+          ler_data(cls->data_nasci);
           printf("Data atualizada\n");
           break;
         case 4:
@@ -358,23 +325,19 @@ void update_funcionario(char cpf[])
             getchar();
           }
         case 5:
-          printf("Cargo: ");
-          scanf("%s", cls->funcao);
+          ler_cargo(cls->funcao);
           printf("Cargo atualizado\n");
           break;
         case 6:
-          printf("Email: ");
-          scanf("%s", cls->email);
+          ler_email(cls->email);
           printf("Email atualizado");
           break;
         case 7:
-          printf("Telefone: ");
-          scanf("%s", cls->telefone);
+          ler_telefone(cls->telefone);
           printf("Telefone atualizado");
           break;
         case 8:
-          printf("Endereco: ");
-          scanf("%s", cls->endereco);
+          ler_endereco(cls->endereco);
           printf("Endereco atualizado");
           break;
         default:
@@ -388,7 +351,7 @@ void update_funcionario(char cpf[])
   }
   if (!cont)
   {
-    printf("Funcionario não encontrado\n");
+    printf("Funcionario nao encontrado.\n");
   }
   fclose(fc);
   free(cls);

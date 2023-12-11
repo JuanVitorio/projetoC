@@ -139,6 +139,7 @@ void listador_clientes(void)
 
 void buscar_clientes(void)
 {
+  system("clear||cls");
   char cpf[12];
   printf("Digite o CPF do cliente: ");
   scanf("%s", cpf);
@@ -150,9 +151,7 @@ void buscar_clientes(void)
 
 void pesquisar_cliente(char cpf[])
 {
-
   system("clear||cls");
-
   FILE *fc;
   Cliente *cls;
   cls = (Cliente *)malloc(sizeof(Cliente));
@@ -224,6 +223,7 @@ void delete_cliente(char cpf[])
 
 void atualizar_cliente(void)
 {
+  system("clear||cls");
   char cpf[12];
   printf("Digite o CPF do cliente: ");
   scanf("%s", cpf);
