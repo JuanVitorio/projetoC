@@ -9,13 +9,13 @@
 #include "funcionarios.h"
 #include "clientes.h"
 
-int op;
-
 void servicos(void)
 {
-  int op;
+  int op = -1;
+
   do
   {
+    op = -1;
     Servicos *serv;
     system("clear||cls");
     printf("========================================================\n");
@@ -36,13 +36,14 @@ void servicos(void)
     printf("\nOpcao: ");
 
     scanf("%d", &op);
-
+    limpar_buffer();
     switch (op)
     {
     case 0:
       break;
     case 1:
       create_servico();
+      getchar();
       break;
     case 2:
       atualizar_cliente();
@@ -63,16 +64,11 @@ void servicos(void)
   } while (op != 0);
 }
 
-Servicos *create_servico(void)
+void create_servico(void)
 {
   system("clear||cls");
   Servicos *serv;
-  Funcionario *fun;
   serv = (Servicos *)malloc(sizeof(Servicos));
-
-  char cpf_funcionario[12], cpf_cliente[12], servico[50], horario[20], status;
-  int id;
-
   printf("==============================================\n");
   printf("||                                          ||\n");
   printf("||              Cadastrar servico           ||\n");
@@ -85,17 +81,21 @@ Servicos *create_servico(void)
   printf("CPF do funcionario\n ");
   ler_cpf(serv->cpf_funcionario);
 
-  // printf("Digite o servico: ");
-  // scanf("%^[\n]", serv->servico);
+  printf("Digite o servico: ");
+  fgets(serv->servico, 50, stdin);
 
-  // printf("Digite o horario: ");
-  // scanf("%^[\n]", serv->horario);
+  printf("Digite o horario: ");
+  fgets(serv->horario, 20, stdin);
+  getchar();
+  getchar();
 
   serv->status = 'A';
-
+  serv->id = 1;
   printf("Serviço agendado!");
+  getchar();
+  getchar();
   gravar_servicos(serv);
-  free(serv);
+  getchar();
 }
 
 void ler_cpf_cliente(char *funcionario)
@@ -135,67 +135,4 @@ void ler_cpf_cliente(char *funcionario)
   }
   fclose(fc);
   free(cls);
-}
-
-void delete_servico(void)
-{
-  printf("==================================================\n");
-  printf("|| Digite o ID do funcionário que quer DELETAR: ||\n");
-  printf("==================================================\n");
-
-  // listar funcionários
-
-  printf("===============================================\n");
-  printf("||             Funcionário deletado          ||\n");
-  printf("===============================================\n");
-
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    servicos();
-  }
-  else
-  {
-    servicos();
-  }
-}
-
-void update_servico(void)
-{
-  printf("====================================================\n");
-  printf("|| Digite o ID do funcionário que quer ATUALIZAR: ||\n");
-  printf("====================================================\n");
-  printf("||             O que deseja atualizar?            ||\n");
-  printf("||        Nome(0) - Telefone(1) - Gênero(2)       ||\n");
-  printf("====================================================\n");
-
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    servicos();
-  }
-  else
-  {
-    servicos();
-  }
-}
-
-void pesquisar_servico(void)
-{
-  printf("==================================================\n");
-  printf("||         Digite o nome do funcionário:        ||\n");
-  printf("==================================================\n");
-
-  printf("0 para voltar \n");
-  scanf("%d", &op);
-  if (op == 0)
-  {
-    servicos();
-  }
-  else
-  {
-    servicos();
-  }
 }

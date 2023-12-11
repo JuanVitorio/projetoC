@@ -18,8 +18,8 @@ void gravar_cliente(Cliente *cli)
 
   fwrite(cli, sizeof(Cliente), 1, fc);
 
-  fclose(fc);
   free(cli);
+  fclose(fc);
 }
 
 void gravar_servicos(Servicos *serv)
@@ -36,8 +36,8 @@ void gravar_servicos(Servicos *serv)
 
   fwrite(serv, sizeof(Servicos), 1, fc);
 
-  fclose(fc);
   free(serv);
+  fclose(fc);
 }
 
 void listar_servicos(Servicos *serv)
@@ -51,7 +51,9 @@ void listar_servicos(Servicos *serv)
   {
     printf("\n");
     printf("Nome do cliente: %s\n", serv->cpf_cliente);
-    printf("nome do funcionário:%s",serv->cpf_funcionario);
+    printf("nome do funcionário:%s", serv->cpf_funcionario);
+    printf("%s\n",serv->servico);
+    printf("%s\n",serv->horario);
     printf("\n");
     getchar();
     getchar();
@@ -159,8 +161,8 @@ void gravar_funcionario(Funcionario *fun)
 
   fwrite(fun, sizeof(Funcionario), 1, fc);
 
-  fclose(fc);
   free(fun);
+  fclose(fc);
 }
 
 void listar_funcionarios(Funcionario *fun)

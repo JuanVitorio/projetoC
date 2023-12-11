@@ -509,9 +509,7 @@ void ler_cpf(char cpf[])
   do
   {
     printf("Digite o CPF: ");
-    scanf("%s", cpf);
-    printf("\n");
-    // função utilizada para limpar o buffer
+    fgets(cpf, 15, stdin);
     limpar_buffer();
     c = valida_cpf(cpf);
     if (c == 0)
