@@ -299,8 +299,10 @@ void update_funcionario(char cpf[])
           printf("Data atualizada\n");
           break;
         case 4:
-          printf("Genero (1 - M | 2 - F): ");
-          scanf("%d", gen);
+          printf("Genero (1 - M | 2 - F | 3 - O): ");
+          fflush(stdin);
+          scanf("%d", &gen);
+          limpar_buffer();
           if (gen == 1)
           {
             cls->genero = 'M';

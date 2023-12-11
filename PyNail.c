@@ -92,6 +92,7 @@ void menu_principal(void)
 void informacoes(void)
 {
   int op;
+  system("clear||cls");
   printf("========================================================\n");
   printf("||                    Informações gerais              ||\n");
   printf("========================================================\n");
@@ -108,11 +109,13 @@ void informacoes(void)
 
   printf("Aperte ENTER para voltar...");
   getchar();
+  getchar();
 }
 
 void infos_dev(void)
 {
   int op;
+  system("clear||cls");
   printf("========================================================\n");
   printf("||                     Desenvolvedor                  ||\n");
   printf("========================================================\n");
@@ -122,5 +125,6 @@ void infos_dev(void)
   printf("========================================================\n");
 
   printf("Aperte ENTER para voltar...");
+  getchar();
   getchar();
 }

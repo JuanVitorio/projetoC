@@ -178,7 +178,9 @@ void listar_servicos(Servicos *serv)
   {
     printf("\n");
     printf("ID: %d\n", serv->id);
+    nome_cliente_relacionado(serv->cpf_cliente);
     printf("CPF do cliente: %s\n", serv->cpf_cliente);
+    nome_funcionario_responsavel(serv->cpf_funcionario);
     printf("CPF do funcionario:%s\n", serv->cpf_funcionario);
     printf("Servico: %s", serv->servico);
     printf("Horario: %s", serv->horario);
@@ -216,6 +218,64 @@ void exibir_servicos(void)
   }
   fclose(fc);
   free(serv);
+}
+
+void nome_funcionario_responsavel(char cpf[])
+{
+  // essa função serve pra mostar o nome do funcionario responsável de acordo com o cpf
+  FILE *fc;
+  Funcionario *fun;
+  fun = (Funcionario *)malloc(sizeof(Funcionario));
+  fc = fopen("db_funcionarios.dat", "rb");
+  int cont = 0;
+  if (fc == NULL)
+  {
+    printf("Nenhum funcionario foi cadastrado no sistema!\n");
+    return;
+  }
+  while (fread(fun, sizeof(Funcionario), 1, fc))
+  {
+    if ((strcmp(fun->cpf, cpf) == 0) && (fun->status != 'I'))
+    {
+      printf("Nome do funcionario: %s\n", fun->nome);
+      cont++;
+    }
+  }
+  if (!cont)
+  {
+    printf("Esse cpf nao esta relacionado a nenhum funcionario cadastrado!\n");
+  }
+  fclose(fc);
+  free(fun);
+}
+
+void nome_cliente_relacionado(char cpf[])
+{
+  // essa função serve pra mostar o nome do funcionario responsável de acordo com o cpf
+  FILE *fc;
+  Cliente *fun;
+  fun = (Cliente *)malloc(sizeof(Cliente));
+  fc = fopen("db_cliente.dat", "rb");
+  int cont = 0;
+  if (fc == NULL)
+  {
+    printf("Nenhum cliente foi cadastrado no sistema!\n");
+    return;
+  }
+  while (fread(fun, sizeof(Cliente), 1, fc))
+  {
+    if ((strcmp(fun->cpf, cpf) == 0) && (fun->status != 'I'))
+    {
+      printf("Nome do cliente: %s\n", fun->nome);
+      cont++;
+    }
+  }
+  if (!cont)
+  {
+    printf("Esse cpf nao esta relacionado a nenhum cliente cadastrado!\n");
+  }
+  fclose(fc);
+  free(fun);
 }
 
 // void removerCaracteresNaoNumericos(char cpf[]) {

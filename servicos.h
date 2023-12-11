@@ -10,4 +10,6 @@ void pesquisar_servico(char cpf_cliente[]);
 void buscar_servico(void);
 void atualizar_servico(void);
 void update_servico(int id);
+int cpf_funcionnario_valido(char cpf[]);
+int cpf_cliente_valido(char cpf[]);
 // void pesquisar_servico(int id);

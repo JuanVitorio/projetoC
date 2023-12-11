@@ -75,9 +75,33 @@ void create_servico(void)
 
   printf("* CPF do cliente *\n ");
   ler_cpf(serv->cpf_cliente);
+  if (cpf_cliente_valido(serv->cpf_cliente))
+  {
+    nome_cliente_relacionado(serv->cpf_cliente);
+  }
+  else
+  {
+    printf("Nao ha funcinarios com esse cpf.\n\n");
+    printf("Aperte ENTER para voltar...");
+    getchar();
+    getchar();
+    servicos();
+  }
 
   printf("* CPF do funcionario *\n ");
   ler_cpf(serv->cpf_funcionario);
+  if (cpf_funcionnario_valido(serv->cpf_funcionario))
+  {
+    nome_funcionario_responsavel(serv->cpf_funcionario);
+  }
+  else
+  {
+    printf("Nao ha funcinarios com esse cpf.\n\n");
+    printf("Aperte ENTER para voltar...");
+    getchar();
+    getchar();
+    servicos();
+  }
 
   printf("Digite o nome do servico: ");
   fgets(serv->servico, 50, stdin);
@@ -312,4 +336,50 @@ void update_servico(int id)
   }
   fclose(fc);
   free(cls);
+}
+
+// função pra verificar se existe o cpf daquele funcionario e cliente que o usuario digitou
+
+int cpf_funcionnario_valido(char cpf[])
+{
+  FILE *fa;
+  Funcionario *std;
+  std = (Funcionario *)malloc(sizeof(Funcionario));
+  fa = fopen("db_funcionarios.dat", "rb");
+  if (fa == NULL)
+  {
+    return 1;
+  }
+  while (fread(std, sizeof(Funcionario), 1, fa))
+  {
+    if ((std->status != 'I') && (strcmp(std->cpf, cpf) == 0))
+    {
+      return 1;
+    }
+  }
+  fclose(fa);
+  free(std);
+  return 0;
+}
+
+int cpf_cliente_valido(char cpf[])
+{
+  FILE *fa;
+  Cliente *std;
+  std = (Cliente *)malloc(sizeof(Cliente));
+  fa = fopen("db_cliente.dat", "rb");
+  if (fa == NULL)
+  {
+    return 1;
+  }
+  while (fread(std, sizeof(Cliente), 1, fa))
+  {
+    if ((std->status != 'I') && (strcmp(std->cpf, cpf) == 0))
+    {
+      return 1;
+    }
+  }
+  fclose(fa);
+  free(std);
+  return 0;
 }

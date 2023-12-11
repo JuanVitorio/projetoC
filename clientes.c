@@ -90,7 +90,9 @@ Cliente *create_cliente(void)
   int y;
   do
   {
+    fflush(stdin);
     scanf("%d", &gen_int);
+    limpar_buffer();
     if (gen_int == 1)
     {
       cli->genero = 'M';

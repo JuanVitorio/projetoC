@@ -51,5 +51,7 @@ typedef struct agendamento
 void gravar_servicos(Servicos *serv);
 void listar_servicos(Servicos *serv);
 void exibir_servicos(void);
+void nome_funcionario_responsavel(char cpf[]);
+void nome_cliente_relacionado(char cpf[]);
 
 #endif
