@@ -19,10 +19,8 @@ void relatorios()
     printf("||                                                    ||\n");
     printf("========================================================\n");
     printf("||                                                    ||\n");
-    printf("||                  1. Relatorios Tabela              ||\n");
-    printf("||                  2. Relatorios Filtro              ||\n");
-    printf("||                  3. Relatorios Ordenados           ||\n");
-    printf("||                  0. Sair                           ||\n");
+    printf("||                  1. Relatorios Filtro              ||\n");
+    printf("||                        0. Sair                     ||\n");
     printf("||                                                    ||\n");
     printf("========================================================\n");
 
@@ -32,10 +30,8 @@ void relatorios()
 
     switch (op)
     {
-    case 0:
-      break;
     case 1:
-
+      relatorios_filtro();
       break;
     case 2:
 
@@ -50,38 +46,7 @@ void relatorios()
   } while (op != 0);
 }
 
-// void relatorio_filtro(void)
-// {
-//   int op;
-//   do
-//   {
-//     system("clear||cls");
-//     printf("========================================================\n");
-//     printf("||                                                    ||\n");
-//     printf("||                     Relatorio Filtro               ||\n");
-//     printf("||                                                    ||\n");
-//     printf("========================================================\n");
-//     printf("||                                                    ||\n");
-//     printf("||                  1. Relatorio de Ativos            ||\n");
-//     printf("||                                                    ||\n");
-//     printf("========================================================\n");
-
-//     scanf("%d", &op);
-
-//     switch (op)
-//     {
-//     case 1:
-//       relatorio_ativos();
-//       break;
-
-//     default:
-//       break;
-//     }
-
-//   } while (op != 0)
-// }
-
-void relatorio_ativos()
+void relatorios_filtro(void)
 {
   int op;
   do
@@ -89,14 +54,58 @@ void relatorio_ativos()
     system("clear||cls");
     printf("========================================================\n");
     printf("||                                                    ||\n");
-    printf("||                     Relatorio Filtro               ||\n");
+    printf("||                   Relatorios Filtro                ||\n");
     printf("||                                                    ||\n");
     printf("========================================================\n");
     printf("||                                                    ||\n");
-    printf("||                  1. Clientes ativos                ||\n");
-    printf("||                  2. Funcionarios ativos            ||\n");
+    printf("||                      1. Ativos                     ||\n");
+    printf("||                     2. Inativos                    ||\n");
+    printf("||                       0. Sair                      ||\n");
     printf("||                                                    ||\n");
     printf("========================================================\n");
+
+    printf("\nOpcao: ");
+
+    scanf("%d", &op);
+
+    switch (op)
+    {
+    case 1:
+      relatorios_filtro_ativos();
+      break;
+    case 2:
+      relatorios_filtro_inativos();
+      break;
+    case 3:
+
+      break;
+    default:
+      printf("Digite algo valido");
+      break;
+    }
+  } while (op != 0);
+}
+
+void relatorios_filtro_ativos(void)
+{
+  int op;
+  do
+  {
+    system("clear||cls");
+    printf("========================================================\n");
+    printf("||                                                    ||\n");
+    printf("||                 Relatorios Filtro Ativos           ||\n");
+    printf("||                                                    ||\n");
+    printf("========================================================\n");
+    printf("||                                                    ||\n");
+    printf("||                      1. Clientes                   ||\n");
+    printf("||                     2. Funcionarios                ||\n");
+    printf("||                      3. Servicos                   ||\n");
+    printf("||                        0. Sair                     ||\n");
+    printf("||                                                    ||\n");
+    printf("========================================================\n");
+
+    printf("\nOpcao: ");
 
     scanf("%d", &op);
 
@@ -104,11 +113,75 @@ void relatorio_ativos()
     {
     case 1:
       exibir_clientes();
+      printf("Aperte ENTER para voltar...");
+      getchar();
+      getchar();
       break;
-
+    case 2:
+      exibir_funcionarios();
+      printf("Aperte ENTER para voltar...");
+      getchar();
+      getchar();
+      break;
+    case 3:
+      exibir_servicos();
+      printf("Aperte ENTER para voltar...");
+      getchar();
+      getchar();
+      break;
     default:
+      printf("Digite algo valido");
       break;
     }
+  } while (op != 0);
+}
 
+void relatorios_filtro_inativos(void)
+{
+  int op;
+  do
+  {
+    system("clear||cls");
+    printf("========================================================\n");
+    printf("||                                                    ||\n");
+    printf("||               Relatorios Filtro Inativos           ||\n");
+    printf("||                                                    ||\n");
+    printf("========================================================\n");
+    printf("||                                                    ||\n");
+    printf("||                      1. Clientes                   ||\n");
+    printf("||                     2. Funcionarios                ||\n");
+    printf("||                      3. Servicos                   ||\n");
+    printf("||                        0. Sair                     ||\n");
+    printf("||                                                    ||\n");
+    printf("========================================================\n");
+
+    printf("\nOpcao: ");
+
+    scanf("%d", &op);
+
+    switch (op)
+    {
+    case 1:
+      clientes_inativos();
+      printf("Aperte ENTER para voltar...");
+      getchar();
+      getchar();
+      break;
+    case 2:
+      funcionarios_inativos();
+      printf("Aperte ENTER para voltar...");
+      getchar();
+      getchar();
+      break;
+    case 3:
+      servicos_inativos();
+      printf("Aperte ENTER para voltar...");
+      getchar();
+      getchar();
+      break;
+    default:
+      printf("Digite algo valido");
+      break;
+    }
   } while (op != 0);
 }

@@ -18,6 +18,7 @@ struct cliente
 void gravar_cliente(Cliente *cli);
 void listar_clientes(Cliente *cli);
 void exibir_clientes(void);
+void clientes_inativos();
 
 typedef struct funcionario
 {
@@ -36,6 +37,7 @@ typedef struct funcionario
 void gravar_funcionario(Funcionario *fun);
 void listar_funcionarios(Funcionario *fun);
 void exibir_funcionarios(void);
+void funcionarios_inativos(void);
 
 typedef struct agendamento
 {
@@ -51,6 +53,7 @@ typedef struct agendamento
 void gravar_servicos(Servicos *serv);
 void listar_servicos(Servicos *serv);
 void exibir_servicos(void);
+void servicos_inativos(void);
 void nome_funcionario_responsavel(char cpf[]);
 void nome_cliente_relacionado(char cpf[]);
 

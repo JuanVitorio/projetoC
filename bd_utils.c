@@ -278,6 +278,114 @@ void nome_cliente_relacionado(char cpf[])
   free(fun);
 }
 
+void clientes_inativos(void)
+{
+  FILE *fc;
+  Cliente *cli;
+  cli = (Cliente *)malloc(sizeof(Cliente));
+  fc = fopen("db_cliente.dat", "rb");
+  if (fc == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return;
+  }
+  while (fread(cli, sizeof(Cliente), 1, fc))
+  {
+    if (cli->status != 'A')
+    {
+      printf("Nome: %s\n", cli->nome);
+      printf("CPF: %s\n", cli->cpf);
+      printf("Nascimento: %s\n", cli->data_nasci);
+      printf("Genero: %c\n", cli->genero);
+      printf("Email: %s\n", cli->email);
+      printf("Telefone: %s\n", cli->telefone);
+      printf("Endereco: %s\n", cli->endereco);
+      printf("Status: %c\n", cli->status);
+      printf("\n");
+    }
+    else
+    {
+      printf("Nao ha clientes inativos.");
+    }
+  }
+  fclose(fc);
+  free(cli);
+}
+
+void funcionarios_inativos(void)
+{
+  FILE *fc;
+  Funcionario *fun;
+  fun = (Funcionario *)malloc(sizeof(Funcionario));
+  fc = fopen("db_funcionarios.dat", "rb");
+  if (fc == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return;
+  }
+  while (fread(fun, sizeof(Funcionario), 1, fc))
+  {
+    if (fun->status != 'A')
+    {
+      printf("\n");
+      printf("Nome: %s\n", fun->nome);
+      printf("CPF: %s\n", fun->cpf);
+      printf("Nascimento: %s\n", fun->data_nasci);
+      printf("Genero: %c\n", fun->genero);
+      printf("Cargo: %s\n", fun->funcao);
+      printf("Salario: %s\n", fun->salario);
+      printf("Email: %s\n", fun->email);
+      printf("Telefone: %s\n", fun->telefone);
+      printf("Endereco: %s\n", fun->endereco);
+      printf("Status: %c\n", fun->status);
+      printf("\n");
+      printf("\n");
+    }
+    else
+    {
+      printf("Nao ha clientes inativos.");
+    }
+  }
+  fclose(fc);
+  free(fun);
+}
+
+void servicos_inativos(void)
+{
+  FILE *fc;
+  Servicos *serv;
+  serv = (Servicos *)malloc(sizeof(Servicos));
+  fc = fopen("db_servicos.dat", "rb");
+  if (fc == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return;
+  }
+  while (fread(serv, sizeof(Servicos), 1, fc))
+  {
+    if (serv->status != 'A')
+    {
+      printf("\n");
+      printf("ID: %d\n", serv->id);
+      nome_cliente_relacionado(serv->cpf_cliente);
+      printf("CPF do cliente: %s\n", serv->cpf_cliente);
+      nome_funcionario_responsavel(serv->cpf_funcionario);
+      printf("CPF do funcionario:%s\n", serv->cpf_funcionario);
+      printf("Servico: %s", serv->servico);
+      printf("Horario: %s", serv->horario);
+      printf("Data: %s\n", serv->data);
+      printf("Status: %c\n", serv->status);
+      printf("\n");
+    }
+    else
+    {
+      printf("Nao ha clientes inativos.");
+    }
+  }
+  fclose(fc);
+  free(serv);
+}
+
 // void removerCaracteresNaoNumericos(char cpf[]) {
 //     //feita pelo chat gpt
 //     int len = strlen(cpf);
