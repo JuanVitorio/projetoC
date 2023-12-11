@@ -40,8 +40,8 @@ void exibir_funcionarios(void);
 typedef struct servicos
 {
   int id;
-  char cliente[100];
-  char funcionario[100];
+  char cpf_cliente[12];
+  char cpf_funcionario[12];
   char servico[50];
   char horario[20];
   char status;

@@ -65,13 +65,12 @@ void servicos(void)
 
 Servicos *create_servico(void)
 {
-
   system("clear||cls");
   Servicos *serv;
   Funcionario *fun;
   serv = (Servicos *)malloc(sizeof(Servicos));
 
-  char funcionario[100], cliente[100], servico[50], horario[20], status;
+  char cpf_funcionario[12], cpf_cliente[12], servico[50], horario[20], status;
   int id;
 
   printf("==============================================\n");
@@ -80,9 +79,13 @@ Servicos *create_servico(void)
   printf("||                                          ||\n");
   printf("==============================================\n");
 
-  ler_cpf_cliente(funcionario);
-  strncpy(serv->funcionario, funcionario, sizeof(serv->funcionario));
+  printf("CPF do cliente: ");
+  ler_cpf(cpf_cliente);
+  serv->cpf_cliente;
 
+  printf("CPF do funcionario: ");
+  ler_cpf(cpf_funcionario);
+  strc
   serv->status = 'A';
 
   gravar_servicos(serv);
