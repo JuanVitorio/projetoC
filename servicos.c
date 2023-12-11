@@ -9,9 +9,6 @@
 #include "funcionarios.h"
 #include "clientes.h"
 
-// FALTA:
-// ATUALIZAR AGENDAMENTO
-
 void servicos(void)
 {
   int op = -1;
