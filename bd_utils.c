@@ -22,75 +22,6 @@ void gravar_cliente(Cliente *cli)
   fclose(fc);
 }
 
-void gravar_servicos(Servicos *serv)
-{
-  FILE *fc;
-
-  fc = fopen("db_servicos.dat", "ab");
-
-  if (fc == NULL)
-  {
-    printf("Erro na criação do arquivo\n");
-    return;
-  }
-
-  fwrite(serv, sizeof(Servicos), 1, fc);
-
-  free(serv);
-  fclose(fc);
-}
-
-void listar_servicos(Servicos *serv)
-{
-  char estatos[20];
-  if ((serv == NULL) || (serv->status == 'I'))
-  {
-    printf("Servico não cadastrado!\n");
-  }
-  else
-  {
-    printf("\n");
-    printf("Nome do cliente: %s\n", serv->cpf_cliente);
-    printf("nome do funcionário:%s", serv->cpf_funcionario);
-    printf("%s\n",serv->servico);
-    printf("%s\n",serv->horario);
-    printf("\n");
-    getchar();
-    getchar();
-
-    if (serv->status == 'A')
-    {
-      strcpy(estatos, "Ativo");
-    }
-    else if (serv->status == 'I')
-    {
-      strcpy(estatos, "Inativo");
-    }
-  }
-}
-
-void exibir_servicos(void)
-{
-  FILE *fc;
-  Servicos *serv;
-  serv = (Servicos *)malloc(sizeof(Servicos));
-  fc = fopen("db_servicos.dat", "rb");
-  if (fc == NULL)
-  {
-    printf("Erro na criação do arquivo\n");
-    return;
-  }
-  while (fread(serv, sizeof(Servicos), 1, fc))
-  {
-    if (serv->status != 'I')
-    {
-      listar_servicos(serv);
-    }
-  }
-  fclose(fc);
-  free(serv);
-}
-
 void listar_clientes(Cliente *cli)
 {
   char estatos[20];
@@ -100,7 +31,6 @@ void listar_clientes(Cliente *cli)
   }
   else
   {
-    printf("\n");
     printf("Nome: %s\n", cli->nome);
     printf("CPF: %s\n", cli->cpf);
     printf("Nascimento: %s\n", cli->data_nasci);
@@ -137,8 +67,6 @@ void exibir_clientes(void)
     if (cli->status != 'I')
     {
       listar_clientes(cli);
-      getchar();
-      getchar();
     }
   }
   fclose(fc);
@@ -217,6 +145,76 @@ void exibir_funcionarios(void)
   }
   fclose(fc);
   free(fun);
+}
+
+// FUNÇÕES PARA O MÓDULO DE SERVIÇOS
+
+void gravar_servicos(Servicos *serv)
+{
+  FILE *fc;
+
+  fc = fopen("db_servicos.dat", "ab");
+
+  if (fc == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return;
+  }
+
+  fwrite(serv, sizeof(Servicos), 1, fc);
+
+  free(serv);
+  fclose(fc);
+}
+
+void listar_servicos(Servicos *serv)
+{
+  char estatos[20];
+  if ((serv == NULL) || (serv->status == 'I'))
+  {
+    printf("Agendamento não cadastrado!\n");
+  }
+  else
+  {
+    printf("\n");
+    printf("CPF do cliente: %s\n", serv->cpf_cliente);
+    printf("CPF do funcionario:%s\n", serv->cpf_funcionario);
+    printf("Servico: %s", serv->servico);
+    printf("Horario: %s", serv->horario);
+    printf("Data: %s", serv->data);
+    printf("\n");
+
+    if (serv->status == 'A')
+    {
+      strcpy(estatos, "Ativo");
+    }
+    else if (serv->status == 'I')
+    {
+      strcpy(estatos, "Inativo");
+    }
+  }
+}
+
+void exibir_servicos(void)
+{
+  FILE *fc;
+  Servicos *serv;
+  serv = (Servicos *)malloc(sizeof(Servicos));
+  fc = fopen("db_servicos.dat", "rb");
+  if (fc == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return;
+  }
+  while (fread(serv, sizeof(Servicos), 1, fc))
+  {
+    if (serv->status != 'I')
+    {
+      listar_servicos(serv);
+    }
+  }
+  fclose(fc);
+  free(serv);
 }
 
 // void removerCaracteresNaoNumericos(char cpf[]) {

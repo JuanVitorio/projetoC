@@ -37,13 +37,14 @@ void gravar_funcionario(Funcionario *fun);
 void listar_funcionarios(Funcionario *fun);
 void exibir_funcionarios(void);
 
-typedef struct servicos
+typedef struct agendamento
 {
   int id;
   char cpf_cliente[12];
   char cpf_funcionario[12];
   char servico[50];
   char horario[20];
+  char data[20];
   char status;
 } Servicos;
 

@@ -509,6 +509,7 @@ void ler_cpf(char cpf[])
   do
   {
     printf("Digite o CPF: ");
+    fflush(stdin);
     fgets(cpf, 15, stdin);
     limpar_buffer();
     c = valida_cpf(cpf);
@@ -545,7 +546,9 @@ void ler_telefone(char *telefone)
   do
   {
     printf("Telefone com DDD:");
+    fflush(stdin);
     fgets(telefone, 15, stdin);
+    limpar_buffer();
     printf("\n");
     // remover o //n, função pega de @Lleusxam
     telefone[strlen(telefone) - 1] = 0;

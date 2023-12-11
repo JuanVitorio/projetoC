@@ -45,7 +45,7 @@ void menu_principal(void)
     printf("||                                                    ||\n");
     printf("||                      1. Clientes                   ||\n");
     printf("||                      2. Funcionarios               ||\n");
-    printf("||                      3. Agendamento                ||\n");
+    printf("||                      3. Agendamentos               ||\n");
     printf("||                      4. Servicos                   ||\n"); // meramente pra mostrar os serviços
     printf("||                      5. Relatorios                 ||\n");
     printf("||                      6. Informacoes                ||\n");

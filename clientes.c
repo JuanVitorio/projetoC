@@ -29,11 +29,8 @@ void clientes(void)
     printf("||                      0. Sair                       ||\n");
     printf("||                                                    ||\n");
     printf("========================================================\n");
-
     printf("\nOpcao: ");
-
     scanf("%d", &op);
-
     switch (op)
     {
     case 0:
@@ -67,44 +64,28 @@ Cliente *create_cliente(void)
   system("clear||cls");
   Cliente *cli;
   cli = (Cliente *)malloc(sizeof(Cliente));
-
   int gen_int = 0;
-
-  char nome[100] = "", telefone[15] = "", endereco[100] = "", email[100] = "", cpf[12] = "", data_nasci[15] = "";
+  char cpf[15] = "";
   char status, genero;
   int dia, mes, ano;
-
   printf("==============================================\n");
   printf("||                                          ||\n");
   printf("||              Cadastrar cliente           ||\n");
   printf("||                                          ||\n");
   printf("==============================================\n");
-
-  ler_cpf(cpf);
+  ler_cpf(cli->cpf);
   if (!verifica_existe_cliente(cli->cpf))
   {
     printf("CPF ja cadastrado!\n\n");
     printf("Aperte ENTER para voltar ao menu...\n");
     getchar();
-    getchar();
     clientes();
   }
-  strncpy(cli->cpf, cpf, sizeof(cli->cpf));
-
-  // NOME OK
-  ler_nome(nome);
-  strncpy(cli->nome, nome, sizeof(cli->nome));
-
-  // CPF OK
-
-  ler_data(data_nasci);
+  ler_nome(cli->nome);
+  ler_data(cli->data_nasci);
   // scanf("%d/%d/%d", &dia, &mes, &ano);
   // sprintf(data_nasci, "%d/%d/%d", dia, mes, ano);
   // printf(data_nasci);
-
-  strncpy(cli->data_nasci, data_nasci, sizeof(cli->data_nasci));
-
-  // GÊNERO OK
   printf("Genero (1 - M | 2 - F | 3 - O): ");
   int y;
   do
@@ -134,25 +115,13 @@ Cliente *create_cliente(void)
     }
   } while (y != 1);
 
-  // TELEFONE OK
-  ler_telefone(telefone);
-  strncpy(cli->telefone, telefone, sizeof(cli->telefone));
-
-  // ENDEREÇO OK
-  ler_endereco(endereco);
-  strncpy(cli->endereco, endereco, sizeof(cli->endereco));
-
-  // EMAIL OK
-  ler_email(email);
-  strncpy(cli->email, email, sizeof(cli->email));
-
+  ler_telefone(cli->telefone);
+  ler_endereco(cli->endereco);
+  ler_email(cli->email);
   cli->status = 'A';
   printf("\n");
   gravar_cliente(cli);
-
-  printf("\n");
-  printf(">>> Cliente cadastrado! <<<\n");
-
+  printf(">>> Cliente cadastrado! <<<");
   printf("\nAperte ENTER para continuar...");
   getchar();
   clientes();
@@ -161,11 +130,9 @@ Cliente *create_cliente(void)
 void listador_clientes(void)
 {
   system("clear||cls");
-  printf("==================================================\n");
-  printf("||                  Clientes:                   ||\n");
-  printf("==================================================\n");
+  printf("      Clientes:     \n\n");
   exibir_clientes();
-  printf("\nAperte ENTER para voltar...\n");
+  printf("Aperte ENTER para voltar...\n");
   getchar();
   getchar();
 }
@@ -176,7 +143,7 @@ void buscar_clientes(void)
   printf("Digite o CPF do cliente: ");
   scanf("%s", cpf);
   pesquisar_cliente(cpf);
-  printf("\nAperte ENTER para voltar...\n");
+  printf("Aperte ENTER para voltar...\n");
   getchar();
   getchar();
 }
@@ -268,13 +235,8 @@ void atualizar_cliente(void)
 
 void update_cliente(char cpf[])
 {
-
   system("clear||cls");
-
-  // Tem que botar essa pra funcionar que não presta ainda
-
   int gen;
-
   FILE *fc;
   Cliente *cls;
   int esc = -1;
@@ -293,30 +255,26 @@ void update_cliente(char cpf[])
       cont++;
       do
       {
-        printf("#############################################\n");
-        printf("#                                           #\n");
-        printf("#           Informacoees cadastradas        #\n");
-        printf("#                                           #\n");
-        printf("#############################################\n\n");
+
+        printf("Informacoees cadastradas: \n");
+
         printf("Nome: %s\n", cls->nome);
         printf("CPF: %s\n", cls->cpf);
         printf("Genero: %c\n", cls->genero);
         printf("Email: %s\n", cls->email);
         printf("Telefone: %s\n", cls->telefone);
-        printf("Endereco: %s\n", cls->endereco);
+        printf("Endereco: %s\n\n", cls->endereco);
 
-        printf("====================================\n");
-        printf("||                                ||\n");
-        printf("||    O que deseja atualizar?     ||\n");
-        printf("||                                ||\n");
-        printf("====================================\n\n");
-        printf("Nome     - 1\n");
-        printf("CPF      - 2\n");
-        printf("Genero   - 3\n");
-        printf("Email    - 4\n");
-        printf("Telefone - 5\n");
-        printf("Endereco - 6\n");
-        printf("Voltar   - 0\n");
+        printf("O que deseja atualizar?\n");
+
+        printf("Nome       - 1\n");
+        printf("CPF        - 2\n");
+        printf("Nascimento - 3\n");
+        printf("Genero     - 4\n");
+        printf("Email      - 5\n");
+        printf("Telefone   - 6\n");
+        printf("Endereco   - 7\n");
+        printf("Voltar     - 0\n");
 
         printf("Opcao: ");
         fflush(stdin);
@@ -325,16 +283,18 @@ void update_cliente(char cpf[])
         switch (esc)
         {
         case 1:
-          printf("Nome: ");
-          scanf("%[^\n]", cls->nome);
+          ler_nome(cls->nome);
           printf("Nome atualizado\n");
           break;
         case 2:
-          printf("CPF: ");
-          scanf("%s", cls->cpf);
+          ler_cpf(cls->cpf);
           printf("CPF atualizado\n");
           break;
         case 3:
+          ler_data(cls->data_nasci);
+          printf("Nascimento atualizado\n");
+          break;
+        case 4:
           printf("Genero (1 - M | 2 - F | 3 - O): ");
           scanf("%d", gen);
           if (gen == 1)
@@ -361,20 +321,17 @@ void update_cliente(char cpf[])
             printf("Aperte ENTER para voltar...\n");
             getchar();
           }
-        case 4:
-          printf("Email: ");
-          scanf("%s", cls->email);
-          printf("Email atualizado");
-          break;
         case 5:
-          printf("Telefone: ");
-          scanf("%s", cls->telefone);
-          printf("Telefone atualizado");
+          ler_email(cls->email);
+          printf("Email atualizado\n");
           break;
         case 6:
-          printf("Endereco: ");
-          scanf("%s", cls->endereco);
-          printf("Endereco atualizado");
+          ler_telefone(cls->telefone);
+          printf("Telefone atualizado\n");
+          break;
+        case 7:
+          ler_endereco(cls->endereco);
+          printf("Endereco atualizado\n");
           break;
         default:
           break;
