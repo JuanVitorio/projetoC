@@ -11,7 +11,6 @@
 
 // FALTA:
 // ATUALIZAR AGENDAMENTO
-// PESQUISAR AGENDAMENTO
 
 void servicos(void)
 {
@@ -48,6 +47,7 @@ void servicos(void)
       getchar();
       break;
     case 2:
+      atualizar_servico();
       break;
     case 3:
       excluir_servico();
@@ -229,4 +229,90 @@ void buscar_servico(void)
   printf("Aperte ENTER para voltar...\n");
   getchar();
   getchar();
+}
+
+void atualizar_servico(void)
+{
+  system("clear||cls");
+  int id;
+  printf("Digite o ID do servico: ");
+  scanf("%d", &id);
+  update_servico(id);
+  printf("Aperte ENTER para voltar...");
+  getchar();
+  getchar();
+}
+
+void update_servico(int id)
+{
+  system("clear||cls");
+  int gen;
+  FILE *fc;
+  Servicos *cls;
+  int esc = -1;
+  cls = (Servicos *)malloc(sizeof(Servicos));
+  fc = fopen("db_servicos.dat", "r+b");
+  int cont = 0;
+  if (fc == NULL)
+  {
+    printf("Nenhum agendamento foi cadastrado no sistema!\n");
+    return;
+  }
+  while (fread(cls, sizeof(Servicos), 1, fc))
+  {
+    if (cls->status == 'A')
+    {
+      cont++;
+      do
+      {
+        printf("Informacoees cadastradas: \n");
+        printf("CPF do funcionario: %s\n", cls->cpf_funcionario);
+        printf("Data do agendamento: %s\n", cls->data);
+        printf("Horario do agendamento: %s\n", cls->horario);
+        printf("Servico agendado: %s\n\n", cls->servico);
+        printf("O que deseja atualizar?\n");
+        printf("CPF do funcionario        - 1\n");
+        printf("Data do agendamento       - 2\n");
+        printf("Horario do agendamento    - 3\n");
+        printf("Servico agendado          - 4\n");
+        printf("Opcao: ");
+        fflush(stdin);
+        scanf("%d", &esc);
+        limpar_buffer();
+        switch (esc)
+        {
+        case 1:
+          printf("* CPF do cliente *\n ");
+          ler_cpf(cls->cpf_cliente);
+          printf("CPF atualizado\n ");
+          break;
+        case 2:
+          ler_data(cls->data);
+          printf("Data atualizada\n ");
+          break;
+        case 3:
+          printf("Digite o horario (00:00): ");
+          fgets(cls->horario, 20, stdin);
+          printf("Horario atualizado\n");
+          break;
+        case 4:
+          printf("Digite o nome do servico: ");
+          fgets(cls->servico, 50, stdin);
+          printf("Servico atualizado\n");
+          break;
+        default:
+          break;
+        }
+        fseek(fc, -1 * (long)sizeof(Servicos), SEEK_CUR);
+        fwrite(cls, sizeof(Servicos), 1, fc);
+        fclose(fc);
+      } while (esc != 0);
+    }
+  }
+  if (!cont)
+  {
+    printf("Agendamento não encontrado\n");
+  }
+  fclose(fc);
+  free(cls);
 }
