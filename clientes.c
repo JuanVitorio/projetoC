@@ -10,9 +10,10 @@
 // MENU PRINCIPAL DE NAVEGAÇÃO DE CLIENTES
 void clientes(void)
 {
-  int op;
+  int op = 0;
   do
   {
+    int op = 0;
     Cliente *cli;
     system("clear||cls");
     printf("========================================================\n");
@@ -31,6 +32,7 @@ void clientes(void)
     printf("========================================================\n");
     printf("\nOpcao: ");
     scanf("%d", &op);
+    limpar_buffer();
     switch (op)
     {
     case 0:

@@ -528,7 +528,6 @@ void ler_email(char email[])
   {
     printf("Digite seu Email:");
     scanf("%[-._@A-Za-z0-9]", email);
-    printf("\n");
     // função utilizada para limpar o buffer
     limpar_buffer();
     e = validate_email(email);
@@ -549,7 +548,6 @@ void ler_telefone(char *telefone)
     fflush(stdin);
     fgets(telefone, 15, stdin);
     limpar_buffer();
-    printf("\n");
     // remover o //n, função pega de @Lleusxam
     telefone[strlen(telefone) - 1] = 0;
     t = valida_telefone(telefone);
@@ -569,7 +567,6 @@ void ler_endereco(char *endereco)
     fflush(stdin);
     fgets(endereco, 100, stdin);
     limpar_buffer();
-    printf("\n");
     endereco[strlen(endereco) - 1] = 0;
 
     x = valida_endereco(endereco);

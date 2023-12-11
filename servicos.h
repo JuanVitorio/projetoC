@@ -12,4 +12,5 @@ void atualizar_servico(void);
 void update_servico(int id);
 int cpf_funcionnario_valido(char cpf[]);
 int cpf_cliente_valido(char cpf[]);
+int criar_id_d(void);
 // void pesquisar_servico(int id);

@@ -11,11 +11,11 @@
 
 void servicos(void)
 {
-  int op = -1;
+  int op = 0;
 
   do
   {
-    op = -1;
+    op = 0;
     Servicos *serv;
     system("clear||cls");
     printf("========================================================\n");
@@ -111,9 +111,8 @@ void create_servico(void)
 
   printf("Digite o horario (00:00): ");
   fgets(serv->horario, 20, stdin);
-  getchar();
   serv->status = 'A';
-  serv->id = 1;
+  serv->id = criar_id_d();
   printf("Servico agendado!\n");
   gravar_servicos(serv);
   printf("Aperte ENTER para voltar...");
@@ -382,4 +381,44 @@ int cpf_cliente_valido(char cpf[])
   fclose(fa);
   free(std);
   return 0;
+}
+
+// Função tirada do código de Matheus Diniz
+
+int criar_id_d(void)
+{
+  // Abrir o arquivo
+  FILE *arquivo = fopen("db_servicos.dat", "rb");
+  if (arquivo == NULL)
+  {
+    // caso o arquivo não exista começe com 1
+    return 1;
+    // Percorre o arquivo inteiro
+    fseek(arquivo, 0, SEEK_END);
+    // Para verificiar o tamanho do arquivo
+    if ((long)ftell(arquivo) == 0)
+    {
+      // caso o arquivo esteja vázio
+      fclose(arquivo);
+      return 1;
+    }
+  }
+  else
+  {
+    // Posicione o ponteiro no início do último registro
+    // Ver a última estrutura Adicionada
+
+    // long adicionada para evitar problemas de conversão pelo sizeof, para um valor negativo, causando um estouro no fseek
+    fseek(arquivo, -((long)sizeof(Servicos)), SEEK_END);
+    // Agora você pode ler o último registro usando fread
+
+    Servicos ultstruct;
+    fread(&ultstruct, sizeof(Servicos), 1, arquivo);
+
+    // Obtenha o ID do último registro e incremente
+    int id = ultstruct.id + 1;
+
+    fclose(arquivo); // Feche o arquivo aqui
+    return id;
+  }
 }

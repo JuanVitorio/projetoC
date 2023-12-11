@@ -9,9 +9,10 @@
 
 void funcionarios(void)
 {
-  int op;
+  int op = 0;
   do
   {
+    int op = 0;
     Funcionario *fun;
     system("clear||cls");
     printf("========================================================\n");
@@ -28,9 +29,8 @@ void funcionarios(void)
     printf("========================================================\n");
 
     printf("Opcao: ");
-
     scanf("%d", &op);
-
+    limpar_buffer();
     switch (op)
     {
     case 0:
