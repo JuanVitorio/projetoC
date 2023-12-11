@@ -80,6 +80,7 @@ Funcionario *create_funcionario(void)
     printf("Aperte ENTER para voltar ao menu...\n");
     getchar();
     getchar();
+    funcionarios();
   }
 
   ler_nome(fun->nome);
