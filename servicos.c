@@ -11,7 +11,7 @@
 
 // FALTA:
 // ATUALIZAR AGENDAMENTO
-// DELETAR AGENDAMENTO
+// PESQUISAR AGENDAMENTO
 
 void servicos(void)
 {
@@ -50,11 +50,13 @@ void servicos(void)
     case 2:
       break;
     case 3:
+      excluir_servico();
       break;
     case 4:
       listador_servicos();
       break;
     case 5:
+      buscar_servico();
       break;
     default:
       printf("Digite algo valido");
@@ -80,16 +82,15 @@ void create_servico(void)
   printf("* CPF do funcionario *\n ");
   ler_cpf(serv->cpf_funcionario);
 
-  printf("Digite o nome do servico: \n");
+  printf("Digite o nome do servico: ");
   fgets(serv->servico, 50, stdin);
+  printf("\n");
 
   ler_data(serv->data);
 
   printf("Digite o horario (00:00): ");
   fgets(serv->horario, 20, stdin);
   getchar();
-  getchar();
-
   serv->status = 'A';
   serv->id = 1;
   printf("Servico agendado!\n");
@@ -143,5 +144,89 @@ void listador_servicos(void)
   printf("==================================================\n");
   exibir_servicos();
   printf("\nAperte ENTER para voltar...\n");
+  getchar();
+}
+
+void excluir_servico()
+{
+  int id;
+  printf("Digite o ID do agendamento: ");
+  scanf("%d", &id);
+  delete_servico(id);
+  printf("Aperte ENTER para voltar...");
+  getchar();
+  getchar();
+}
+
+void delete_servico(int id)
+{
+  FILE *fc;
+  Servicos *cls;
+  cls = (Servicos *)malloc(sizeof(Servicos));
+  fc = fopen("db_servicos.dat", "r+b");
+  int cont = 0;
+  if (fc == NULL)
+  {
+    printf("Nenhum agendamento foi cadastrado no sistema!\n");
+    return;
+  }
+  while (fread(cls, sizeof(Servicos), 1, fc))
+  {
+    if (cls->status == 'A')
+    {
+      cont++;
+      cls->status = 'I';
+      fseek(fc, -1 * (long)sizeof(Servicos), SEEK_CUR);
+      fwrite(cls, sizeof(Servicos), 1, fc);
+      printf("\nAgendamento excluido!\n");
+      break;
+    }
+  }
+  if (!cont)
+  {
+    printf("Esse cpf nao esta relacionado a nenhum agendamento cadastrado!\n");
+  }
+  fclose(fc);
+  free(cls);
+}
+
+void pesquisar_servico(char cpf_cliente[])
+{
+  system("clear||cls");
+  FILE *fc;
+  Servicos *cls;
+  cls = (Servicos *)malloc(sizeof(Servicos));
+  fc = fopen("db_servicos.dat", "rb");
+  int cont = 0;
+  if (fc == NULL)
+  {
+    printf("Nenhum agendamento foi cadastrado no sistema!\n");
+    return;
+  }
+  while (fread(cls, sizeof(Servicos), 1, fc))
+  {
+    if ((strcmp(cls->cpf_cliente, cpf_cliente) == 0) && (cls->status != 'I'))
+    {
+      listar_servicos(cls);
+      cont++;
+    }
+  }
+  if (!cont)
+  {
+    printf("Esse cpf nao esta relacionado a nenhum cliente cadastrado!\n");
+  }
+  fclose(fc);
+  free(cls);
+}
+
+void buscar_servico(void)
+{
+  system("clear||cls");
+  char cpf[12];
+  printf("Digite o CPF do cliente: ");
+  scanf("%s", cpf);
+  pesquisar_servico(cpf);
+  printf("Aperte ENTER para voltar...\n");
+  getchar();
   getchar();
 }

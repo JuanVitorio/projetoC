@@ -177,6 +177,7 @@ void listar_servicos(Servicos *serv)
   else
   {
     printf("\n");
+    printf("ID: %d\n", serv->id);
     printf("CPF do cliente: %s\n", serv->cpf_cliente);
     printf("CPF do funcionario:%s\n", serv->cpf_funcionario);
     printf("Servico: %s", serv->servico);
