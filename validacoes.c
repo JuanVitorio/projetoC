@@ -576,3 +576,20 @@ void ler_endereco(char *endereco)
     }
   } while (x != 1);
 }
+
+void ler_servico(char *nome)
+{
+  int x;
+  do
+  {
+    printf("Digite o servico: ");
+    fgets(nome, 100, stdin);
+    nome[strlen(nome) - 1] = 0;
+    printf("\n");
+    x = valida_nome(nome);
+    if (x == 0)
+    {
+      printf("Veja se digitou certo \n");
+    }
+  } while (x != 1);
+}

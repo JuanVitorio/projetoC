@@ -103,9 +103,7 @@ void create_servico(void)
     servicos();
   }
 
-  printf("Digite o nome do servico: ");
-  fgets(serv->servico, 50, stdin);
-  printf("\n");
+  ler_servico(serv->servico);
 
   ler_data(serv->data);
 
