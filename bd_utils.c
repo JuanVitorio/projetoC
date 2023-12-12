@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "bd_utils.h"
+#include "servicos.h"
+#include "relatorios.h"
 #include <string.h>
 
 // FUNÇÕES PARA O MODULO DE CLIENTES
@@ -325,7 +327,7 @@ void funcionarios_inativos(void)
   }
   while (fread(fun, sizeof(Funcionario), 1, fc))
   {
-    if (fun->status != 'A')
+    if (fun->status != 'I')
     {
       printf("\n");
       printf("Nome: %s\n", fun->nome);
@@ -340,10 +342,6 @@ void funcionarios_inativos(void)
       printf("Status: %c\n", fun->status);
       printf("\n");
       printf("\n");
-    }
-    else
-    {
-      printf("Nao ha clientes inativos.");
     }
   }
   fclose(fc);
@@ -385,6 +383,7 @@ void servicos_inativos(void)
   fclose(fc);
   free(serv);
 }
+
 
 // void removerCaracteresNaoNumericos(char cpf[]) {
 //     //feita pelo chat gpt

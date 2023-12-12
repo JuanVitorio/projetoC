@@ -20,6 +20,8 @@ void relatorios()
     printf("========================================================\n");
     printf("||                                                    ||\n");
     printf("||                  1. Relatorios Filtro              ||\n");
+    printf("||                  2. Relatorios Tabela              ||\n");
+    printf("||                 3. Relatorios Ordenados             ||\n");
     printf("||                        0. Sair                     ||\n");
     printf("||                                                    ||\n");
     printf("========================================================\n");
@@ -48,9 +50,11 @@ void relatorios()
 
 void relatorios_filtro(void)
 {
-  int op;
+  int op = 0;
   do
   {
+    char cpf[15] = "";
+    int op = 0;
     system("clear||cls");
     printf("========================================================\n");
     printf("||                                                    ||\n");
@@ -60,6 +64,8 @@ void relatorios_filtro(void)
     printf("||                                                    ||\n");
     printf("||                      1. Ativos                     ||\n");
     printf("||                     2. Inativos                    ||\n");
+    printf("||             3. Servicos atrelados a Funciona.      ||\n");
+    printf("||              4. Servicos atrelados a Client.       ||\n");
     printf("||                       0. Sair                      ||\n");
     printf("||                                                    ||\n");
     printf("========================================================\n");
@@ -67,7 +73,7 @@ void relatorios_filtro(void)
     printf("\nOpcao: ");
 
     scanf("%d", &op);
-
+    limpar_buffer();
     switch (op)
     {
     case 1:
@@ -77,7 +83,12 @@ void relatorios_filtro(void)
       relatorios_filtro_inativos();
       break;
     case 3:
-
+      ler_cpf(cpf);
+      servicos_atrelado_funcionario(cpf);
+      break;
+    case 4:
+      ler_cpf(cpf);
+      servicos_atrelado_cliente(cpf);
       break;
     default:
       printf("Digite algo valido");
@@ -184,4 +195,58 @@ void relatorios_filtro_inativos(void)
       break;
     }
   } while (op != 0);
+}
+
+void servicos_atrelado_funcionario(char cpf[])
+{
+  FILE *fc;
+  Servicos *serv;
+  serv = (Servicos *)malloc(sizeof(Servicos));
+  fc = fopen("db_servicos.dat", "rb");
+  if (fc == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return;
+  }
+  while (fread(serv, sizeof(Servicos), 1, fc))
+  {
+    if (serv->status != 'I' && strcmp(cpf, serv->cpf_funcionario) == 0)
+    {
+      listar_servicos(serv);
+    }
+  }
+  printf("Aperte ENTER para voltar...");
+  getchar();
+  getchar();
+  fclose(fc);
+  free(serv);
+}
+
+void servicos_atrelado_cliente(char cpf[])
+{
+  FILE *fc;
+  Servicos *serv;
+  serv = (Servicos *)malloc(sizeof(Servicos));
+  fc = fopen("db_servicos.dat", "rb");
+  if (fc == NULL)
+  {
+    printf("Erro na criação do arquivo\n");
+    return;
+  }
+  while (fread(serv, sizeof(Servicos), 1, fc))
+  {
+    if (serv->status != 'I' && strcmp(cpf, serv->cpf_cliente) == 0)
+    {
+      listar_servicos(serv);
+    }
+  }
+  printf("Aperte ENTER para voltar...");
+  getchar();
+  getchar();
+  fclose(fc);
+  free(serv);
+}
+
+void relatorios_tabela(void)
+{
 }

@@ -38,6 +38,7 @@ void gravar_funcionario(Funcionario *fun);
 void listar_funcionarios(Funcionario *fun);
 void exibir_funcionarios(void);
 void funcionarios_inativos(void);
+void servicos_atrelado_funcionario(char cpf[]);
 
 typedef struct agendamento
 {
