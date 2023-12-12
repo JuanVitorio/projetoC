@@ -46,10 +46,9 @@ void menu_principal(void)
     printf("||                      1. Clientes                   ||\n");
     printf("||                      2. Funcionarios               ||\n");
     printf("||                      3. Agendamentos               ||\n");
-    printf("||                      4. Servicos                   ||\n"); // meramente pra mostrar os serviços
-    printf("||                      5. Relatorios                 ||\n");
-    printf("||                      6. Informacoes                ||\n");
-    printf("||                      7. Infos. Dev.                ||\n");
+    printf("||                      4. Relatorios                 ||\n");
+    printf("||                      5. Informacoes                ||\n");
+    printf("||                      6. Infos. Dev.                ||\n");
     printf("||                      0. Sair                       ||\n");
     printf("||                                                    ||\n");
     printf("========================================================\n");
@@ -70,13 +69,13 @@ void menu_principal(void)
     case 3:
       servicos();
       break;
-    case 5:
+    case 4:
       relatorios();
       break;
-    case 6:
+    case 5:
       informacoes();
       break;
-    case 7:
+    case 6:
       infos_dev();
       break;
     default:

@@ -55,6 +55,7 @@ void funcionarios(void)
       break;
     }
   } while (op != 0);
+  menu_principal();
 }
 
 Funcionario *create_funcionario(void)

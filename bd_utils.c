@@ -184,7 +184,7 @@ void listar_servicos(Servicos *serv)
     printf("CPF do cliente: %s\n", serv->cpf_cliente);
     nome_funcionario_responsavel(serv->cpf_funcionario);
     printf("CPF do funcionario:%s\n", serv->cpf_funcionario);
-    printf("Servico: %s", serv->servico);
+    printf("Servico: %s\n", serv->servico);
     printf("Horario: %s", serv->horario);
     printf("Data: %s", serv->data);
     printf("\n");
@@ -233,7 +233,10 @@ void nome_funcionario_responsavel(char cpf[])
   if (fc == NULL)
   {
     printf("Nenhum funcionario foi cadastrado no sistema!\n");
-    return;
+    printf("Aperte ENTER para voltar...");
+    getchar();
+    getchar();
+    servicos();
   }
   while (fread(fun, sizeof(Funcionario), 1, fc))
   {
@@ -262,7 +265,10 @@ void nome_cliente_relacionado(char cpf[])
   if (fc == NULL)
   {
     printf("Nenhum cliente foi cadastrado no sistema!\n");
-    return;
+    printf("Aperte ENTER para voltar...");
+    getchar();
+    getchar();
+    servicos();
   }
   while (fread(fun, sizeof(Cliente), 1, fc))
   {
@@ -383,4 +389,3 @@ void servicos_inativos(void)
   fclose(fc);
   free(serv);
 }
-

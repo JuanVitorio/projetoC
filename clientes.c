@@ -58,6 +58,7 @@ void clientes(void)
       break;
     }
   } while (op != 0);
+  menu_principal();
 }
 
 // FUNÇÃO PARA CRIAR CLIENTES

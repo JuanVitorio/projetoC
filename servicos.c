@@ -11,11 +11,10 @@
 
 void servicos(void)
 {
-  int op = 0;
-
+  int op = -1;
   do
   {
-    op = 0;
+    op = -1;
     Servicos *serv;
     system("clear||cls");
     printf("========================================================\n");
@@ -33,15 +32,13 @@ void servicos(void)
     printf("||                                                    ||\n");
     printf("========================================================\n");
     printf("\nOpcao: ");
+    fflush(stdin);
     scanf("%d", &op);
     limpar_buffer();
     switch (op)
     {
-    case 0:
-      break;
     case 1:
       create_servico();
-      getchar();
       break;
     case 2:
       atualizar_servico();
@@ -60,6 +57,7 @@ void servicos(void)
       break;
     }
   } while (op != 0);
+  menu_principal();
 }
 // FUNÇÃO PRA CRIAR UM AGENDAMENTO
 void create_servico(void)
