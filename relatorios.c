@@ -9,9 +9,10 @@
 
 void relatorios()
 {
-  int op;
+  int op = 0;
   do
   {
+    int op = 0;
     system("clear||cls");
     printf("========================================================\n");
     printf("||                                                    ||\n");
@@ -29,7 +30,7 @@ void relatorios()
     printf("\nOpcao: ");
 
     scanf("%d", &op);
-
+    limpar_buffer();
     switch (op)
     {
     case 1:
