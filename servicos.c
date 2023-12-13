@@ -11,10 +11,10 @@
 
 void servicos(void)
 {
-  int op = -1;
+  int op = 0;
   do
   {
-    op = -1;
+    op = 0;
     Servicos *serv;
     system("clear||cls");
     printf("========================================================\n");
@@ -32,9 +32,7 @@ void servicos(void)
     printf("||                                                    ||\n");
     printf("========================================================\n");
     printf("\nOpcao: ");
-    fflush(stdin);
     scanf("%d", &op);
-    limpar_buffer();
     switch (op)
     {
     case 1:
@@ -57,7 +55,6 @@ void servicos(void)
       break;
     }
   } while (op != 0);
-  menu_principal();
 }
 // FUNÇÃO PRA CRIAR UM AGENDAMENTO
 void create_servico(void)
@@ -70,12 +67,35 @@ void create_servico(void)
   printf("||              Cadastrar servico           ||\n");
   printf("||                                          ||\n");
   printf("==============================================\n");
-
   printf("* CPF do cliente *\n ");
   ler_cpf(serv->cpf_cliente);
   if (cpf_cliente_valido(serv->cpf_cliente))
   {
     nome_cliente_relacionado(serv->cpf_cliente);
+    printf("* CPF do funcionario *\n ");
+    ler_cpf(serv->cpf_funcionario);
+    if (cpf_funcionnario_valido(serv->cpf_funcionario))
+    {
+      nome_funcionario_responsavel(serv->cpf_funcionario);
+      ler_servico(serv->servico);
+      ler_data(serv->data);
+      printf("Digite o horario (00:00): ");
+      fgets(serv->horario, 20, stdin);
+      serv->status = 'A';
+      serv->id = criar_id_d();
+      printf("Servico agendado!\n");
+      gravar_servicos(serv);
+      printf("Aperte ENTER para voltar...");
+      getchar();
+      getchar();
+    }
+    else
+    {
+      printf("Nao ha funcinarios com esse cpf.\n\n");
+      printf("Aperte ENTER para voltar...");
+      getchar();
+      getchar();
+    }
   }
   else
   {
@@ -83,36 +103,7 @@ void create_servico(void)
     printf("Aperte ENTER para voltar...");
     getchar();
     getchar();
-    servicos();
   }
-
-  printf("* CPF do funcionario *\n ");
-  ler_cpf(serv->cpf_funcionario);
-  if (cpf_funcionnario_valido(serv->cpf_funcionario))
-  {
-    nome_funcionario_responsavel(serv->cpf_funcionario);
-  }
-  else
-  {
-    printf("Nao ha funcinarios com esse cpf.\n\n");
-    printf("Aperte ENTER para voltar...");
-    getchar();
-    getchar();
-    servicos();
-  }
-
-  ler_servico(serv->servico);
-
-  ler_data(serv->data);
-
-  printf("Digite o horario (00:00): ");
-  fgets(serv->horario, 20, stdin);
-  serv->status = 'A';
-  serv->id = criar_id_d();
-  printf("Servico agendado!\n");
-  gravar_servicos(serv);
-  printf("Aperte ENTER para voltar...");
-  getchar();
 }
 // ESSA FUNÇÃO SERVE PRA LER O CPF DO CLIENTE E VERIFICAR SE ELE EXISTE NO SISTEMA
 void ler_cpf_cliente(char *funcionario)
@@ -160,6 +151,7 @@ void listador_servicos(void)
   printf("==================================================\n");
   exibir_servicos();
   printf("\nAperte ENTER para voltar...\n");
+  getchar();
   getchar();
 }
 

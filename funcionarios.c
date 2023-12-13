@@ -9,10 +9,10 @@
 
 void funcionarios(void)
 {
-  int op = 0;
+  int op = -1;
   do
   {
-    int op = 0;
+    op = -1;
     Funcionario *fun;
     system("clear||cls");
     printf("========================================================\n");
@@ -30,11 +30,8 @@ void funcionarios(void)
 
     printf("Opcao: ");
     scanf("%d", &op);
-    limpar_buffer();
     switch (op)
     {
-    case 0:
-      break;
     case 1:
       fun = create_funcionario();
       break;
@@ -55,7 +52,6 @@ void funcionarios(void)
       break;
     }
   } while (op != 0);
-  menu_principal();
 }
 
 Funcionario *create_funcionario(void)
@@ -81,55 +77,56 @@ Funcionario *create_funcionario(void)
     printf("Aperte ENTER para voltar ao menu...\n");
     getchar();
     getchar();
-    funcionarios();
   }
-
-  ler_nome(fun->nome);
-  ler_data(fun->data_nasci);
-  // scanf("%d/%d/%d", &dia, &mes, &ano);
-  // sprintf(data_nasci, "%d/%d/%d", dia, mes, ano);
-  // printf(data_nasci);
-  printf("Genero (1 - M | 2 - F | 3 - O): ");
-  int y;
-  do
+  else
   {
-    scanf("%d", &gen_int);
-    if (gen_int == 1)
+    ler_nome(fun->nome);
+    ler_data(fun->data_nasci);
+    // scanf("%d/%d/%d", &dia, &mes, &ano);
+    // sprintf(data_nasci, "%d/%d/%d", dia, mes, ano);
+    // printf(data_nasci);
+    printf("Genero (1 - M | 2 - F | 3 - O): ");
+    int y;
+    do
     {
-      fun->genero = 'M';
-      printf("Genero: Masculino\n\n");
-      y = 1;
-    }
-    else if (gen_int == 2)
-    {
-      fun->genero = 'F';
-      printf("Genero: Feminino\n\n");
-      y = 1;
-    }
-    else if (gen_int == 3)
-    {
-      fun->genero = 'O';
-      printf("Genero: Outro\n\n");
-      y = 1;
-    }
-    else
-    {
-      printf("Digite um numero valido!\n");
-    }
-  } while (y != 1);
+      scanf("%d", &gen_int);
+      if (gen_int == 1)
+      {
+        fun->genero = 'M';
+        printf("Genero: Masculino\n\n");
+        y = 1;
+      }
+      else if (gen_int == 2)
+      {
+        fun->genero = 'F';
+        printf("Genero: Feminino\n\n");
+        y = 1;
+      }
+      else if (gen_int == 3)
+      {
+        fun->genero = 'O';
+        printf("Genero: Outro\n\n");
+        y = 1;
+      }
+      else
+      {
+        printf("Digite um numero valido!\n");
+      }
+    } while (y != 1);
 
-  ler_endereco(fun->endereco);
-  ler_telefone(fun->telefone);
-  ler_email(fun->email);
-  ler_cargo(fun->funcao);
-  ler_salario(fun->salario);
-  fun->status = 'A';
-  gravar_funcionario(fun);
-  printf("\n>>> Funcionario cadastrado! <<<\n");
+    ler_endereco(fun->endereco);
+    ler_telefone(fun->telefone);
+    ler_email(fun->email);
+    ler_cargo(fun->funcao);
+    ler_salario(fun->salario);
+    fun->status = 'A';
+    gravar_funcionario(fun);
+    printf("\n>>> Funcionario cadastrado! <<<\n");
 
-  printf("\nAperte ENTER para continuar...");
-  getchar();
-  funcionarios();
+    printf("\nAperte ENTER para continuar...");
+    getchar();
+    getchar();
+  }
 }
 
 void excluir_funcionario()

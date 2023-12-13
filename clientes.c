@@ -10,10 +10,10 @@
 // MENU PRINCIPAL DE NAVEGAÇÃO DE CLIENTES
 void clientes(void)
 {
-  int op = 0;
+  int op = -1;
   do
   {
-    int op = 0;
+    op = -1;
     Cliente *cli;
     system("clear||cls");
     printf("========================================================\n");
@@ -32,14 +32,10 @@ void clientes(void)
     printf("========================================================\n");
     printf("\nOpcao: ");
     scanf("%d", &op);
-    limpar_buffer();
     switch (op)
     {
-    case 0:
-      break;
     case 1:
       cli = create_cliente();
-      gravar_cliente(cli);
       break;
     case 2:
       atualizar_cliente();
@@ -54,11 +50,10 @@ void clientes(void)
       buscar_clientes();
       break;
     default:
-      printf("Digite algo valido");
+      printf("Digite algo valido\n");
       break;
     }
   } while (op != 0);
-  menu_principal();
 }
 
 // FUNÇÃO PARA CRIAR CLIENTES
@@ -82,54 +77,54 @@ Cliente *create_cliente(void)
     printf("CPF ja cadastrado!\n\n");
     printf("Aperte ENTER para voltar ao menu...\n");
     getchar();
-    clientes();
+    getchar();
   }
-  ler_nome(cli->nome);
-  ler_data(cli->data_nasci);
-  // scanf("%d/%d/%d", &dia, &mes, &ano);
-  // sprintf(data_nasci, "%d/%d/%d", dia, mes, ano);
-  // printf(data_nasci);
-  printf("Genero (1 - M | 2 - F | 3 - O): ");
-  int y;
-  do
+  else
   {
-    fflush(stdin);
-    scanf("%d", &gen_int);
-    limpar_buffer();
-    if (gen_int == 1)
+    ler_nome(cli->nome);
+    ler_data(cli->data_nasci);
+    printf("Genero (1 - M | 2 - F | 3 - O): ");
+    int y;
+    do
     {
-      cli->genero = 'M';
-      printf("Genero: Masculino\n\n");
-      y = 1;
-    }
-    else if (gen_int == 2)
-    {
-      cli->genero = 'F';
-      printf("Genero: Feminino\n\n");
-      y = 1;
-    }
-    else if (gen_int == 3)
-    {
-      cli->genero = 'O';
-      printf("Genero: Outro\n\n");
-      y = 1;
-    }
-    else
-    {
-      printf("Digite um numero valido!\n");
-    }
-  } while (y != 1);
+      fflush(stdin);
+      scanf("%d", &gen_int);
+      limpar_buffer();
+      if (gen_int == 1)
+      {
+        cli->genero = 'M';
+        printf("Genero: Masculino\n\n");
+        y = 1;
+      }
+      else if (gen_int == 2)
+      {
+        cli->genero = 'F';
+        printf("Genero: Feminino\n\n");
+        y = 1;
+      }
+      else if (gen_int == 3)
+      {
+        cli->genero = 'O';
+        printf("Genero: Outro\n\n");
+        y = 1;
+      }
+      else
+      {
+        printf("Digite um numero valido!\n");
+      }
+    } while (y != 1);
 
-  ler_telefone(cli->telefone);
-  ler_endereco(cli->endereco);
-  ler_email(cli->email);
-  cli->status = 'A';
-  printf("\n");
-  gravar_cliente(cli);
-  printf(">>> Cliente cadastrado! <<<");
-  printf("\nAperte ENTER para continuar...");
-  getchar();
-  clientes();
+    ler_telefone(cli->telefone);
+    ler_endereco(cli->endereco);
+    ler_email(cli->email);
+    cli->status = 'A';
+    printf("\n");
+    gravar_cliente(cli);
+    printf(">>> Cliente cadastrado! <<<");
+    printf("\nAperte ENTER para continuar...");
+    getchar();
+    getchar();
+  }
 }
 
 void listador_clientes(void)

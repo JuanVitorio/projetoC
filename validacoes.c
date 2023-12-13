@@ -6,6 +6,11 @@
 #include "validacoes.h"
 #include "bd_utils.h"
 
+#include <time.h>
+
+#define true 1
+#define false 0
+
 int valida_nome(char *nome)
 {
   // Pega o tamanho da variável nome
@@ -352,25 +357,6 @@ int valida_s_ou_n(char escolha)
   return 1;
 }
 
-char obter_resposta()
-{
-  char escolha;
-  do
-  {
-    printf("Deseja tentar novamente (S/N)? ");
-    scanf(" %c", &escolha);
-    letra_maiuscula(&escolha);
-    getchar();
-    // validar a resposta
-    if (!valida_s_ou_n(escolha))
-    {
-      printf("Digite algo válido (S/N)!\n");
-    }
-
-  } while (escolha != 'S' && escolha != 'N');
-  return escolha;
-}
-
 int verifica_existe_cliente(char cpf[])
 {
   FILE *fa;
@@ -469,38 +455,17 @@ void ler_data(char *data)
     printf("Digite a data: ");
     fgets(data, 15, stdin);
     data[strlen(data) - 1] = 0;
+    if (valida_data(data) == 0)
+    {
+      printf("Verifique se digitou algo\n");
+    }
+    else
+    {
+      x = 1;
+    }
     printf("\n");
-    x = 1;
   } while (x != 1);
 }
-
-// int valida_data(int dia, int mes, int ano)
-// {
-//   if (dia < 01 || dia > 31)
-//   {
-//     printf("Digite um dia valido\n");
-//     printf("Aperte ENTER para voltar...");
-//     getchar();
-//     return 0;
-//   }
-
-//   if (mes < 01 || mes > 12)
-//   {
-//     printf("Digite um mes valido\n");
-//     printf("Aperte ENTER para voltar...");
-//     getchar();
-//     return 0;
-//   }
-
-//   if (ano < 1)
-//   {
-//     printf("Digite um ano valido\n");
-//     printf("Aperte ENTER para voltar...");
-//     getchar();
-//     return 0;
-//   }
-//   return 1;
-// }
 
 void ler_cpf(char cpf[])
 {
@@ -592,4 +557,13 @@ void ler_servico(char *nome)
       printf("Veja se digitou certo \n");
     }
   } while (x != 1);
+}
+
+int valida_data(char cpf[])
+{
+  if (strlen(cpf) == 0)
+  {
+    return 0;
+  }
+  return 1;
 }

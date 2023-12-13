@@ -88,6 +88,8 @@ void menu_principal(void)
   } while (op != 0);
 }
 
+
+
 void informacoes(void)
 {
   int op;
