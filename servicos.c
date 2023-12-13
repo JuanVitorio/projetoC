@@ -33,6 +33,7 @@ void servicos(void)
     printf("========================================================\n");
     printf("\nOpcao: ");
     scanf("%d", &op);
+    limpar_buffer();
     switch (op)
     {
     case 1:

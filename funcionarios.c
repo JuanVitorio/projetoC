@@ -30,6 +30,7 @@ void funcionarios(void)
 
     printf("Opcao: ");
     scanf("%d", &op);
+    limpar_buffer();
     switch (op)
     {
     case 1:

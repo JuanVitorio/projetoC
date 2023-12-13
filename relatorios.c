@@ -28,6 +28,7 @@ void relatorios()
     printf("========================================================\n");
     printf("\nOpcao: ");
     scanf("%d", &op);
+    limpar_buffer();
     switch (op)
     {
     case 1:
@@ -116,6 +117,7 @@ void relatorios_filtro_ativos(void)
     printf("========================================================\n");
     printf("\nOpcao: ");
     scanf("%d", &op);
+    limpar_buffer();
     switch (op)
     {
     case 1:
@@ -164,6 +166,7 @@ void relatorios_filtro_inativos(void)
     printf("========================================================\n");
     printf("\nOpcao: ");
     scanf("%d", &op);
+    limpar_buffer();
     switch (op)
     {
     case 1:
@@ -262,6 +265,7 @@ void relatorios_ordenados(void)
     printf("========================================================\n");
     printf("\nOpcao: ");
     scanf("%d", &op);
+    limpar_buffer();
     switch (op)
     {
     case 1:
@@ -301,6 +305,7 @@ void relatorio_tabela(void)
     printf("========================================================\n");
     printf("\nOpcao: ");
     scanf("%d", &op);
+    limpar_buffer();
     switch (op)
     {
     case 1:
