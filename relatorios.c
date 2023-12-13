@@ -38,7 +38,7 @@ void relatorios()
       relatorio_tabela();
       break;
     case 3:
-
+      relatorios_ordenados();
       break;
     default:
       printf("Digite algo valido");
@@ -259,7 +259,6 @@ void relatorios_ordenados(void)
     printf("||                                                    ||\n");
     printf("||                      1. Clientes                   ||\n");
     printf("||                     2. Funcionarios                ||\n");
-    printf("||                      3. Servicos                   ||\n");
     printf("||                        0. Sair                     ||\n");
     printf("||                                                    ||\n");
     printf("========================================================\n");
@@ -269,13 +268,16 @@ void relatorios_ordenados(void)
     switch (op)
     {
     case 1:
-
+      list_alf_cliente();
+      printf("Aperte ENTER para voltar...");
+      getchar();
+      getchar();
       break;
     case 2:
-
-      break;
-    case 3:
-
+      list_alf_funcionarios();
+      printf("Aperte ENTER para voltar...");
+      getchar();
+      getchar();
       break;
     default:
       printf("Digite algo valido");
@@ -423,4 +425,146 @@ void relatorio_tabela_servicos(void)
   }
   fclose(fa);
   free(std);
+}
+
+void list_alf_cliente(void)
+{
+  Cliente *list;
+  list = NULL;
+  gerar_lista_cliente(&list);
+  exibir_lista_cliente(list);
+  apagar_lista_cliente(&list);
+}
+
+void apagar_lista_cliente(Cliente **list)
+{
+  Cliente *al;
+  while (*list != NULL)
+  {
+    al = *list;
+    *list = (*list)->prox;
+    free(al);
+  }
+}
+
+void exibir_lista_cliente(Cliente *aux)
+{
+  while (aux != NULL)
+  {
+    printf("| %-39s - %-36s        -%-11s      |   \n", aux->nome, aux->email, aux->telefone);
+    aux = aux->prox;
+  }
+}
+
+void gerar_lista_cliente(Cliente **list)
+{
+  FILE *fa;
+  Cliente *std;
+  apagar_lista_cliente(&(*list));
+  *list = NULL;
+  fa = fopen("db_cliente.dat", "rb");
+  if (fa == NULL)
+  {
+    printf("Erro na abertura do arquivo... \n");
+    return;
+  }
+  else
+  {
+    std = (Cliente *)malloc(sizeof(Cliente));
+    while (fread(std, sizeof(Cliente), 1, fa))
+    {
+      if ((*list == NULL) || (strcmp(std->nome, (*list)->nome) < 0))
+      {
+        std->prox = *list;
+        *list = std;
+      }
+      else
+      {
+        Cliente *ant = *list;
+        Cliente *at = (*list)->prox;
+        while ((at != NULL) && (strcmp(at->nome, std->nome) < 0))
+        {
+          ant = at;
+          at = at->prox;
+        }
+        ant->prox = std;
+        std->prox = at;
+      }
+      std = (Cliente *)malloc(sizeof(Cliente));
+    }
+    free(std);
+    fclose(fa);
+  }
+}
+
+// sla
+
+void list_alf_funcionarios(void)
+{
+  Funcionario *list;
+  list = NULL;
+  gerar_lista_funcionario(&list);
+  exibir_lista_funcionario(list);
+  apagar_lista_funcionarios(&list);
+}
+
+void apagar_lista_funcionarios(Funcionario **list)
+{
+  Funcionario *al;
+  while (*list != NULL)
+  {
+    al = *list;
+    *list = (*list)->prox;
+    free(al);
+  }
+}
+
+void exibir_lista_funcionario(Funcionario *aux)
+{
+  while (aux != NULL)
+  {
+    printf("| %-39s - %-36s        -%-11s      |   \n", aux->nome, aux->email, aux->telefone);
+    aux = aux->prox;
+  }
+}
+
+void gerar_lista_funcionario(Funcionario **list)
+{
+  FILE *fa;
+  Funcionario *std;
+  apagar_lista_funcionarios(&(*list));
+  *list = NULL;
+  fa = fopen("db_funcionarios.dat", "rb");
+  if (fa == NULL)
+  {
+    printf("Erro na abertura do arquivo... \n");
+    return;
+  }
+  else
+  {
+    std = (Funcionario *)malloc(sizeof(Funcionario));
+    while (fread(std, sizeof(Funcionario), 1, fa))
+    {
+      if ((*list == NULL) || (strcmp(std->nome, (*list)->nome) < 0))
+      {
+        std->prox = *list;
+        *list = std;
+      }
+      else
+      {
+        Funcionario *ant = *list;
+        Funcionario *at = (*list)->prox;
+        while ((at != NULL) && (strcmp(at->nome, std->nome) < 0))
+        {
+          ant = at;
+          at = at->prox;
+        }
+        ant->prox = std;
+        std->prox = at;
+      }
+      std = (Funcionario *)malloc(sizeof(Funcionario));
+    }
+    free(std);
+    fclose(fa);
+  }
 }

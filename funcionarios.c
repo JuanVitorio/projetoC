@@ -60,11 +60,7 @@ Funcionario *create_funcionario(void)
   system("clear||cls");
   Funcionario *fun;
   fun = (Funcionario *)malloc(sizeof(Funcionario));
-
-  char nome[100] = "", email[100] = "", telefone[13] = "", funcao[30] = "", cpf[12] = "", endereco[100] = "", data_nasci[15] = "", salario[20] = "";
-  char genero, status;
   int gen_int = 0;
-
   printf("==================================================\n");
   printf("||                                              ||\n");
   printf("||              Cadastrar funcionario           ||\n");
@@ -83,9 +79,6 @@ Funcionario *create_funcionario(void)
   {
     ler_nome(fun->nome);
     ler_data(fun->data_nasci);
-    // scanf("%d/%d/%d", &dia, &mes, &ano);
-    // sprintf(data_nasci, "%d/%d/%d", dia, mes, ano);
-    // printf(data_nasci);
     printf("Genero (1 - M | 2 - F | 3 - O): ");
     int y;
     do

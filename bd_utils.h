@@ -13,6 +13,7 @@ struct cliente
   char genero;
   char data_nasci[15];
   char status;
+  struct cliente *prox;
 };
 
 void gravar_cliente(Cliente *cli);
@@ -32,6 +33,7 @@ typedef struct funcionario
   char endereco[100];
   char salario[20];
   char status;
+  struct funcionario *prox;
 } Funcionario;
 
 void gravar_funcionario(Funcionario *fun);
