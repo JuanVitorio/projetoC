@@ -414,7 +414,7 @@ void relatorio_tabela_servicos(void)
   printf("\n");
   while (fread(std, sizeof(Servicos), 1, fa))
   {
-    printf("|%-5s|%-15s|%-15s|%-15s|%-30s|%-5s\n", std->id, std->cpf_cliente, std->cpf_funcionario, std->data, std->horario, std->horario, std->servico, std->status);
+    printf("|%-5c|%-15s|%-15s|%-15s|%-15s|%-30s|%-5c\n", std->id, std->cpf_cliente, std->cpf_funcionario, std->data, std->horario, std->servico, std->status);
   }
   fclose(fa);
   free(std);

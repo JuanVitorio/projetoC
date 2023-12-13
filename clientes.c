@@ -296,7 +296,7 @@ void update_cliente(char cpf[])
           break;
         case 4:
           printf("Genero (1 - M | 2 - F | 3 - O): ");
-          scanf("%d", gen);
+          scanf("%d", &gen);
           if (gen == 1)
           {
             cls->genero = 'M';
