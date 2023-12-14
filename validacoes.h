@@ -24,3 +24,6 @@ int valida_s_ou_n(char escolha);
 void ler_data(char *data);
 void ler_servico(char *nome);
 int valida_data(char cpf[]);
+int isLeapYear(int year);
+int isValidDate(char *date);
+int validarSalario(char *salario);

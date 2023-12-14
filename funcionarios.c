@@ -48,7 +48,7 @@ void funcionarios(void)
     case 5:
       buscar_funcionario();
       break;
-            case 0:
+    case 0:
       break;
     default:
       printf("Digite algo valido");
@@ -81,7 +81,7 @@ Funcionario *create_funcionario(void)
   {
     ler_nome(fun->nome);
     ler_data(fun->data_nasci);
-    printf("Genero (1 - M | 2 - F | 3 - O): ");
+    printf("\nGenero (1 - M | 2 - F | 3 - O): ");
     int y;
     do
     {

@@ -14,7 +14,7 @@ void gravar_cliente(Cliente *cli)
 
   if (fc == NULL)
   {
-    printf("Erro na criação do arquivo\n");
+    printf("Erro na criacao do arquivo\n");
     return;
   }
 
@@ -61,7 +61,7 @@ void exibir_clientes(void)
   fc = fopen("db_cliente.dat", "rb");
   if (fc == NULL)
   {
-    printf("Erro na criação do arquivo\n");
+    printf("Erro na criacao do arquivo\n");
     return;
   }
   while (fread(cli, sizeof(Cliente), 1, fc))
@@ -85,7 +85,7 @@ void gravar_funcionario(Funcionario *fun)
 
   if (fc == NULL)
   {
-    printf("Erro na criação do arquivo\n");
+    printf("Erro na criacao do arquivo\n");
     return;
   }
 
@@ -110,7 +110,7 @@ void listar_funcionarios(Funcionario *fun)
     printf("Nascimento: %s\n", fun->data_nasci);
     printf("Genero: %c\n", fun->genero);
     printf("Cargo: %s\n", fun->funcao);
-    printf("Salario: %s\n", fun->salario);
+    printf("Salario: R$ %s\n", fun->salario);
     printf("Email: %s\n", fun->email);
     printf("Telefone: %s\n", fun->telefone);
     printf("Endereco: %s\n", fun->endereco);
@@ -135,7 +135,7 @@ void exibir_funcionarios(void)
   fc = fopen("db_funcionarios.dat", "rb");
   if (fc == NULL)
   {
-    printf("Erro na criação do arquivo\n");
+    printf("Erro na criacao do arquivo\n");
     return;
   }
   while (fread(fun, sizeof(Funcionario), 1, fc))
@@ -159,7 +159,7 @@ void gravar_servicos(Servicos *serv)
 
   if (fc == NULL)
   {
-    printf("Erro na criação do arquivo\n");
+    printf("Erro na criacao do arquivo\n");
     return;
   }
 
@@ -208,7 +208,7 @@ void exibir_servicos(void)
   fc = fopen("db_servicos.dat", "rb");
   if (fc == NULL)
   {
-    printf("Erro na criação do arquivo\n");
+    printf("Erro na criacao do arquivo\n");
     return;
   }
   while (fread(serv, sizeof(Servicos), 1, fc))
@@ -242,7 +242,7 @@ void nome_funcionario_responsavel(char cpf[])
   {
     if ((strcmp(fun->cpf, cpf) == 0) && (fun->status != 'I'))
     {
-      printf("Nome do funcionario: %s\n", fun->nome);
+      printf("Nome do funcionario: %s\n\n", fun->nome);
       cont++;
     }
   }
@@ -274,7 +274,7 @@ void nome_cliente_relacionado(char cpf[])
   {
     if ((strcmp(fun->cpf, cpf) == 0) && (fun->status != 'I'))
     {
-      printf("Nome do cliente: %s\n", fun->nome);
+      printf("Nome do cliente: %s\n\n", fun->nome);
       cont++;
     }
   }
@@ -294,7 +294,7 @@ void clientes_inativos(void)
   fc = fopen("db_cliente.dat", "rb");
   if (fc == NULL)
   {
-    printf("Erro na criação do arquivo\n");
+    printf("Erro na criacao do arquivo\n");
     return;
   }
   while (fread(cli, sizeof(Cliente), 1, fc))
@@ -328,7 +328,7 @@ void funcionarios_inativos(void)
   fc = fopen("db_funcionarios.dat", "rb");
   if (fc == NULL)
   {
-    printf("Erro na criação do arquivo\n");
+    printf("Erro na criacao do arquivo\n");
     return;
   }
   while (fread(fun, sizeof(Funcionario), 1, fc))
@@ -366,7 +366,7 @@ void servicos_inativos(void)
   fc = fopen("db_servicos.dat", "rb");
   if (fc == NULL)
   {
-    printf("Erro na criação do arquivo\n");
+    printf("Erro na criacao do arquivo\n");
     return;
   }
   while (fread(serv, sizeof(Servicos), 1, fc))

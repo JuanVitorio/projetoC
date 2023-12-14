@@ -37,7 +37,7 @@ void servicos(void)
     switch (op)
     {
     case 1:
-      create_servico();
+      serv = create_servico();
       break;
     case 2:
       atualizar_servico();
@@ -51,16 +51,17 @@ void servicos(void)
     case 5:
       buscar_servico();
       break;
-            case 0:
+    case 0:
       break;
     default:
       printf("Digite algo valido");
       break;
     }
   } while (op != 0);
+  menu_principal();
 }
 // FUNÇÃO PRA CRIAR UM AGENDAMENTO
-void create_servico(void)
+Servicos *create_servico(void)
 {
   system("clear||cls");
   Servicos *serv;

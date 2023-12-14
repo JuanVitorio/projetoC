@@ -45,6 +45,50 @@ int valida_nome(char *nome)
   return 1;
 }
 
+int isLeapYear(int year)
+{
+  return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+int isValidDate(char *date)
+{
+  int day, month, year;
+
+  // Verificar o formato da string
+  if (sscanf(date, "%d/%d/%d", &day, &month, &year) != 3)
+  {
+    return 0; // Formato inválido
+  }
+
+  // Verificar o ano
+  if (year < 1900 || year > 2100)
+  {
+    return 0; // Ano fora do intervalo válido
+  }
+
+  // Verificar o mês
+  if (month < 1 || month > 12)
+  {
+    return 0; // Mês inválido
+  }
+
+  // Verificar o dia
+  int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+  // Ajustar fevereiro para anos bissextos
+  if (month == 2 && isLeapYear(year))
+  {
+    daysInMonth[2] = 29;
+  }
+
+  if (day < 1 || day > daysInMonth[month])
+  {
+    return 0; // Dia inválido para o mês
+  }
+
+  return 1; // Data válida
+}
+
 bool eh_letra_acentuada(char c)
 { // recebe uma letra por vez
   // um char com as palavras que possam vir a ser acentuadas
@@ -418,15 +462,18 @@ void ler_nome(char *nome)
   } while (x != 1);
 }
 
-void ler_salario(char *funcao)
+void ler_salario(char *salario)
 {
   int x;
   do
   {
-    printf("Digite o salario: ");
-    fgets(funcao, 20, stdin);
-    removerCaracteresNaoNumericos(funcao);
-    x = 1;
+    printf("\nDigite o salario: ");
+    scanf("%s", salario);
+    x = validarSalario(salario);
+    if (x == 0)
+    {
+      printf("Veja se digitou corretamente\n");
+    }
   } while (x != 1);
 }
 
@@ -435,10 +482,9 @@ void ler_cargo(char *cargo)
   int x;
   do
   {
-    printf("Digite o cargo: ");
+    printf("\nDigite o cargo: ");
     fgets(cargo, 30, stdin);
     cargo[strlen(cargo) - 1] = 0;
-    printf("\n");
     x = valida_nome(cargo);
     if (x == 0)
     {
@@ -452,18 +498,14 @@ void ler_data(char *data)
   int x;
   do
   {
-    printf("Digite a data: ");
+    printf("Digite a data (00/00/0000): ");
     fgets(data, 15, stdin);
     data[strlen(data) - 1] = 0;
-    if (valida_data(data) == 0)
+    x = isValidDate(data);
+    if (x == 0)
     {
-      printf("Verifique se digitou algo\n");
+      printf("Verifique se digitou certo\n");
     }
-    else
-    {
-      x = 1;
-    }
-    printf("\n");
   } while (x != 1);
 }
 
@@ -565,5 +607,38 @@ int valida_data(char cpf[])
   {
     return 0;
   }
+  return 1;
+}
+
+int validarSalario(char *salario)
+{
+  int tamanho = strlen(salario);
+  int pontoEncontrado = 0;
+
+  // Verificar cada caractere da string
+  for (int i = 0; i < tamanho; i++)
+  {
+    // Verificar se é um dígito
+    if (!isdigit(salario[i]))
+    {
+      // Se não for um dígito, verificar se é um ponto decimal
+      if (salario[i] == '.')
+      {
+        // Se já tiver encontrado um ponto antes ou se estiver no início/fim da string, não é válido
+        if (pontoEncontrado || i == 0 || i == tamanho - 1)
+        {
+          return 0;
+        }
+        pontoEncontrado = 1;
+      }
+      else
+      {
+        // Se não for um ponto decimal, a string contém caracteres inválidos
+        return 0;
+      }
+    }
+  }
+
+  // Se chegou até aqui, a string é válida
   return 1;
 }

@@ -40,7 +40,7 @@ void relatorios()
     case 3:
       relatorios_ordenados();
       break;
-            case 0:
+    case 0:
       break;
     default:
       printf("Digite algo valido");
@@ -86,12 +86,18 @@ void relatorios_filtro(void)
     case 3:
       ler_cpf(cpf);
       servicos_atrelado_funcionario(cpf);
+      printf("Aperte ENTER para voltar...");
+      getchar();
+      getchar();
       break;
     case 4:
       ler_cpf(cpf);
       servicos_atrelado_cliente(cpf);
+      printf("Aperte ENTER para voltar...");
+      getchar();
+      getchar();
       break;
-            case 0:
+    case 0:
       break;
     default:
       printf("Digite algo valido");
@@ -142,7 +148,7 @@ void relatorios_filtro_ativos(void)
       getchar();
       getchar();
       break;
-            case 0:
+    case 0:
       break;
     default:
       printf("Digite algo valido");
@@ -193,7 +199,7 @@ void relatorios_filtro_inativos(void)
       getchar();
       getchar();
       break;
-            case 0:
+    case 0:
       break;
     default:
       printf("Digite algo valido");
@@ -210,7 +216,7 @@ void servicos_atrelado_funcionario(char cpf[])
   fc = fopen("db_servicos.dat", "rb");
   if (fc == NULL)
   {
-    printf("Erro na criação do arquivo\n");
+    printf("Erro na criacao do arquivo\n");
     return;
   }
   while (fread(serv, sizeof(Servicos), 1, fc))
@@ -220,9 +226,6 @@ void servicos_atrelado_funcionario(char cpf[])
       listar_servicos(serv);
     }
   }
-  printf("Aperte ENTER para voltar...");
-  getchar();
-  getchar();
   fclose(fc);
   free(serv);
 }
@@ -235,7 +238,7 @@ void servicos_atrelado_cliente(char cpf[])
   fc = fopen("db_servicos.dat", "rb");
   if (fc == NULL)
   {
-    printf("Erro na criação do arquivo\n");
+    printf("Erro na criacao do arquivo\n");
     return;
   }
   while (fread(serv, sizeof(Servicos), 1, fc))
@@ -287,7 +290,7 @@ void relatorios_ordenados(void)
       getchar();
       getchar();
       break;
-            case 0:
+    case 0:
       break;
     default:
       printf("Digite algo valido");
@@ -338,7 +341,7 @@ void relatorio_tabela(void)
       getchar();
       getchar();
       break;
-            case 0:
+    case 0:
       break;
     default:
       printf("Digite algo valido");
