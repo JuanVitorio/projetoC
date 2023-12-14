@@ -253,7 +253,7 @@ void update_funcionario(char cpf[])
       cont++;
       do
       {
-
+        system("clear||cls");
         printf("Informacoees cadastradas: \n");
 
         printf("Nome: %s\n", cls->nome);
@@ -263,7 +263,8 @@ void update_funcionario(char cpf[])
         printf("Cargo: %s\n", cls->funcao);
         printf("Email: %s\n", cls->email);
         printf("Telefone: %s\n", cls->telefone);
-        printf("Endereco: %s\n\n", cls->endereco);
+        printf("Endereco: %s\n", cls->endereco);
+        printf("Salario: %s\n\n", cls->salario);
         printf("O que deseja atualizar?\n");
         printf("Nome       - 1\n");
         printf("CPF        - 2\n");
@@ -273,6 +274,7 @@ void update_funcionario(char cpf[])
         printf("Email      - 6\n");
         printf("Telefone   - 7\n");
         printf("Endereco   - 8\n");
+        printf("Salario    - 9\n");
         printf("Voltar     - 0\n");
         printf("Opcao: ");
         fflush(stdin);
@@ -306,13 +308,13 @@ void update_funcionario(char cpf[])
           else if (gen == 2)
           {
             cls->genero = 'F';
-            printf("Genero atualizado");
+            printf("Genero atualizado\n");
             break;
           }
           else if (gen == 3)
           {
             cls->genero = 'O';
-            printf("Genero atualizado");
+            printf("Genero atualizado\n");
             break;
           }
           else
@@ -327,15 +329,21 @@ void update_funcionario(char cpf[])
           break;
         case 6:
           ler_email(cls->email);
-          printf("Email atualizado");
+          printf("Email atualizado\n");
           break;
         case 7:
           ler_telefone(cls->telefone);
-          printf("Telefone atualizado");
+          printf("Telefone atualizado\n");
           break;
         case 8:
           ler_endereco(cls->endereco);
-          printf("Endereco atualizado");
+          printf("Endereco atualizado\n");
+          break;
+        case 9:
+          ler_salario(cls->salario);
+          printf("Salario atualizado\n");
+          break;
+        case 0:
           break;
         default:
           break;

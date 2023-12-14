@@ -276,6 +276,7 @@ void update_servico(int id)
       cont++;
       do
       {
+        system("clear||cls");
         printf("Informacoees cadastradas: \n");
         printf("CPF do funcionario: %s\n", cls->cpf_funcionario);
         printf("Data do agendamento: %s\n", cls->data);
@@ -302,8 +303,7 @@ void update_servico(int id)
           printf("Data atualizada\n ");
           break;
         case 3:
-          printf("Digite o horario (00:00): ");
-          fgets(cls->horario, 20, stdin);
+          ler_hora(cls->horario);
           printf("Horario atualizado\n");
           break;
         case 4:

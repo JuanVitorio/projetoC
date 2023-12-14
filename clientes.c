@@ -50,7 +50,7 @@ void clientes(void)
     case 5:
       buscar_clientes();
       break;
-      case 0:
+    case 0:
       break;
     default:
       printf("Digite algo valido\n");
@@ -258,7 +258,7 @@ void update_cliente(char cpf[])
       cont++;
       do
       {
-
+        system("clear||cls");
         printf("Informacoees cadastradas: \n");
 
         printf("Nome: %s\n", cls->nome);
@@ -309,13 +309,13 @@ void update_cliente(char cpf[])
           else if (gen == 2)
           {
             cls->genero = 'F';
-            printf("Genero atualizado");
+            printf("Genero atualizado\n");
             break;
           }
           else if (gen == 3)
           {
             cls->genero = 'O';
-            printf("Genero atualizado");
+            printf("Genero atualizado\n");
             break;
           }
           else
@@ -335,6 +335,8 @@ void update_cliente(char cpf[])
         case 7:
           ler_endereco(cls->endereco);
           printf("Endereco atualizado\n");
+          break;
+        case 0:
           break;
         default:
           break;
