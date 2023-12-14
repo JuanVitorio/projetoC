@@ -225,6 +225,10 @@ void servicos_atrelado_funcionario(char cpf[])
     {
       listar_servicos(serv);
     }
+    else
+    {
+      printf("Nao ha servicos atrelados a esse funcionario\n");
+    }
   }
   fclose(fc);
   free(serv);
@@ -247,10 +251,11 @@ void servicos_atrelado_cliente(char cpf[])
     {
       listar_servicos(serv);
     }
+    else
+    {
+      printf("Nao ha servicos atrelados a esse cliente\n");
+    }
   }
-  printf("Aperte ENTER para voltar...");
-  getchar();
-  getchar();
   fclose(fc);
   free(serv);
 }

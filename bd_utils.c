@@ -312,7 +312,7 @@ void clientes_inativos(void)
     }
     else
     {
-      printf("Nao ha clientes inativos.");
+      printf("Nao ha clientes inativos\n.");
     }
   }
   fclose(fc);

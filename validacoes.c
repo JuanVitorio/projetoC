@@ -89,6 +89,45 @@ int isValidDate(char *date)
   return 1; // Data válida
 }
 
+int valida_data_agendamento(char *date)
+{
+  int day, month, year;
+
+  // Verificar o formato da string
+  if (sscanf(date, "%d/%d/%d", &day, &month, &year) != 3)
+  {
+    return 0; // Formato inválido
+  }
+
+  // Verificar o ano
+  if (year < 2023)
+  {
+    return 0; // Ano fora do intervalo válido
+  }
+
+  // Verificar o mês
+  if (month < 1 || month > 12)
+  {
+    return 0; // Mês inválido
+  }
+
+  // Verificar o dia
+  int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+  // Ajustar fevereiro para anos bissextos
+  if (month == 2 && isLeapYear(year))
+  {
+    daysInMonth[2] = 29;
+  }
+
+  if (day < 1 || day > daysInMonth[month])
+  {
+    return 0; // Dia inválido para o mês
+  }
+
+  return 1; // Data válida
+}
+
 bool eh_letra_acentuada(char c)
 { // recebe uma letra por vez
   // um char com as palavras que possam vir a ser acentuadas
@@ -509,6 +548,22 @@ void ler_data(char *data)
   } while (x != 1);
 }
 
+void ler_data_agendamento(char *data)
+{
+  int x;
+  do
+  {
+    printf("Digite a data (00/00/0000): ");
+    fgets(data, 15, stdin);
+    data[strlen(data) - 1] = 0;
+    x = valida_data_agendamento(data);
+    if (x == 0)
+    {
+      printf("Verifique se digitou certo\n");
+    }
+  } while (x != 1);
+}
+
 void ler_cpf(char cpf[])
 {
   // função reutilizável para realizar a leitura do cpf
@@ -599,15 +654,6 @@ void ler_servico(char *nome)
       printf("Veja se digitou certo \n");
     }
   } while (x != 1);
-}
-
-int valida_data(char cpf[])
-{
-  if (strlen(cpf) == 0)
-  {
-    return 0;
-  }
-  return 1;
 }
 
 // Feita com ajuda do chat gpt

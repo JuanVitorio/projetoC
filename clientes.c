@@ -86,7 +86,7 @@ Cliente *create_cliente(void)
   {
     ler_nome(cli->nome);
     ler_data(cli->data_nasci);
-    printf("Genero (1 - M | 2 - F | 3 - O): ");
+    printf("\nGenero (1 - M | 2 - F | 3 - O): ");
     int y;
     do
     {
@@ -298,7 +298,7 @@ void update_cliente(char cpf[])
           printf("Nascimento atualizado\n");
           break;
         case 4:
-          printf("Genero (1 - M | 2 - F | 3 - O): ");
+          printf("\nGenero (1 - M | 2 - F | 3 - O): ");
           scanf("%d", &gen);
           if (gen == 1)
           {

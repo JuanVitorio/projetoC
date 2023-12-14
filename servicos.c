@@ -82,7 +82,7 @@ Servicos *create_servico(void)
     {
       nome_funcionario_responsavel(serv->cpf_funcionario);
       ler_servico(serv->servico);
-      ler_data(serv->data);
+      ler_data_agendamento(serv->data);
       ler_hora(serv->horario);
       serv->status = 'A';
       serv->id = criar_id_d();
