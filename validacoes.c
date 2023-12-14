@@ -610,6 +610,8 @@ int valida_data(char cpf[])
   return 1;
 }
 
+// Feita com ajuda do chat gpt
+
 int validarSalario(char *salario)
 {
   int tamanho = strlen(salario);
@@ -641,4 +643,63 @@ int validarSalario(char *salario)
 
   // Se chegou até aqui, a string é válida
   return 1;
+}
+
+// adaptada do chat gpt
+
+int validarHora(char *hora)
+{
+  int tamanho = strlen(hora);
+
+  // Verificar o tamanho da string
+  if (tamanho != 5)
+  {
+    return 0;
+  }
+
+  // Verificar cada caractere da string
+  for (int i = 0; i < tamanho; i++)
+  {
+    // Verificar se é um dígito
+    if (!isdigit(hora[i]))
+    {
+      // Se não for um dígito, verificar se está na posição correta
+      if ((i == 2 && hora[i] == ':'))
+      {
+        continue; // Pular o caractere ':' na posição correta
+      }
+      else
+      {
+        // Se não for um dígito ou ':' na posição correta, a string contém caracteres inválidos
+        return 0;
+      }
+    }
+  }
+
+  // Verificar se as horas e minutos estão dentro dos limites válidos
+  int horas, minutos;
+  sscanf(hora, "%d:%d", &horas, &minutos);
+
+  if (horas < 0 || horas > 23 || minutos < 0 || minutos > 59)
+  {
+    return 0;
+  }
+
+  // Se chegou até aqui, a string é uma hora válida
+  return 1;
+}
+
+void ler_hora(char *hora)
+{
+  int x;
+  do
+  {
+    printf("\nDigite a hora no formato HH:MM: ");
+    scanf("%s", hora);
+    x = validarHora(hora);
+    if (x == 0)
+    {
+      printf("Digite a hora corretamente\n");
+    }
+  } while (x != 1);
 }

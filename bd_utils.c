@@ -185,9 +185,8 @@ void listar_servicos(Servicos *serv)
     nome_funcionario_responsavel(serv->cpf_funcionario);
     printf("CPF do funcionario:%s\n", serv->cpf_funcionario);
     printf("Servico: %s\n", serv->servico);
-    printf("Horario: %s", serv->horario);
-    printf("Data: %s", serv->data);
-    printf("\n");
+    printf("Horario: %s\n", serv->horario);
+    printf("Data: %s\n", serv->data);
 
     if (serv->status == 'A')
     {
@@ -242,7 +241,7 @@ void nome_funcionario_responsavel(char cpf[])
   {
     if ((strcmp(fun->cpf, cpf) == 0) && (fun->status != 'I'))
     {
-      printf("Nome do funcionario: %s\n\n", fun->nome);
+      printf("Nome do funcionario: %s\n", fun->nome);
       cont++;
     }
   }
@@ -274,7 +273,7 @@ void nome_cliente_relacionado(char cpf[])
   {
     if ((strcmp(fun->cpf, cpf) == 0) && (fun->status != 'I'))
     {
-      printf("Nome do cliente: %s\n\n", fun->nome);
+      printf("Nome do cliente: %s\n", fun->nome);
       cont++;
     }
   }

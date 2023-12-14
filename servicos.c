@@ -83,8 +83,7 @@ Servicos *create_servico(void)
       nome_funcionario_responsavel(serv->cpf_funcionario);
       ler_servico(serv->servico);
       ler_data(serv->data);
-      printf("Digite o horario (00:00): ");
-      fgets(serv->horario, 20, stdin);
+      ler_hora(serv->horario);
       serv->status = 'A';
       serv->id = criar_id_d();
       printf("Servico agendado!\n");

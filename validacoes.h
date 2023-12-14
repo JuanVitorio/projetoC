@@ -27,3 +27,5 @@ int valida_data(char cpf[]);
 int isLeapYear(int year);
 int isValidDate(char *date);
 int validarSalario(char *salario);
+int validarHora(char *hora);
+void ler_hora(char *hora);
