@@ -333,7 +333,7 @@ void funcionarios_inativos(void)
   }
   while (fread(fun, sizeof(Funcionario), 1, fc))
   {
-    if (fun->status != 'I')
+    if (fun->status != 'A')
     {
       printf("\n");
       printf("Nome: %s\n", fun->nome);
@@ -348,6 +348,10 @@ void funcionarios_inativos(void)
       printf("Status: %c\n", fun->status);
       printf("\n");
       printf("\n");
+    }
+    else
+    {
+      printf("Nao ha funcionarios inativos\n");
     }
   }
   fclose(fc);
@@ -383,7 +387,7 @@ void servicos_inativos(void)
     }
     else
     {
-      printf("Nao ha clientes inativos.");
+      printf("Nao ha servicos inativos\n.");
     }
   }
   fclose(fc);
