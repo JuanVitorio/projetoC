@@ -48,6 +48,8 @@ void funcionarios(void)
     case 5:
       buscar_funcionario();
       break;
+            case 0:
+      break;
     default:
       printf("Digite algo valido");
       break;

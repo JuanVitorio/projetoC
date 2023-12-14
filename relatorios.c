@@ -40,6 +40,8 @@ void relatorios()
     case 3:
       relatorios_ordenados();
       break;
+            case 0:
+      break;
     default:
       printf("Digite algo valido");
       break;
@@ -88,6 +90,8 @@ void relatorios_filtro(void)
     case 4:
       ler_cpf(cpf);
       servicos_atrelado_cliente(cpf);
+      break;
+            case 0:
       break;
     default:
       printf("Digite algo valido");
@@ -138,6 +142,8 @@ void relatorios_filtro_ativos(void)
       getchar();
       getchar();
       break;
+            case 0:
+      break;
     default:
       printf("Digite algo valido");
       break;
@@ -186,6 +192,8 @@ void relatorios_filtro_inativos(void)
       printf("Aperte ENTER para voltar...");
       getchar();
       getchar();
+      break;
+            case 0:
       break;
     default:
       printf("Digite algo valido");
@@ -279,6 +287,8 @@ void relatorios_ordenados(void)
       getchar();
       getchar();
       break;
+            case 0:
+      break;
     default:
       printf("Digite algo valido");
       break;
@@ -327,6 +337,8 @@ void relatorio_tabela(void)
       printf("\nAperte ENTER para voltar...");
       getchar();
       getchar();
+      break;
+            case 0:
       break;
     default:
       printf("Digite algo valido");

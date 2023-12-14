@@ -51,6 +51,8 @@ void servicos(void)
     case 5:
       buscar_servico();
       break;
+            case 0:
+      break;
     default:
       printf("Digite algo valido");
       break;

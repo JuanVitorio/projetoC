@@ -50,6 +50,8 @@ void clientes(void)
     case 5:
       buscar_clientes();
       break;
+      case 0:
+      break;
     default:
       printf("Digite algo valido\n");
       break;
