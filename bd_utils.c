@@ -41,15 +41,6 @@ void listar_clientes(Cliente *cli)
     printf("Telefone: %s\n", cli->telefone);
     printf("Endereco: %s\n", cli->endereco);
     printf("\n");
-
-    if (cli->status == 'A')
-    {
-      strcpy(estatos, "Ativo");
-    }
-    else if (cli->status == 'I')
-    {
-      strcpy(estatos, "Inativo");
-    }
   }
 }
 
@@ -115,15 +106,6 @@ void listar_funcionarios(Funcionario *fun)
     printf("Telefone: %s\n", fun->telefone);
     printf("Endereco: %s\n", fun->endereco);
     printf("\n");
-
-    if (fun->status == 'A')
-    {
-      strcpy(estatos, "Ativo");
-    }
-    else if (fun->status == 'I')
-    {
-      strcpy(estatos, "Inativo");
-    }
   }
 }
 
@@ -187,15 +169,6 @@ void listar_servicos(Servicos *serv)
     printf("Servico: %s\n", serv->servico);
     printf("Horario: %s\n", serv->horario);
     printf("Data: %s\n", serv->data);
-
-    if (serv->status == 'A')
-    {
-      strcpy(estatos, "Ativo");
-    }
-    else if (serv->status == 'I')
-    {
-      strcpy(estatos, "Inativo");
-    }
   }
 }
 
