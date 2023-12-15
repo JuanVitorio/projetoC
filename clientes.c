@@ -37,6 +37,7 @@ void clientes(void)
     {
     case 1:
       cli = create_cliente();
+      gravar_cliente(cli);
       break;
     case 2:
       atualizar_cliente();
