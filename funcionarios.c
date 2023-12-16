@@ -61,6 +61,7 @@ Funcionario *create_funcionario(void)
 {
   system("clear||cls");
   Funcionario *fun;
+  char cpf[100];
   fun = (Funcionario *)malloc(sizeof(Funcionario));
   int gen_int = 0;
   printf("==================================================\n");
@@ -68,8 +69,59 @@ Funcionario *create_funcionario(void)
   printf("||              Cadastrar funcionario           ||\n");
   printf("||                                              ||\n");
   printf("==================================================\n");
-
   ler_cpf(fun->cpf);
+  // strcpy(fun->cpf, cpf);
+  // if (verifica_se_funcionario_eh_cliente(fun->cpf) == 1)
+  // {
+  //   // abrindo o banco de clientes
+  //   FILE *fc;
+  //   Cliente *cli;
+  //   cli = (Cliente *)malloc(sizeof(Cliente));
+  //   fc = fopen("db_cliente.dat", "rb");
+
+  //   // abrindo o banco de funcionarios
+  //   FILE *ff;
+  //   ff = fopen("db_funcionarios.dat", "rb");
+  //   char genero;
+  //   printf("CPF já existente no banco\n");
+  //   while (fread(cli, sizeof(Cliente), 1, fc))
+  //   {
+  //     if ((strcmp(cli->cpf, cpf) == 0))
+  //     {
+  //       strcpy(fun->cpf, cli->cpf);
+  //       strcpy(fun->nome, cli->nome);
+  //       strcpy(fun->data_nasci, cli->data_nasci);
+  //       strcpy(fun->email, cli->email);
+  //       strcpy(fun->endereco, cli->endereco);
+  //       genero = cli->genero;
+  //       if (genero == 'M')
+  //       {
+  //         fun->genero = 'M';
+  //       }
+  //       else if (genero = 'F')
+  //       {
+  //         fun->genero = 'F';
+  //       }
+  //       else if (genero == 'O')
+  //       {
+  //         fun->genero = 'O';
+  //       }
+  //       strcpy(fun->telefone, cli->telefone);
+  //       ler_cargo(fun->funcao);
+  //       ler_salario(fun->salario);
+  //       fun->status = 'A';
+  //       gravar_funcionario(fun);
+  //       printf("Informaçoes copiadas\n");
+  //       free(fun);
+  //       free(cli);
+  //       fclose(fc);
+  //       printf("Aperte ENTER para voltar...");
+  //       getchar();
+  //       getchar();
+  //       funcionarios();
+  //     }
+  //   }
+  // }
   if (!verifica_existe_funcionario(fun->cpf))
   {
     printf("CPF ja cadastrado!\n\n");

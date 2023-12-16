@@ -59,5 +59,6 @@ void exibir_servicos(void);
 void servicos_inativos(void);
 void nome_funcionario_responsavel(char cpf[]);
 void nome_cliente_relacionado(char cpf[]);
+int verifica_se_funcionario_eh_cliente(char *cpf);
 
 #endif

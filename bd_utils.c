@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "bd_utils.h"
+#include "validacoes.h"
 #include "servicos.h"
 #include "relatorios.h"
 #include <string.h>
@@ -192,6 +193,32 @@ void exibir_servicos(void)
   }
   fclose(fc);
   free(serv);
+}
+
+int verifica_se_funcionario_eh_cliente(char *cpf)
+{
+  FILE *fc;
+  Cliente *cli;
+  cli = (Cliente *)malloc(sizeof(Cliente));
+  fc = fopen("db_cliente.dat", "rb");
+  if (fc == NULL)
+  {
+    printf("Nenhum funcionario foi cadastrado no sistema!\n");
+    printf("Aperte ENTER para voltar...");
+    getchar();
+    getchar();
+  }
+  while (fread(cli, sizeof(Cliente), 1, fc))
+  {
+    if ((strcmp(cli->cpf, cpf) == 0))
+    {
+      printf("aaaaaaaaaaaaaaaaaa");
+      free(cli);
+      fclose(fc);
+      return 1;
+    }
+  }
+  return 0;
 }
 
 void nome_funcionario_responsavel(char cpf[])
