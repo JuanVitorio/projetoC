@@ -1,8 +1,9 @@
 # CNail 
 ## Sistema de gerenciamento para uma manicure/pedicure
-### Explicação breve do código:
 
-Desenvolvido por Juan Vitório.
+*Desenvolvido por Juan Vitório.*
+
+### Explicação breve do código:
 
 O CNail é um projeto de avaliação para a matéria de programação ministrada pelo professor Flavius Gorgônio, professor da UFRN - Campus Caicó.
 
