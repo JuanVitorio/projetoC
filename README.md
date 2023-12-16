@@ -70,8 +70,6 @@ Para cadastrar um funcionário, você irá precisar de:
 - Cargo;
 - Salário.
 
-* Você pode cadastrar CPF's de clientes como funcionários e vice-versa, o código preenche automaticamente as informações já cadastradas.
-
 #### Módulo de Agendamentos:
 Este módulo irá servir para cadastrar agendamentos de cliente, nele você irá ter todas as funcionalidades de um CRUD e a pesquisa pelo CPF DO CLIENTE.
 
